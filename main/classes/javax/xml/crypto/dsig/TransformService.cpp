@@ -156,7 +156,7 @@ TransformService* TransformService::getInstance($String* algorithm, $String* mec
 	$init(TransformService);
 	if (mechanismType == nullptr || algorithm == nullptr || provider == nullptr) {
 		$throwNew($NullPointerException);
-	} else if (provider->length() == 0) {
+	} else if ($nc(provider)->length() == 0) {
 		$throwNew($NoSuchProviderException);
 	}
 	bool dom = false;

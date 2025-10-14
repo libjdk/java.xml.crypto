@@ -84,7 +84,7 @@ $String* DOMNamespaceContext::getNamespaceURI($String* prefix$renamed) {
 	}
 	if (prefix == nullptr) {
 		return ""_s;
-	} else if (prefix->equals("xml"_s)) {
+	} else if ($nc(prefix)->equals("xml"_s)) {
 		return "http://www.w3.org/XML/1998/namespace"_s;
 	} else if (prefix->equals("xmlns"_s)) {
 		return "http://www.w3.org/2000/xmlns/"_s;
@@ -110,7 +110,7 @@ $String* DOMNamespaceContext::getPrefix($String* namespaceURI$renamed) {
 	}
 	if (namespaceURI == nullptr) {
 		return $nc(this->context)->lookupNamespaceURI(nullptr) != nullptr ? ($String*)nullptr : ""_s;
-	} else if (namespaceURI->equals("http://www.w3.org/XML/1998/namespace"_s)) {
+	} else if ($nc(namespaceURI)->equals("http://www.w3.org/XML/1998/namespace"_s)) {
 		return "xml"_s;
 	} else if (namespaceURI->equals("http://www.w3.org/2000/xmlns/"_s)) {
 		return "xmlns"_s;

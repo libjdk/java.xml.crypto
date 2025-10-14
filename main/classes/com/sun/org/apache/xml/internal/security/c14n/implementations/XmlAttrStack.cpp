@@ -352,10 +352,10 @@ $String* XmlAttrStack::removeDotSegments($String* path) {
 					$assign(output, output->delete$(index, output->length()));
 				}
 			}
-			printStep("2C"_s, $(output->toString()), input);
+			printStep("2C"_s, $($nc(output)->toString()), input);
 		} else if ("/.."_s->equals(input)) {
 			$assign(input, input->replaceFirst("/.."_s, "/"_s));
-			if (output->length() == 0) {
+			if ($nc(output)->length() == 0) {
 				output->append(u'/');
 			} else if ($nc($(output->toString()))->endsWith("../"_s)) {
 				output->append(".."_s);
@@ -372,16 +372,16 @@ $String* XmlAttrStack::removeDotSegments($String* path) {
 					$assign(output, output->delete$(index, output->length()));
 				}
 			}
-			printStep("2C"_s, $(output->toString()), input);
+			printStep("2C"_s, $($nc(output)->toString()), input);
 		} else if ("."_s->equals(input)) {
 			$assign(input, ""_s);
-			printStep("2D"_s, $(output->toString()), input);
+			printStep("2D"_s, $($nc(output)->toString()), input);
 		} else if (".."_s->equals(input)) {
-			if (!"/"_s->equals($(output->toString()))) {
-				output->append(".."_s);
+			if (!"/"_s->equals($($nc(output)->toString()))) {
+				$nc(output)->append(".."_s);
 			}
 			$assign(input, ""_s);
-			printStep("2D"_s, $(output->toString()), input);
+			printStep("2D"_s, $($nc(output)->toString()), input);
 		} else {
 			int32_t end = -1;
 			int32_t begin = input->indexOf((int32_t)u'/');
@@ -399,22 +399,22 @@ $String* XmlAttrStack::removeDotSegments($String* path) {
 				$assign(segment, input->substring(begin, end));
 				$assign(input, input->substring(end));
 			}
-			output->append(segment);
+			$nc(output)->append(segment);
 			printStep("2E"_s, $(output->toString()), input);
 		}
 	}
-	if ($nc($(output->toString()))->endsWith(".."_s)) {
+	if ($nc($($nc(output)->toString()))->endsWith(".."_s)) {
 		output->append(u'/');
 		printStep("3 "_s, $(output->toString()), input);
 	}
-	return output->toString();
+	return $nc(output)->toString();
 }
 
 void XmlAttrStack::printStep($String* step, $String* output, $String* input) {
 	$init(XmlAttrStack);
 	if ($nc(XmlAttrStack::LOG)->isDebugEnabled()) {
 		$nc(XmlAttrStack::LOG)->debug($$str({" "_s, step, ":   "_s, output}));
-		if (output->length() == 0) {
+		if ($nc(output)->length() == 0) {
 			$nc(XmlAttrStack::LOG)->debug($$str({"\t\t\t\t"_s, input}));
 		} else {
 			$nc(XmlAttrStack::LOG)->debug($$str({"\t\t\t"_s, input}));

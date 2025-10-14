@@ -119,7 +119,7 @@ $bytes* ECDSAUtils::convertASN1toXMLDSIG($bytes* asn1Bytes, int32_t rawLen) {
 	} else {
 		$throwNew($IOException, "Invalid ASN.1 format of ECDSA signature"_s);
 	}
-	int8_t rLength = asn1Bytes->get(offset + 1);
+	int8_t rLength = $nc(asn1Bytes)->get(offset + 1);
 	int32_t i = 0;
 	for (i = rLength; i > 0 && asn1Bytes->get(offset + 2 + rLength - i) == 0; --i) {
 	}

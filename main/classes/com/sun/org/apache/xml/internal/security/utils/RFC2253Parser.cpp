@@ -183,7 +183,7 @@ $String* RFC2253Parser::normalizeV($String* str, bool toXml) {
 		if (var$0 && value->charAt(0) == u'#') {
 			$assign(value, $str({$$str(u'\\'), value}));
 		}
-	} else if (value->startsWith("\\#"_s)) {
+	} else if ($nc(value)->startsWith("\\#"_s)) {
 		$assign(value, value->substring(1));
 	}
 	return value;

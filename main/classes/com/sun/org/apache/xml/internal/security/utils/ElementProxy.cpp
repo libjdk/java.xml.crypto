@@ -186,7 +186,7 @@ $Element* ElementProxy::createElementForFamily($Document* doc, $String* namespac
 	$var($String, prefix, ElementProxy::getDefaultPrefix(namespace$));
 	if (namespace$ == nullptr) {
 		$assign(result, $nc(doc)->createElementNS(nullptr, localName));
-	} else if (prefix == nullptr || prefix->length() == 0) {
+	} else if (prefix == nullptr || $nc(prefix)->length() == 0) {
 		$assign(result, $nc(doc)->createElementNS(namespace$, localName));
 		$init($Constants);
 		$nc(result)->setAttributeNS($Constants::NamespaceSpecNS, "xmlns"_s, namespace$);

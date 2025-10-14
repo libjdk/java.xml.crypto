@@ -201,7 +201,7 @@ XMLSignatureFactory* XMLSignatureFactory::getInstance($String* mechanismType, $S
 		$throwNew($NullPointerException, "mechanismType cannot be null"_s);
 	} else if (provider == nullptr) {
 		$throwNew($NullPointerException, "provider cannot be null"_s);
-	} else if (provider->length() == 0) {
+	} else if ($nc(provider)->length() == 0) {
 		$throwNew($NoSuchProviderException);
 	}
 	$var($Provider, p, $Security::getProvider(provider));

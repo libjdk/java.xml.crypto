@@ -714,7 +714,7 @@ $bytes* Reference::calculateDigest(bool validating) {
 
 $bytes* Reference::getPreCalculatedDigest($XMLSignatureInput* input) {
 	$nc(Reference::LOG)->debug("Verifying element with pre-calculated digest"_s);
-	$var($String, preCalculatedDigest, input->getPreCalculatedDigest());
+	$var($String, preCalculatedDigest, $nc(input)->getPreCalculatedDigest());
 	return $XMLUtils::decode(preCalculatedDigest);
 }
 

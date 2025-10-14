@@ -81,7 +81,7 @@ bool DOMStructure::equalsContent($List* content, $List* otherContent) {
 			if (!$DOMUtils::nodesEqual(node, otherNode)) {
 				return false;
 			}
-		} else if (!($of(xs)->equals(oxs))) {
+		} else if (!($nc($of(xs))->equals(oxs))) {
 			return false;
 		}
 	}

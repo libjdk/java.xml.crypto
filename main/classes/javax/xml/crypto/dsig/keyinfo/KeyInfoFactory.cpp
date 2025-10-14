@@ -174,7 +174,7 @@ KeyInfoFactory* KeyInfoFactory::getInstance($String* mechanismType, $String* pro
 		$throwNew($NullPointerException, "mechanismType cannot be null"_s);
 	} else if (provider == nullptr) {
 		$throwNew($NullPointerException, "provider cannot be null"_s);
-	} else if (provider->length() == 0) {
+	} else if ($nc(provider)->length() == 0) {
 		$throwNew($NoSuchProviderException);
 	}
 	$var($Provider, p, $Security::getProvider(provider));

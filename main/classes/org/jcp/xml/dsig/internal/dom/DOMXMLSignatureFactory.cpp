@@ -482,7 +482,7 @@ $SignatureMethod* DOMXMLSignatureFactory::newSignatureMethod($String* algorithm,
 		$throwNew($NullPointerException);
 	}
 	$init($SignatureMethod);
-	if (algorithm->equals($SignatureMethod::RSA_SHA1)) {
+	if ($nc(algorithm)->equals($SignatureMethod::RSA_SHA1)) {
 		return $new($DOMSignatureMethod$SHA1withRSA, static_cast<$AlgorithmParameterSpec*>(params));
 	} else {
 		$init($DOMSignatureMethod);

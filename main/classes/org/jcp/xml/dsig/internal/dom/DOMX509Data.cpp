@@ -428,7 +428,7 @@ bool DOMX509Data::equals(Object$* o) {
 			if (!($instanceOf($bytes, ox)) || !$Arrays::equals($cast($bytes, x), $cast($bytes, ox))) {
 				return false;
 			}
-		} else if (!($of(x)->equals(ox))) {
+		} else if (!($nc($of(x))->equals(ox))) {
 			return false;
 		}
 	}

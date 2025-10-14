@@ -119,7 +119,7 @@ void DOMSignatureProperties::init$($List* properties, $String* id) {
 	$DOMStructure::init$();
 	if (properties == nullptr) {
 		$throwNew($NullPointerException, "properties cannot be null"_s);
-	} else if (properties->isEmpty()) {
+	} else if ($nc(properties)->isEmpty()) {
 		$throwNew($IllegalArgumentException, "properties cannot be empty"_s);
 	} else {
 		$set(this, properties, $Collections::unmodifiableList($$new($ArrayList, static_cast<$Collection*>(properties))));

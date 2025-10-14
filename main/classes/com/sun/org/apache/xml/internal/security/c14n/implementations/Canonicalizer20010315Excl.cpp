@@ -173,7 +173,7 @@ void Canonicalizer20010315Excl::outputAttributesSubtree($Element* element, $Name
 			} else {
 				bool var$7 = $nc($CanonicalizerBase::XML)->equals(NName);
 				bool var$6 = !(var$7 && $nc($CanonicalizerBase::XML_LANG_URI)->equals(NNodeValue));
-				bool var$5 = var$6 && ns->addMapping(NName, NNodeValue, attribute);
+				bool var$5 = var$6 && $nc(ns)->addMapping(NName, NNodeValue, attribute);
 				if (var$5 && $C14nHelper::namespaceIsRelative(NNodeValue)) {
 					$var($ObjectArray, exArgs, $new($ObjectArray, {
 						$($of(element->getTagName())),
