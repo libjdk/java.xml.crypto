@@ -185,6 +185,7 @@ void DOMHMACSignatureMethod::init$($AlgorithmParameterSpec* params) {
 }
 
 void DOMHMACSignatureMethod::init$($Element* smElem) {
+	$useLocalCurrentObjectStackCache();
 	$AbstractDOMSignatureMethod::init$();
 	$var($Element, paramsElem, $DOMUtils::getFirstChildElement(smElem));
 	if (paramsElem != nullptr) {
@@ -199,6 +200,7 @@ void DOMHMACSignatureMethod::init$($Element* smElem) {
 }
 
 void DOMHMACSignatureMethod::checkParams($SignatureMethodParameterSpec* params) {
+	$useLocalCurrentObjectStackCache();
 	if (params != nullptr) {
 		if (!($instanceOf($HMACParameterSpec, params))) {
 			$throwNew($InvalidAlgorithmParameterException, "params must be of type HMACParameterSpec"_s);
@@ -214,6 +216,7 @@ $AlgorithmParameterSpec* DOMHMACSignatureMethod::getParameterSpec() {
 }
 
 $SignatureMethodParameterSpec* DOMHMACSignatureMethod::unmarshalParams($Element* paramsElem) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		this->outputLength = $Integer::parseInt($($nc($($nc(paramsElem)->getFirstChild()))->getNodeValue()));
 	} catch ($NumberFormatException&) {
@@ -226,6 +229,7 @@ $SignatureMethodParameterSpec* DOMHMACSignatureMethod::unmarshalParams($Element*
 }
 
 void DOMHMACSignatureMethod::marshalParams($Element* parent, $String* prefix) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, hmacElem, $DOMUtils::createElement(ownerDoc, "HMACOutputLength"_s, $XMLSignature::XMLNS, prefix));
@@ -234,6 +238,7 @@ void DOMHMACSignatureMethod::marshalParams($Element* parent, $String* prefix) {
 }
 
 bool DOMHMACSignatureMethod::verify($Key* key, $SignedInfo* si, $bytes* sig, $XMLValidateContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (key == nullptr || si == nullptr || sig == nullptr) {
 		$throwNew($NullPointerException);
 	}
@@ -259,6 +264,7 @@ bool DOMHMACSignatureMethod::verify($Key* key, $SignedInfo* si, $bytes* sig, $XM
 }
 
 $bytes* DOMHMACSignatureMethod::sign($Key* key, $SignedInfo* si, $XMLSignContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (key == nullptr || si == nullptr) {
 		$throwNew($NullPointerException);
 	}

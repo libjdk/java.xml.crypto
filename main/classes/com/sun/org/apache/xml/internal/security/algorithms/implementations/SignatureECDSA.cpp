@@ -149,6 +149,7 @@ void SignatureECDSA::init$() {
 }
 
 void SignatureECDSA::init$($Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureAlgorithmSpi::init$();
 	this->signIntLen = -1;
 	$var($String, algorithmID, $JCEMapper::translateURItoJCEID($(this->engineGetURI())));
@@ -191,6 +192,7 @@ void SignatureECDSA::engineSetParameter($AlgorithmParameterSpec* params) {
 }
 
 bool SignatureECDSA::engineVerify($bytes* signature) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($bytes, jcebytes, SignatureECDSA::convertXMLDSIGtoASN1(signature));
 		if ($nc(SignatureECDSA::LOG)->isDebugEnabled()) {
@@ -212,6 +214,7 @@ void SignatureECDSA::engineInitVerify($Key* publicKey) {
 }
 
 $bytes* SignatureECDSA::engineSign() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($bytes, jcebytes, $nc(this->signatureAlgorithm)->sign());
 		return SignatureECDSA::convertASN1toXMLDSIG(jcebytes, this->signIntLen);
@@ -226,6 +229,7 @@ $bytes* SignatureECDSA::engineSign() {
 }
 
 void SignatureECDSA::engineInitSign($Key* privateKey, $SecureRandom* secureRandom) {
+	$useLocalCurrentObjectStackCache();
 	if ($instanceOf($ECPrivateKey, privateKey)) {
 		$var($ECPrivateKey, ecKey, $cast($ECPrivateKey, privateKey));
 		this->signIntLen = ($nc($($nc($($nc($($nc(ecKey)->getParams()))->getCurve()))->getField()))->getFieldSize() + 7) / 8;

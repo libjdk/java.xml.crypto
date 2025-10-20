@@ -107,6 +107,7 @@ $String* I18n::getExceptionMessage($String* msgID) {
 
 $String* I18n::getExceptionMessage($String* msgID, $Exception* originalException) {
 	$init(I18n);
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ObjectArray, exArgs, $new($ObjectArray, {$($of($nc(originalException)->getMessage()))}));
 		return $MessageFormat::format($($nc(I18n::resourceBundle)->getString(msgID)), exArgs);
@@ -124,6 +125,7 @@ $String* I18n::getExceptionMessage($String* msgID, $Exception* originalException
 
 $String* I18n::getExceptionMessage($String* msgID, $ObjectArray* exArgs) {
 	$init(I18n);
+	$useLocalCurrentObjectStackCache();
 	try {
 		return $MessageFormat::format($($nc(I18n::resourceBundle)->getString(msgID)), exArgs);
 	} catch ($Throwable&) {

@@ -109,6 +109,7 @@ void ApacheNodeSetData::init$($XMLSignatureInput* xi) {
 }
 
 $Iterator* ApacheNodeSetData::iterator() {
+	$useLocalCurrentObjectStackCache();
 	bool var$0 = $nc(this->xi)->getNodeFilters() != nullptr;
 	if (var$0 && !$nc($($nc(this->xi)->getNodeFilters()))->isEmpty()) {
 		return $nc($($Collections::unmodifiableSet($(getNodeSet($($nc(this->xi)->getNodeFilters()))))))->iterator();
@@ -127,6 +128,7 @@ $XMLSignatureInput* ApacheNodeSetData::getXMLSignatureInput() {
 }
 
 $Set* ApacheNodeSetData::getNodeSet($List* nodeFilters) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(this->xi)->isNeedsToBeExpanded()) {
 		$XMLUtils::circumventBug2650($($XMLUtils::getOwnerDocument($($nc(this->xi)->getSubNode()))));
 	}

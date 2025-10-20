@@ -132,6 +132,7 @@ void SignatureBaseRSA::init$() {
 }
 
 void SignatureBaseRSA::init$($Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureAlgorithmSpi::init$();
 	$var($String, algorithmID, $JCEMapper::translateURItoJCEID($(this->engineGetURI())));
 	$nc(SignatureBaseRSA::LOG)->debug("Created SignatureRSA using {}"_s, $$new($ObjectArray, {$of(algorithmID)}));

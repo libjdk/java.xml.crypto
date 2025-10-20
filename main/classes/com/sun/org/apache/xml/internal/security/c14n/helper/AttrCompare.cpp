@@ -95,6 +95,7 @@ void AttrCompare::init$() {
 }
 
 int32_t AttrCompare::compare($Attr* attr0, $Attr* attr1) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, namespaceURI0, $nc(attr0)->getNamespaceURI());
 	$var($String, namespaceURI1, $nc(attr1)->getNamespaceURI());
 	bool isNamespaceAttr0 = $nc(AttrCompare::XMLNS)->equals(namespaceURI0);

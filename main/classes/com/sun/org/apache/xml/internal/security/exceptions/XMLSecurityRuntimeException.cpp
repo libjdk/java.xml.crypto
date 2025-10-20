@@ -77,11 +77,13 @@ void XMLSecurityRuntimeException::init$($String* msgID) {
 }
 
 void XMLSecurityRuntimeException::init$($String* msgID, $ObjectArray* exArgs) {
+	$useLocalCurrentObjectStackCache();
 	$RuntimeException::init$($($MessageFormat::format($($I18n::getExceptionMessage(msgID)), exArgs)));
 	$set(this, msgID, msgID);
 }
 
 void XMLSecurityRuntimeException::init$($Exception* originalException) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($String, var$0, $$str({"Missing message ID to locate message string in resource bundle \""_s, $Constants::exceptionMessagesResourceBundleBase, "\". Original Exception was a "_s, $($nc($of(originalException))->getClass()->getName()), " and message "_s}));
 	$RuntimeException::init$($$concat(var$0, $(originalException->getMessage())), originalException);
@@ -93,6 +95,7 @@ void XMLSecurityRuntimeException::init$($String* msgID, $Exception* originalExce
 }
 
 void XMLSecurityRuntimeException::init$($String* msgID, $ObjectArray* exArgs, $Exception* originalException) {
+	$useLocalCurrentObjectStackCache();
 	$RuntimeException::init$($($MessageFormat::format($($I18n::getExceptionMessage(msgID)), exArgs)), originalException);
 	$set(this, msgID, msgID);
 }
@@ -105,6 +108,7 @@ $String* XMLSecurityRuntimeException::getMsgID() {
 }
 
 $String* XMLSecurityRuntimeException::toString() {
+	$useLocalCurrentObjectStackCache();
 	$var($String, s, $of(this)->getClass()->getName());
 	$var($String, message, $RuntimeException::getLocalizedMessage());
 	if (message != nullptr) {

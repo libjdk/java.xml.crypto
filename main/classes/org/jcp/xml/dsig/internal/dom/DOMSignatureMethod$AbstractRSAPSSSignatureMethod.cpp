@@ -87,6 +87,7 @@ void DOMSignatureMethod$AbstractRSAPSSSignatureMethod::init$($Element* dmElem) {
 }
 
 $Signature* DOMSignatureMethod$AbstractRSAPSSSignatureMethod::getSignature($Provider* p) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Signature, s, (p == nullptr) ? $Signature::getInstance("RSASSA-PSS"_s) : $Signature::getInstance("RSASSA-PSS"_s, p));
 		try {

@@ -239,6 +239,7 @@ void Logger::warn($String* s, $ObjectArray* o) {
 }
 
 void Logger::log0($Level* level, $String* s) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	if ($nc(this->impl)->isLoggable(level)) {
 		$var($StackWalker$StackFrame, sf, $cast($StackWalker$StackFrame, $nc(($cast($Optional, $($nc(Logger::WALKER)->walk(static_cast<$Function*>($$new(Logger$$Lambda$lambda$log0$1$1)))))))->get()));
@@ -250,6 +251,7 @@ void Logger::log0($Level* level, $String* s) {
 }
 
 void Logger::log0($Level* level, $String* s, $Throwable* e) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	if ($nc(this->impl)->isLoggable(level)) {
 		$var($StackWalker$StackFrame, sf, $cast($StackWalker$StackFrame, $nc(($cast($Optional, $($nc(Logger::WALKER)->walk(static_cast<$Function*>($$new(Logger$$Lambda$lambda$log0$1$1)))))))->get()));
@@ -261,6 +263,7 @@ void Logger::log0($Level* level, $String* s, $Throwable* e) {
 }
 
 void Logger::log0($Level* level, $String* s, $ObjectArray* o) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	if ($nc(this->impl)->isLoggable(level)) {
 		$var($StackWalker$StackFrame, sf, $cast($StackWalker$StackFrame, $nc(($cast($Optional, $($nc(Logger::WALKER)->walk(static_cast<$Function*>($$new(Logger$$Lambda$lambda$log0$1$1)))))))->get()));

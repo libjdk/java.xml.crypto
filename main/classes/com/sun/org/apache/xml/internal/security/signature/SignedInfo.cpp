@@ -141,6 +141,7 @@ void SignedInfo::init$($Document* doc, $String* signatureMethodURI, int32_t hMAC
 }
 
 void SignedInfo::init$($Document* doc, $String* signatureMethodURI, int32_t hMACOutputLength, $String* canonicalizationMethodURI, $Provider* provider, $AlgorithmParameterSpec* spec) {
+	$useLocalCurrentObjectStackCache();
 	$Manifest::init$(doc);
 	$init($Constants);
 	$set(this, c14nMethod, $XMLUtils::createElementInSignatureSpace($(getDocument()), $Constants::_TAG_CANONICALIZATIONMETHOD));
@@ -181,6 +182,7 @@ void SignedInfo::init$($Element* element, $String* baseURI, bool secureValidatio
 }
 
 void SignedInfo::init$($Element* element, $String* baseURI, bool secureValidation, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$Manifest::init$(element, baseURI, secureValidation);
 	$set(this, c14nMethod, $XMLUtils::getNextElement($($nc(element)->getFirstChild())));
 	bool var$0 = this->c14nMethod == nullptr;
@@ -224,6 +226,7 @@ bool SignedInfo::verify(bool followManifests) {
 }
 
 $bytes* SignedInfo::getCanonicalizedOctetStream() {
+	$useLocalCurrentObjectStackCache();
 	if (this->c14nizedBytes == nullptr) {
 		$var($Canonicalizer, c14nizer, $Canonicalizer::getInstance($(this->getCanonicalizationMethodURI())));
 		$var($String, inclusiveNamespaces, this->getInclusiveNamespaces());
@@ -264,6 +267,7 @@ $bytes* SignedInfo::getCanonicalizedOctetStream() {
 }
 
 void SignedInfo::signInOctetStream($OutputStream* os) {
+	$useLocalCurrentObjectStackCache();
 	if (this->c14nizedBytes == nullptr) {
 		$var($Canonicalizer, c14nizer, $Canonicalizer::getInstance($(this->getCanonicalizationMethodURI())));
 		$var($String, inclusiveNamespaces, this->getInclusiveNamespaces());
@@ -314,6 +318,7 @@ $String* SignedInfo::getBaseLocalName() {
 }
 
 $String* SignedInfo::getInclusiveNamespaces() {
+	$useLocalCurrentObjectStackCache();
 	$var($String, c14nMethodURI, getCanonicalizationMethodURI());
 	bool var$0 = "http://www.w3.org/2001/10/xml-exc-c14n#"_s->equals(c14nMethodURI);
 	if (!(var$0 || "http://www.w3.org/2001/10/xml-exc-c14n#WithComments"_s->equals(c14nMethodURI))) {

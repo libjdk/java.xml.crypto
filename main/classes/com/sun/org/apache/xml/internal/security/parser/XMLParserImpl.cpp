@@ -180,6 +180,7 @@ void XMLParserImpl::init$() {
 }
 
 $Document* XMLParserImpl::parse($InputStream* inputStream, bool disallowDocTypeDeclarations) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ClassLoader, loader, getContextClassLoader());
 		if (loader == nullptr) {
@@ -210,6 +211,7 @@ $Document* XMLParserImpl::parse($InputStream* inputStream, bool disallowDocTypeD
 
 $Queue* XMLParserImpl::getDocumentBuilderQueue(bool disallowDocTypeDeclarations, $ClassLoader* loader) {
 	$init(XMLParserImpl);
+	$useLocalCurrentObjectStackCache();
 	$var($Map, docBuilderCache, disallowDocTypeDeclarations ? XMLParserImpl::DOCUMENT_BUILDERS_DISALLOW_DOCTYPE : XMLParserImpl::DOCUMENT_BUILDERS);
 	$var($Queue, queue, $cast($Queue, $nc(docBuilderCache)->get(loader)));
 	if (queue == nullptr) {
@@ -248,6 +250,7 @@ void XMLParserImpl::repoolDocumentBuilder($DocumentBuilder* db, $Queue* queue) {
 
 $ClassLoader* XMLParserImpl::getContextClassLoader() {
 	$init(XMLParserImpl);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($SecurityManager, sm, $System::getSecurityManager());
 	if (sm != nullptr) {
@@ -258,6 +261,7 @@ $ClassLoader* XMLParserImpl::getContextClassLoader() {
 
 $ClassLoader* XMLParserImpl::getClassLoader($Class* clazz) {
 	$init(XMLParserImpl);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($SecurityManager, sm, $System::getSecurityManager());
 	if (sm != nullptr) {
@@ -272,6 +276,7 @@ $Integer* XMLParserImpl::lambda$static$0() {
 }
 
 void clinit$XMLParserImpl($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	XMLParserImpl::parserPoolSize = $nc(($cast($Integer, $($AccessController::doPrivileged(static_cast<$PrivilegedAction*>($$new(XMLParserImpl$$Lambda$lambda$static$0)))))))->intValue();
 	$assignStatic(XMLParserImpl::DOCUMENT_BUILDERS, $Collections::synchronizedMap($$new($WeakHashMap)));

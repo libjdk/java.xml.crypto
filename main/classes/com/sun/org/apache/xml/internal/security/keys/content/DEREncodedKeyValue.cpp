@@ -148,6 +148,7 @@ $String* DEREncodedKeyValue::getBaseLocalName() {
 }
 
 $PublicKey* DEREncodedKeyValue::getPublicKey() {
+	$useLocalCurrentObjectStackCache();
 	$var($bytes, encodedKey, getBytesFromTextChild());
 	{
 		$var($StringArray, arr$, DEREncodedKeyValue::supportedKeyTypes);
@@ -176,6 +177,7 @@ $PublicKey* DEREncodedKeyValue::getPublicKey() {
 }
 
 $bytes* DEREncodedKeyValue::getEncodedDER($PublicKey* publicKey) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($KeyFactory, keyFactory, $KeyFactory::getInstance($($nc(publicKey)->getAlgorithm())));
 		$load($X509EncodedKeySpec);

@@ -138,6 +138,7 @@ void XMLSignatureFactory::init$() {
 }
 
 XMLSignatureFactory* XMLSignatureFactory::getInstance($String* mechanismType) {
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr) {
 		$throwNew($NullPointerException, "mechanismType cannot be null"_s);
 	}
@@ -172,6 +173,7 @@ XMLSignatureFactory* XMLSignatureFactory::getInstance($String* mechanismType) {
 }
 
 XMLSignatureFactory* XMLSignatureFactory::getInstance($String* mechanismType, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr) {
 		$throwNew($NullPointerException, "mechanismType cannot be null"_s);
 	} else if (provider == nullptr) {
@@ -197,6 +199,7 @@ XMLSignatureFactory* XMLSignatureFactory::getInstance($String* mechanismType, $P
 }
 
 XMLSignatureFactory* XMLSignatureFactory::getInstance($String* mechanismType, $String* provider) {
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr) {
 		$throwNew($NullPointerException, "mechanismType cannot be null"_s);
 	} else if (provider == nullptr) {
@@ -240,6 +243,7 @@ $Provider* XMLSignatureFactory::getProvider() {
 }
 
 $KeyInfoFactory* XMLSignatureFactory::getKeyInfoFactory() {
+	$useLocalCurrentObjectStackCache();
 	$var($String, var$0, getMechanismType());
 	return $KeyInfoFactory::getInstance(var$0, $(getProvider()));
 }

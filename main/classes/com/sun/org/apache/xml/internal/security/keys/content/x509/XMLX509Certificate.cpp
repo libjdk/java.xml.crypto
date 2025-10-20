@@ -130,6 +130,7 @@ void XMLX509Certificate::init$($Document* doc, $bytes* certificateBytes) {
 }
 
 void XMLX509Certificate::init$($Document* doc, $X509Certificate* x509certificate) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	try {
 		this->addBase64Text($($nc(x509certificate)->getEncoded()));
@@ -144,6 +145,7 @@ $bytes* XMLX509Certificate::getCertificateBytes() {
 }
 
 $X509Certificate* XMLX509Certificate::getX509Certificate() {
+	$useLocalCurrentObjectStackCache();
 	$var($bytes, certbytes, this->getCertificateBytes());
 	try {
 		$var($InputStream, is, $new($ByteArrayInputStream, certbytes));
@@ -198,6 +200,7 @@ $PublicKey* XMLX509Certificate::getPublicKey() {
 }
 
 bool XMLX509Certificate::equals(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf(XMLX509Certificate, obj))) {
 		return false;
 	}
@@ -213,6 +216,7 @@ bool XMLX509Certificate::equals(Object$* obj) {
 }
 
 int32_t XMLX509Certificate::hashCode() {
+	$useLocalCurrentObjectStackCache();
 	int32_t result = 17;
 	try {
 		$var($bytes, bytes, getCertificateBytes());

@@ -182,6 +182,7 @@ $ECKeyValue$Curve* ECKeyValue::SECP521R1 = nullptr;
 
 $ECKeyValue$Curve* ECKeyValue::initializeCurve($String* name, $String* oid, $String* sfield, $String* a, $String* b, $String* x, $String* y, $String* n, int32_t h) {
 	$init(ECKeyValue);
+	$useLocalCurrentObjectStackCache();
 	$var($BigInteger, p, bigInt(sfield));
 	$var($ECField, field, $new($ECFieldFp, p));
 	$var($ECField, var$0, field);
@@ -197,6 +198,7 @@ void ECKeyValue::init$($Element* element, $String* baseURI) {
 }
 
 void ECKeyValue::init$($Document* doc, $Key* key) {
+	$useLocalCurrentObjectStackCache();
 	$Signature11ElementProxy::init$(doc);
 	addReturnToSelf();
 	if ($instanceOf($ECPublicKey, key)) {
@@ -228,6 +230,7 @@ void ECKeyValue::init$($Document* doc, $Key* key) {
 }
 
 $PublicKey* ECKeyValue::getPublicKey() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ECParameterSpec, ecParams, nullptr);
 		$var($Element, curElem, getFirstChildElement($(getElement())));
@@ -313,6 +316,7 @@ $Element* ECKeyValue::getNextSiblingElement($Node* node) {
 
 $Element* ECKeyValue::verifyElement($Element* elem, $String* localName, $String* namespaceURI) {
 	$init(ECKeyValue);
+	$useLocalCurrentObjectStackCache();
 	if (elem == nullptr) {
 		$throwNew($MarshalException, $$str({"Missing "_s, localName, " element"_s}));
 	}
@@ -346,6 +350,7 @@ $String* ECKeyValue::getCurveOid($ECParameterSpec* params) {
 
 bool ECKeyValue::matchCurve($ECParameterSpec* params, $ECKeyValue$Curve* curve) {
 	$init(ECKeyValue);
+	$useLocalCurrentObjectStackCache();
 	int32_t fieldSize = $nc($($nc($($nc(params)->getCurve()))->getField()))->getFieldSize();
 	bool var$3 = $nc($($nc($($nc(curve)->getCurve()))->getField()))->getFieldSize() == fieldSize;
 	bool var$2 = var$3 && $nc($(curve->getCurve()))->equals($(params->getCurve()));
@@ -360,6 +365,7 @@ bool ECKeyValue::matchCurve($ECParameterSpec* params, $ECKeyValue$Curve* curve) 
 
 $ECPoint* ECKeyValue::decodePoint($bytes* data, $EllipticCurve* curve) {
 	$init(ECKeyValue);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(data)->length == 0 || $nc(data)->get(0) != 4) {
 		$throwNew($IOException, "Only uncompressed point format supported"_s);
 	}
@@ -375,6 +381,7 @@ $ECPoint* ECKeyValue::decodePoint($bytes* data, $EllipticCurve* curve) {
 
 $bytes* ECKeyValue::encodePoint($ECPoint* point, $EllipticCurve* curve) {
 	$init(ECKeyValue);
+	$useLocalCurrentObjectStackCache();
 	int32_t n = ($nc($($nc(curve)->getField()))->getFieldSize() + 7) >> 3;
 	$var($bytes, xb, trimZeroes($($nc($($nc(point)->getAffineX()))->toByteArray())));
 	$var($bytes, yb, trimZeroes($($nc($($nc(point)->getAffineY()))->toByteArray())));
@@ -402,6 +409,7 @@ $bytes* ECKeyValue::trimZeroes($bytes* b) {
 
 $ECParameterSpec* ECKeyValue::getECParameterSpec($String* oid) {
 	$init(ECKeyValue);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(oid)->equals($($nc(ECKeyValue::SECP256R1)->getObjectId()))) {
 		return ECKeyValue::SECP256R1;
 	} else {

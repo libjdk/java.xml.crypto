@@ -105,6 +105,7 @@ $String* TransformXPath2Filter::engineGetURI() {
 }
 
 $XMLSignatureInput* TransformXPath2Filter::enginePerformTransform($XMLSignatureInput* input, $OutputStream* os, $Element* transformElement, $String* baseURI, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($List, unionNodes, $new($ArrayList));
 		$var($List, subtractNodes, $new($ArrayList));

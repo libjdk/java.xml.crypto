@@ -215,6 +215,7 @@ $Logger* KeyInfo::LOG = nullptr;
 $List* KeyInfo::nullList = nullptr;
 
 void KeyInfo::init$($Document* doc) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	$set(this, storageResolvers, KeyInfo::nullList);
 	$set(this, internalKeyResolvers, $new($ArrayList));
@@ -253,6 +254,7 @@ $String* KeyInfo::getId() {
 }
 
 void KeyInfo::addKeyName($String* keynameString) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($KeyName, $(getDocument()), keynameString));
 }
 
@@ -262,22 +264,27 @@ void KeyInfo::add($KeyName* keyname) {
 }
 
 void KeyInfo::addKeyValue($PublicKey* pk) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($KeyValue, $(getDocument()), pk));
 }
 
 void KeyInfo::addKeyValue($Element* unknownKeyValueElement) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($KeyValue, $(getDocument()), unknownKeyValueElement));
 }
 
 void KeyInfo::add($DSAKeyValue* dsakeyvalue) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($KeyValue, $(getDocument()), dsakeyvalue));
 }
 
 void KeyInfo::add($RSAKeyValue* rsakeyvalue) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($KeyValue, $(getDocument()), rsakeyvalue));
 }
 
 void KeyInfo::add($PublicKey* pk) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($KeyValue, $(getDocument()), pk));
 }
 
@@ -287,6 +294,7 @@ void KeyInfo::add($KeyValue* keyvalue) {
 }
 
 void KeyInfo::addMgmtData($String* mgmtdata) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($MgmtData, $(getDocument()), mgmtdata));
 }
 
@@ -301,6 +309,7 @@ void KeyInfo::add($PGPData* pgpdata) {
 }
 
 void KeyInfo::addRetrievalMethod($String* uri, $Transforms* transforms, $String* Type) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($RetrievalMethod, $(getDocument()), uri, transforms, Type));
 }
 
@@ -324,6 +333,7 @@ void KeyInfo::add($X509Data* x509data) {
 }
 
 void KeyInfo::addDEREncodedKeyValue($PublicKey* pk) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($DEREncodedKeyValue, $(getDocument()), pk));
 }
 
@@ -333,6 +343,7 @@ void KeyInfo::add($DEREncodedKeyValue* derEncodedKeyValue) {
 }
 
 void KeyInfo::addKeyInfoReference($String* URI) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($KeyInfoReference, $(getDocument()), URI));
 }
 
@@ -395,6 +406,7 @@ int32_t KeyInfo::lengthKeyInfoReference() {
 }
 
 int32_t KeyInfo::lengthUnknownElement() {
+	$useLocalCurrentObjectStackCache();
 	int32_t res = 0;
 	$var($Node, childNode, $nc($(getElement()))->getFirstChild());
 	while (childNode != nullptr) {
@@ -409,6 +421,7 @@ int32_t KeyInfo::lengthUnknownElement() {
 }
 
 $KeyName* KeyInfo::itemKeyName(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_KEYNAME, i));
 	if (e != nullptr) {
@@ -418,6 +431,7 @@ $KeyName* KeyInfo::itemKeyName(int32_t i) {
 }
 
 $KeyValue* KeyInfo::itemKeyValue(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_KEYVALUE, i));
 	if (e != nullptr) {
@@ -427,6 +441,7 @@ $KeyValue* KeyInfo::itemKeyValue(int32_t i) {
 }
 
 $MgmtData* KeyInfo::itemMgmtData(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_MGMTDATA, i));
 	if (e != nullptr) {
@@ -436,6 +451,7 @@ $MgmtData* KeyInfo::itemMgmtData(int32_t i) {
 }
 
 $PGPData* KeyInfo::itemPGPData(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_PGPDATA, i));
 	if (e != nullptr) {
@@ -445,6 +461,7 @@ $PGPData* KeyInfo::itemPGPData(int32_t i) {
 }
 
 $RetrievalMethod* KeyInfo::itemRetrievalMethod(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_RETRIEVALMETHOD, i));
 	if (e != nullptr) {
@@ -454,6 +471,7 @@ $RetrievalMethod* KeyInfo::itemRetrievalMethod(int32_t i) {
 }
 
 $SPKIData* KeyInfo::itemSPKIData(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_SPKIDATA, i));
 	if (e != nullptr) {
@@ -463,6 +481,7 @@ $SPKIData* KeyInfo::itemSPKIData(int32_t i) {
 }
 
 $X509Data* KeyInfo::itemX509Data(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	if (this->x509Datas != nullptr) {
 		return $cast($X509Data, $nc(this->x509Datas)->get(i));
 	}
@@ -475,6 +494,7 @@ $X509Data* KeyInfo::itemX509Data(int32_t i) {
 }
 
 $DEREncodedKeyValue* KeyInfo::itemDEREncodedKeyValue(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDs11Node($(getFirstChild()), $Constants::_TAG_DERENCODEDKEYVALUE, i));
 	if (e != nullptr) {
@@ -484,6 +504,7 @@ $DEREncodedKeyValue* KeyInfo::itemDEREncodedKeyValue(int32_t i) {
 }
 
 $KeyInfoReference* KeyInfo::itemKeyInfoReference(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDs11Node($(getFirstChild()), $Constants::_TAG_KEYINFOREFERENCE, i));
 	if (e != nullptr) {
@@ -493,6 +514,7 @@ $KeyInfoReference* KeyInfo::itemKeyInfoReference(int32_t i) {
 }
 
 $Element* KeyInfo::itemUnknownElement(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	int32_t res = 0;
 	$var($Node, childNode, $nc($(getElement()))->getFirstChild());
 	while (childNode != nullptr) {
@@ -570,6 +592,7 @@ $PublicKey* KeyInfo::getPublicKey() {
 }
 
 $PublicKey* KeyInfo::getPublicKeyFromStaticResolvers() {
+	$useLocalCurrentObjectStackCache();
 	$var($Iterator, it, $KeyResolver::iterator());
 	while ($nc(it)->hasNext()) {
 		$var($KeyResolverSpi, keyResolver, $cast($KeyResolverSpi, it->next()));
@@ -597,6 +620,7 @@ $PublicKey* KeyInfo::getPublicKeyFromStaticResolvers() {
 }
 
 $PublicKey* KeyInfo::getPublicKeyFromInternalResolvers() {
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($Iterator, i$, $nc(this->internalKeyResolvers)->iterator());
 		for (; $nc(i$)->hasNext();) {
@@ -645,6 +669,7 @@ $X509Certificate* KeyInfo::getX509Certificate() {
 }
 
 $X509Certificate* KeyInfo::getX509CertificateFromStaticResolvers() {
+	$useLocalCurrentObjectStackCache();
 	$nc(KeyInfo::LOG)->debug("Start getX509CertificateFromStaticResolvers() with {} resolvers"_s, $$new($ObjectArray, {$($of($Integer::valueOf($KeyResolver::length())))}));
 	$var($String, uri, this->getBaseURI());
 	$var($Iterator, it, $KeyResolver::iterator());
@@ -659,6 +684,7 @@ $X509Certificate* KeyInfo::getX509CertificateFromStaticResolvers() {
 }
 
 $X509Certificate* KeyInfo::applyCurrentResolver($String* uri, $KeyResolverSpi* keyResolver) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, currentChild, getFirstChild());
 	while (currentChild != nullptr) {
 		if (currentChild->getNodeType() == $Node::ELEMENT_NODE) {
@@ -681,6 +707,7 @@ $X509Certificate* KeyInfo::applyCurrentResolver($String* uri, $KeyResolverSpi* k
 }
 
 $X509Certificate* KeyInfo::getX509CertificateFromInternalResolvers() {
+	$useLocalCurrentObjectStackCache();
 	$nc(KeyInfo::LOG)->debug("Start getX509CertificateFromInternalResolvers() with {} resolvers"_s, $$new($ObjectArray, {$($of($Integer::valueOf(+this->lengthInternalKeyResolver())))}));
 	$var($String, uri, this->getBaseURI());
 	{
@@ -716,6 +743,7 @@ $SecretKey* KeyInfo::getSecretKey() {
 }
 
 $SecretKey* KeyInfo::getSecretKeyFromStaticResolvers() {
+	$useLocalCurrentObjectStackCache();
 	$var($Iterator, it, $KeyResolver::iterator());
 	while ($nc(it)->hasNext()) {
 		$var($KeyResolverSpi, keyResolver, $cast($KeyResolverSpi, it->next()));
@@ -743,6 +771,7 @@ $SecretKey* KeyInfo::getSecretKeyFromStaticResolvers() {
 }
 
 $SecretKey* KeyInfo::getSecretKeyFromInternalResolvers() {
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($Iterator, i$, $nc(this->internalKeyResolvers)->iterator());
 		for (; $nc(i$)->hasNext();) {
@@ -791,6 +820,7 @@ $PrivateKey* KeyInfo::getPrivateKey() {
 }
 
 $PrivateKey* KeyInfo::getPrivateKeyFromStaticResolvers() {
+	$useLocalCurrentObjectStackCache();
 	$var($Iterator, it, $KeyResolver::iterator());
 	while ($nc(it)->hasNext()) {
 		$var($KeyResolverSpi, keyResolver, $cast($KeyResolverSpi, it->next()));
@@ -810,6 +840,7 @@ $PrivateKey* KeyInfo::getPrivateKeyFromStaticResolvers() {
 }
 
 $PrivateKey* KeyInfo::getPrivateKeyFromInternalResolvers() {
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($Iterator, i$, $nc(this->internalKeyResolvers)->iterator());
 		for (; $nc(i$)->hasNext();) {

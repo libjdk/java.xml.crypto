@@ -126,6 +126,7 @@ $String* SignatureBaseRSA$SignatureRSASSAPSS::engineGetURI() {
 }
 
 void SignatureBaseRSA$SignatureRSASSAPSS::engineAddContextToElement($Element* element) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		$throwNew($IllegalArgumentException, "null element"_s);
 	}
@@ -154,6 +155,7 @@ void SignatureBaseRSA$SignatureRSASSAPSS::engineAddContextToElement($Element* el
 }
 
 void SignatureBaseRSA$SignatureRSASSAPSS::engineGetContextFromElement($Element* element) {
+	$useLocalCurrentObjectStackCache();
 	if (this->pssParameterSpec == nullptr) {
 		$SignatureBaseRSA::engineGetContextFromElement(element);
 		$init($Constants);

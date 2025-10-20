@@ -127,6 +127,7 @@ void DOMXMLObject::finalize() {
 }
 
 void DOMXMLObject::init$($List* content, $String* id, $String* mimeType, $String* encoding) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	if (content == nullptr || $nc(content)->isEmpty()) {
 		$set(this, content, $Collections::emptyList());
@@ -148,6 +149,7 @@ void DOMXMLObject::init$($List* content, $String* id, $String* mimeType, $String
 }
 
 void DOMXMLObject::init$($Element* objElem, $XMLCryptoContext* context, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	$set(this, encoding, $DOMUtils::getAttributeValue(objElem, "Encoding"_s));
 	$var($Attr, attr, $nc(objElem)->getAttributeNodeNS(nullptr, "Id"_s));
@@ -219,6 +221,7 @@ $String* DOMXMLObject::getEncoding() {
 }
 
 void DOMXMLObject::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$var($Element, objElem, this->objectElem);
 	if (objElem == nullptr) {
@@ -246,6 +249,7 @@ void DOMXMLObject::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* 
 }
 
 bool DOMXMLObject::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}

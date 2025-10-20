@@ -112,6 +112,7 @@ void DOMX509IssuerSerial::init$($String* issuerName, $BigInteger* serialNumber) 
 }
 
 void DOMX509IssuerSerial::init$($Element* isElem) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$init($XMLSignature);
 	$var($Element, iNElem, $DOMUtils::getFirstChildElement(isElem, "X509IssuerName"_s, $XMLSignature::XMLNS));
@@ -129,6 +130,7 @@ $BigInteger* DOMX509IssuerSerial::getSerialNumber() {
 }
 
 void DOMX509IssuerSerial::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, isElem, $DOMUtils::createElement(ownerDoc, "X509IssuerSerial"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -142,6 +144,7 @@ void DOMX509IssuerSerial::marshal($Node* parent, $String* dsPrefix, $DOMCryptoCo
 }
 
 bool DOMX509IssuerSerial::equals(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, obj)) {
 		return true;
 	}

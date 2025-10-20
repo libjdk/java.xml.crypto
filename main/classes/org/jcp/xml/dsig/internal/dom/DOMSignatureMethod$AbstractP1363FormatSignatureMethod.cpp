@@ -83,6 +83,7 @@ void DOMSignatureMethod$AbstractP1363FormatSignatureMethod::init$($Element* dmEl
 }
 
 $Signature* DOMSignatureMethod$AbstractP1363FormatSignatureMethod::getSignature($Provider* p) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		return (p == nullptr) ? $Signature::getInstance($(getJCAAlgorithm())) : $Signature::getInstance($(getJCAAlgorithm()), p);
 	} catch ($NoSuchAlgorithmException&) {

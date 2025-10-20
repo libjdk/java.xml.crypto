@@ -169,6 +169,7 @@ $Element* DOMCryptoContext::getElementById($String* idValue) {
 }
 
 void DOMCryptoContext::setIdAttributeNS($Element* element, $String* namespaceURI, $String* localName) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		$throwNew($NullPointerException, "element is null"_s);
 	}
@@ -183,6 +184,7 @@ void DOMCryptoContext::setIdAttributeNS($Element* element, $String* namespaceURI
 }
 
 $Iterator* DOMCryptoContext::iterator() {
+	$useLocalCurrentObjectStackCache();
 	return $nc($($nc($($Collections::unmodifiableMap(this->idMap)))->entrySet()))->iterator();
 }
 

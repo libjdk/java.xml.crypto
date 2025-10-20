@@ -190,6 +190,7 @@ void Transforms::setSecureValidation(bool secureValidation) {
 }
 
 void Transforms::addTransform($String* transformURI) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(Transforms::LOG)->debug("Transforms.addTransform({})"_s, $$new($ObjectArray, {$of(transformURI)}));
 		$var($Transform, transform, $new($Transform, $(getDocument()), transformURI));
@@ -201,6 +202,7 @@ void Transforms::addTransform($String* transformURI) {
 }
 
 void Transforms::addTransform($String* transformURI, $Element* contextElement) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(Transforms::LOG)->debug("Transforms.addTransform({})"_s, $$new($ObjectArray, {$of(transformURI)}));
 		$var($Transform, transform, $new($Transform, $(getDocument()), transformURI, contextElement));
@@ -212,6 +214,7 @@ void Transforms::addTransform($String* transformURI, $Element* contextElement) {
 }
 
 void Transforms::addTransform($String* transformURI, $NodeList* contextNodes) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Transform, transform, $new($Transform, $(getDocument()), transformURI, contextNodes));
 		this->addTransform(transform);
@@ -222,6 +225,7 @@ void Transforms::addTransform($String* transformURI, $NodeList* contextNodes) {
 }
 
 void Transforms::addTransform($Transform* transform) {
+	$useLocalCurrentObjectStackCache();
 	$nc(Transforms::LOG)->debug("Transforms.addTransform({})"_s, $$new($ObjectArray, {$($of($nc(transform)->getURI()))}));
 	$var($Element, transformElement, $nc(transform)->getElement());
 	appendSelf(static_cast<$Node*>(transformElement));
@@ -233,6 +237,7 @@ $XMLSignatureInput* Transforms::performTransforms($XMLSignatureInput* xmlSignatu
 }
 
 $XMLSignatureInput* Transforms::performTransforms($XMLSignatureInput* xmlSignatureInput$renamed, $OutputStream* os) {
+	$useLocalCurrentObjectStackCache();
 	$var($XMLSignatureInput, xmlSignatureInput, xmlSignatureInput$renamed);
 	try {
 		int32_t last = this->getLength() - 1;
@@ -269,6 +274,7 @@ $XMLSignatureInput* Transforms::performTransforms($XMLSignatureInput* xmlSignatu
 }
 
 void Transforms::checkSecureValidation($Transform* transform) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, uri, $nc(transform)->getURI());
 	if (this->secureValidation && $nc(Transforms::TRANSFORM_XSLT)->equals(uri)) {
 		$var($ObjectArray, exArgs, $new($ObjectArray, {$of(uri)}));

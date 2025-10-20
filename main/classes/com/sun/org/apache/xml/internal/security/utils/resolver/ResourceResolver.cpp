@@ -122,6 +122,7 @@ void ResourceResolver::registerAtStart($String* className) {
 
 void ResourceResolver::register$($ResourceResolverSpi* resourceResolverSpi, bool start) {
 	$init(ResourceResolver);
+	$useLocalCurrentObjectStackCache();
 	$JavaUtils::checkRegisterPermission();
 	if (start) {
 		$nc(ResourceResolver::resolverList)->add(0, resourceResolverSpi);
@@ -133,6 +134,7 @@ void ResourceResolver::register$($ResourceResolverSpi* resourceResolverSpi, bool
 
 void ResourceResolver::registerClassNames($List* classNames) {
 	$init(ResourceResolver);
+	$useLocalCurrentObjectStackCache();
 	$JavaUtils::checkRegisterPermission();
 	$var($List, resourceResolversToAdd, $new($ArrayList, $nc(classNames)->size()));
 	{
@@ -150,6 +152,7 @@ void ResourceResolver::registerClassNames($List* classNames) {
 
 void ResourceResolver::registerDefaultResolvers() {
 	$init(ResourceResolver);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(ResourceResolver::defaultResolversAdded)->compareAndSet(false, true)) {
 		$var($List, resourceResolversToAdd, $new($ArrayList));
 		resourceResolversToAdd->add($$new($ResolverFragment));
@@ -162,6 +165,7 @@ void ResourceResolver::registerDefaultResolvers() {
 
 $XMLSignatureInput* ResourceResolver::resolve($ResourceResolverContext* context) {
 	$init(ResourceResolver);
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($Iterator, i$, $nc(ResourceResolver::resolverList)->iterator());
 		for (; $nc(i$)->hasNext();) {
@@ -187,6 +191,7 @@ $XMLSignatureInput* ResourceResolver::resolve($ResourceResolverContext* context)
 
 $XMLSignatureInput* ResourceResolver::resolve($List* individualResolvers, $ResourceResolverContext* context) {
 	$init(ResourceResolver);
+	$useLocalCurrentObjectStackCache();
 	$nc(ResourceResolver::LOG)->debug("I was asked to create a ResourceResolver and got {}"_s, $$new($ObjectArray, {$($of($Integer::valueOf(individualResolvers == nullptr ? 0 : $nc(individualResolvers)->size())))}));
 	if (individualResolvers != nullptr) {
 		{

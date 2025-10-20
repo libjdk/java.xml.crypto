@@ -165,6 +165,7 @@ void DOMRetrievalMethod::finalize() {
 }
 
 void DOMRetrievalMethod::init$($String* uri, $String* type, $List* transforms) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	if (uri == nullptr) {
 		$throwNew($NullPointerException, "uri cannot be null"_s);
@@ -196,6 +197,7 @@ void DOMRetrievalMethod::init$($String* uri, $String* type, $List* transforms) {
 }
 
 void DOMRetrievalMethod::init$($Element* rmElem, $XMLCryptoContext* context, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$set(this, uri, $DOMUtils::getAttributeValue(rmElem, "URI"_s));
 	$set(this, type, $DOMUtils::getAttributeValue(rmElem, "Type"_s));
@@ -247,6 +249,7 @@ $List* DOMRetrievalMethod::getTransforms() {
 }
 
 void DOMRetrievalMethod::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, rmElem, $DOMUtils::createElement(ownerDoc, "RetrievalMethod"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -274,6 +277,7 @@ $Node* DOMRetrievalMethod::getHere() {
 }
 
 $Data* DOMRetrievalMethod::dereference($XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (context == nullptr) {
 		$throwNew($NullPointerException, "context cannot be null"_s);
 	}
@@ -312,6 +316,7 @@ $Data* DOMRetrievalMethod::dereference($XMLCryptoContext* context) {
 }
 
 $XMLStructure* DOMRetrievalMethod::dereferenceAsXMLStructure($XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	bool secVal = $Utils::secureValidation(context);
 	$var($ApacheData, data, $cast($ApacheData, dereference(context)));
 	try {
@@ -365,6 +370,7 @@ $XMLStructure* DOMRetrievalMethod::dereferenceAsXMLStructure($XMLCryptoContext* 
 }
 
 bool DOMRetrievalMethod::equals(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, obj)) {
 		return true;
 	}

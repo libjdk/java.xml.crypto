@@ -121,6 +121,7 @@ void StorageResolver::add($StorageResolverSpi* resolver) {
 }
 
 void StorageResolver::add($KeyStore* keyStore) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		this->add(static_cast<$StorageResolverSpi*>($$new($KeyStoreResolver, keyStore)));
 	} catch ($StorageResolverException&) {

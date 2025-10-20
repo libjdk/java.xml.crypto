@@ -73,6 +73,7 @@ void SignerOutputStream::init$($SignatureAlgorithm* sa) {
 }
 
 void SignerOutputStream::write($bytes* arg0) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->sa)->update(arg0);
 	} catch ($XMLSignatureException&) {
@@ -82,6 +83,7 @@ void SignerOutputStream::write($bytes* arg0) {
 }
 
 void SignerOutputStream::write(int32_t arg0) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$nc(this->sa)->update((int8_t)arg0);
 	} catch ($XMLSignatureException&) {
@@ -91,6 +93,7 @@ void SignerOutputStream::write(int32_t arg0) {
 }
 
 void SignerOutputStream::write($bytes* arg0, int32_t arg1, int32_t arg2) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(SignerOutputStream::LOG)->isDebugEnabled()) {
 		$nc(SignerOutputStream::LOG)->debug("Canonicalized SignedInfo:"_s);
 		$var($StringBuilder, sb, $new($StringBuilder, arg2));

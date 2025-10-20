@@ -156,6 +156,7 @@ void IntegrityHmac::init$() {
 }
 
 void IntegrityHmac::init$($Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureAlgorithmSpi::init$();
 	$var($String, algorithmID, $JCEMapper::translateURItoJCEID($(this->engineGetURI())));
 	$nc(IntegrityHmac::LOG)->debug("Created IntegrityHmacSHA1 using {}"_s, $$new($ObjectArray, {$of(algorithmID)}));
@@ -176,6 +177,7 @@ void IntegrityHmac::engineSetParameter($AlgorithmParameterSpec* params) {
 }
 
 bool IntegrityHmac::engineVerify($bytes* signature) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		if (this->hmacOutputLength != nullptr && $nc(this->hmacOutputLength)->length < getDigestLength()) {
 			$nc(IntegrityHmac::LOG)->debug("HMACOutputLength must not be less than {}"_s, $$new($ObjectArray, {$($of($Integer::valueOf(getDigestLength())))}));
@@ -193,6 +195,7 @@ bool IntegrityHmac::engineVerify($bytes* signature) {
 }
 
 void IntegrityHmac::engineInitVerify($Key* secretKey) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf($SecretKey, secretKey))) {
 		$var($String, supplied, nullptr);
 		if (secretKey != nullptr) {
@@ -215,6 +218,7 @@ void IntegrityHmac::engineInitVerify($Key* secretKey) {
 }
 
 $bytes* IntegrityHmac::engineSign() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		if (this->hmacOutputLength != nullptr && $nc(this->hmacOutputLength)->length < getDigestLength()) {
 			$nc(IntegrityHmac::LOG)->debug("HMACOutputLength must not be less than {}"_s, $$new($ObjectArray, {$($of($Integer::valueOf(getDigestLength())))}));
@@ -235,6 +239,7 @@ void IntegrityHmac::engineInitSign($Key* secretKey) {
 }
 
 void IntegrityHmac::engineInitSign($Key* secretKey, $AlgorithmParameterSpec* algorithmParameterSpec) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf($SecretKey, secretKey))) {
 		$var($String, supplied, nullptr);
 		if (secretKey != nullptr) {
@@ -307,6 +312,7 @@ void IntegrityHmac::engineSetHMACOutputLength(int32_t length) {
 }
 
 void IntegrityHmac::engineGetContextFromElement($Element* element) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		$throwNew($IllegalArgumentException, "element null"_s);
 	}
@@ -321,6 +327,7 @@ void IntegrityHmac::engineGetContextFromElement($Element* element) {
 }
 
 void IntegrityHmac::engineAddContextToElement($Element* element) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		$throwNew($IllegalArgumentException, "null element"_s);
 	}

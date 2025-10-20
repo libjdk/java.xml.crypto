@@ -131,6 +131,7 @@ void KeyValue::init$($Document* doc, $Element* unknownKeyValue) {
 }
 
 void KeyValue::init$($Document* doc, $PublicKey* pk) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	addReturnToSelf();
 	if ($instanceOf($DSAPublicKey, pk)) {
@@ -156,6 +157,7 @@ void KeyValue::init$($Element* element, $String* baseURI) {
 }
 
 $PublicKey* KeyValue::getPublicKey() {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, rsa, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_RSAKEYVALUE, 0));
 	if (rsa != nullptr) {

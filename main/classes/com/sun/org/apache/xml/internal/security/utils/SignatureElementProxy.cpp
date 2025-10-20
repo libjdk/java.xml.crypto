@@ -58,6 +58,7 @@ void SignatureElementProxy::init$() {
 }
 
 void SignatureElementProxy::init$($Document* doc) {
+	$useLocalCurrentObjectStackCache();
 	$ElementProxy::init$();
 	if (doc == nullptr) {
 		$throwNew($RuntimeException, "Document is null"_s);

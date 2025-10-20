@@ -186,6 +186,7 @@ $Data* ApacheCanonicalizer::canonicalize($Data* data, $XMLCryptoContext* xc) {
 }
 
 $Data* ApacheCanonicalizer::canonicalize($Data* data, $XMLCryptoContext* xc, $OutputStream* os) {
+	$useLocalCurrentObjectStackCache();
 	if (this->canonicalizer == nullptr) {
 		try {
 			$set(this, canonicalizer, $Canonicalizer::getInstance($(getAlgorithm())));
@@ -256,6 +257,7 @@ $bytes* ApacheCanonicalizer::getC14nBytes($OutputStream* outputStream, bool isBy
 }
 
 $Data* ApacheCanonicalizer::transform($Data* data, $XMLCryptoContext* xc, $OutputStream* os) {
+	$useLocalCurrentObjectStackCache();
 	if (data == nullptr) {
 		$throwNew($NullPointerException, "data must not be null"_s);
 	}

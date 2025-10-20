@@ -102,6 +102,7 @@ void DOMURIDereferencer::init$() {
 }
 
 $Data* DOMURIDereferencer::dereference($URIReference* uriRef, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (uriRef == nullptr) {
 		$throwNew($NullPointerException, "uriRef cannot be null"_s);
 	}

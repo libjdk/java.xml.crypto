@@ -165,6 +165,7 @@ int32_t KeyResolver::length() {
 
 $X509Certificate* KeyResolver::getX509Certificate($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
 	$init(KeyResolver);
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($Iterator, i$, $nc(KeyResolver::resolverList)->iterator());
 		for (; $nc(i$)->hasNext();) {
@@ -188,6 +189,7 @@ $X509Certificate* KeyResolver::getX509Certificate($Element* element, $String* ba
 
 $PublicKey* KeyResolver::getPublicKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
 	$init(KeyResolver);
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($Iterator, i$, $nc(KeyResolver::resolverList)->iterator());
 		for (; $nc(i$)->hasNext();) {
@@ -218,6 +220,7 @@ void KeyResolver::register$($String* className) {
 
 void KeyResolver::registerAtStart($String* className) {
 	$init(KeyResolver);
+	$useLocalCurrentObjectStackCache();
 	$JavaUtils::checkRegisterPermission();
 	$var($KeyResolverSpi, keyResolverSpi, nullptr);
 	$var($Exception, ex, nullptr);
@@ -254,6 +257,7 @@ void KeyResolver::register$($KeyResolverSpi* keyResolverSpi, bool start) {
 
 void KeyResolver::registerClassNames($List* classNames) {
 	$init(KeyResolver);
+	$useLocalCurrentObjectStackCache();
 	$JavaUtils::checkRegisterPermission();
 	$var($List, keyResolverList, $new($ArrayList, $nc(classNames)->size()));
 	{
@@ -271,6 +275,7 @@ void KeyResolver::registerClassNames($List* classNames) {
 
 void KeyResolver::registerDefaultResolvers() {
 	$init(KeyResolver);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(KeyResolver::defaultResolversAdded)->compareAndSet(false, true)) {
 		$var($List, keyResolverList, $new($ArrayList));
 		keyResolverList->add($$new($RSAKeyValueResolver));

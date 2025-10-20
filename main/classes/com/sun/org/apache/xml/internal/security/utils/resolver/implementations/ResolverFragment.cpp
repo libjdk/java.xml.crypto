@@ -81,6 +81,7 @@ void ResolverFragment::init$() {
 }
 
 $XMLSignatureInput* ResolverFragment::engineResolveURI($ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, doc, $nc($($nc($nc(context)->attr)->getOwnerElement()))->getOwnerDocument());
 	$var($Node, selectedElem, nullptr);
 	if ($nc(context->uriToResolve)->isEmpty()) {
@@ -118,6 +119,7 @@ $XMLSignatureInput* ResolverFragment::engineResolveURI($ResourceResolverContext*
 }
 
 bool ResolverFragment::engineCanResolveURI($ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(context)->uriToResolve == nullptr) {
 		$nc(ResolverFragment::LOG)->debug("Quick fail for null uri"_s);
 		return false;

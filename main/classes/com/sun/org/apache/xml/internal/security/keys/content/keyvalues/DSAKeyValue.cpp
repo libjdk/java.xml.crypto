@@ -137,6 +137,7 @@ void DSAKeyValue::init$($Document* doc, $BigInteger* P, $BigInteger* Q, $BigInte
 }
 
 void DSAKeyValue::init$($Document* doc, $Key* key) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	addReturnToSelf();
 	if ($instanceOf($DSAPublicKey, key)) {
@@ -157,6 +158,7 @@ void DSAKeyValue::init$($Document* doc, $Key* key) {
 }
 
 $PublicKey* DSAKeyValue::getPublicKey() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$init($Constants);
 		$var($BigInteger, var$0, this->getBigIntegerFromChildElement($Constants::_TAG_Y, $Constants::SignatureSpecNS));

@@ -101,6 +101,7 @@ bool RSAKeyValueResolver::engineCanResolve($Element* element, $String* baseURI, 
 }
 
 $PublicKey* RSAKeyValueResolver::engineResolvePublicKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		return nullptr;
 	}

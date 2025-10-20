@@ -77,6 +77,7 @@ void ApacheOctetStreamData::finalize() {
 }
 
 void ApacheOctetStreamData::init$($XMLSignatureInput* xi) {
+	$useLocalCurrentObjectStackCache();
 	$var($InputStream, var$0, $nc(xi)->getOctetStream());
 	$var($String, var$1, xi->getSourceURI());
 	$OctetStreamData::init$(var$0, var$1, $(xi->getMIMEType()));

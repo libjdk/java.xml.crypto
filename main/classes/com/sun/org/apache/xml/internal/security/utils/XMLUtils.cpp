@@ -399,6 +399,7 @@ void XMLUtils::getSet($Node* rootNode, $Set* result, $Node* exclude, bool com) {
 
 void XMLUtils::getSetRec($Node* rootNode, $Set* result, $Node* exclude, bool com) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (rootNode == exclude) {
 		return;
 	}
@@ -462,6 +463,7 @@ void XMLUtils::outputDOM($Node* contextNode, $OutputStream* os) {
 
 void XMLUtils::outputDOM($Node* contextNode, $OutputStream* os, bool addPreamble) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	try {
 		if (addPreamble) {
 			$init($StandardCharsets);
@@ -483,6 +485,7 @@ void XMLUtils::outputDOM($Node* contextNode, $OutputStream* os, bool addPreamble
 
 void XMLUtils::outputDOMc14nWithComments($Node* contextNode, $OutputStream* os) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	try {
 		$init($Canonicalizer);
 		$nc($($Canonicalizer::getInstance($Canonicalizer::ALGO_ID_C14N_WITH_COMMENTS)))->canonicalizeSubtree(contextNode, os);
@@ -497,6 +500,7 @@ void XMLUtils::outputDOMc14nWithComments($Node* contextNode, $OutputStream* os) 
 
 $String* XMLUtils::getFullTextChildrenFromNode($Node* node) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($StringBuilder, sb, $new($StringBuilder));
 	$var($Node, child, $nc(node)->getFirstChild());
 	while (child != nullptr) {
@@ -562,6 +566,7 @@ $Element* XMLUtils::createElementInEncryption11Space($Document* doc, $String* el
 
 bool XMLUtils::elementIsInSignatureSpace($Element* element, $String* localName) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		return false;
 	}
@@ -572,6 +577,7 @@ bool XMLUtils::elementIsInSignatureSpace($Element* element, $String* localName) 
 
 bool XMLUtils::elementIsInSignature11Space($Element* element, $String* localName) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		return false;
 	}
@@ -582,6 +588,7 @@ bool XMLUtils::elementIsInSignature11Space($Element* element, $String* localName
 
 bool XMLUtils::elementIsInEncryptionSpace($Element* element, $String* localName) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		return false;
 	}
@@ -592,6 +599,7 @@ bool XMLUtils::elementIsInEncryptionSpace($Element* element, $String* localName)
 
 bool XMLUtils::elementIsInEncryption11Space($Element* element, $String* localName) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		return false;
 	}
@@ -602,6 +610,7 @@ bool XMLUtils::elementIsInEncryption11Space($Element* element, $String* localNam
 
 $Document* XMLUtils::getOwnerDocument($Node* node) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(node)->getNodeType() == $Node::DOCUMENT_NODE) {
 		return $cast($Document, node);
 	}
@@ -618,6 +627,7 @@ $Document* XMLUtils::getOwnerDocument($Node* node) {
 
 $Document* XMLUtils::getOwnerDocument($Set* xpathNodeSet) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($NullPointerException, npe, nullptr);
 	{
 		$var($Iterator, i$, $nc(xpathNodeSet)->iterator());
@@ -648,6 +658,7 @@ $Document* XMLUtils::getOwnerDocument($Set* xpathNodeSet) {
 
 void XMLUtils::addReturnToElement($Element* e) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (!XMLUtils::ignoreLineBreaks$) {
 		$var($Document, doc, $nc(e)->getOwnerDocument());
 		e->appendChild($($nc(doc)->createTextNode("\n"_s)));
@@ -663,6 +674,7 @@ void XMLUtils::addReturnToElement($Document* doc, $HelperNodeList* nl) {
 
 void XMLUtils::addReturnBeforeChild($Element* e, $Node* child) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (!XMLUtils::ignoreLineBreaks$) {
 		$var($Document, doc, $nc(e)->getOwnerDocument());
 		e->insertBefore($($nc(doc)->createTextNode("\n"_s)), child);
@@ -671,6 +683,7 @@ void XMLUtils::addReturnBeforeChild($Element* e, $Node* child) {
 
 $String* XMLUtils::encodeToString($bytes* bytes) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (XMLUtils::ignoreLineBreaks$) {
 		return $nc($($Base64::getEncoder()))->encodeToString(bytes);
 	}
@@ -694,6 +707,7 @@ bool XMLUtils::isIgnoreLineBreaks() {
 
 $Set* XMLUtils::convertNodelistToSet($NodeList* xpathNodeSet) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if (xpathNodeSet == nullptr) {
 		return $new($HashSet);
 	}
@@ -707,6 +721,7 @@ $Set* XMLUtils::convertNodelistToSet($NodeList* xpathNodeSet) {
 
 void XMLUtils::circumventBug2650($Document* doc) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Element, documentElement, $nc(doc)->getDocumentElement());
 	$init($Constants);
 	$var($Attr, xmlnsAttr, $nc(documentElement)->getAttributeNodeNS($Constants::NamespaceSpecNS, "xmlns"_s));
@@ -718,6 +733,7 @@ void XMLUtils::circumventBug2650($Document* doc) {
 
 void XMLUtils::circumventBug2650internal($Node* node$renamed) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, node, node$renamed);
 	$var($Node, parent, nullptr);
 	$var($Node, sibling, nullptr);
@@ -783,6 +799,7 @@ void XMLUtils::circumventBug2650internal($Node* node$renamed) {
 
 $Element* XMLUtils::selectDsNode($Node* sibling$renamed, $String* nodeName, int32_t number) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, sibling, sibling$renamed);
 	while (sibling != nullptr) {
 		$init($Constants);
@@ -800,6 +817,7 @@ $Element* XMLUtils::selectDsNode($Node* sibling$renamed, $String* nodeName, int3
 
 $Element* XMLUtils::selectDs11Node($Node* sibling$renamed, $String* nodeName, int32_t number) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, sibling, sibling$renamed);
 	while (sibling != nullptr) {
 		$init($Constants);
@@ -817,6 +835,7 @@ $Element* XMLUtils::selectDs11Node($Node* sibling$renamed, $String* nodeName, in
 
 $Element* XMLUtils::selectXencNode($Node* sibling$renamed, $String* nodeName, int32_t number) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, sibling, sibling$renamed);
 	while (sibling != nullptr) {
 		$init($EncryptionConstants);
@@ -834,6 +853,7 @@ $Element* XMLUtils::selectXencNode($Node* sibling$renamed, $String* nodeName, in
 
 $Element* XMLUtils::selectNode($Node* sibling$renamed, $String* uri, $String* nodeName, int32_t number) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, sibling, sibling$renamed);
 	while (sibling != nullptr) {
 		bool var$1 = sibling->getNamespaceURI() != nullptr;
@@ -863,6 +883,7 @@ $ElementArray* XMLUtils::selectDs11Nodes($Node* sibling, $String* nodeName) {
 
 $ElementArray* XMLUtils::selectNodes($Node* sibling$renamed, $String* uri, $String* nodeName) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, sibling, sibling$renamed);
 	$var($List, list, $new($ArrayList));
 	while (sibling != nullptr) {
@@ -878,11 +899,13 @@ $ElementArray* XMLUtils::selectNodes($Node* sibling$renamed, $String* uri, $Stri
 
 $Set* XMLUtils::excludeNodeFromSet($Node* signatureElement, $Set* inputSet) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	return $cast($Set, $nc($($nc($($nc(inputSet)->stream()))->filter(static_cast<$Predicate*>($$new(XMLUtils$$Lambda$lambda$excludeNodeFromSet$2$2, signatureElement)))))->collect($($Collectors::toSet())));
 }
 
 $String* XMLUtils::getStrFromNode($Node* xpathnode) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(xpathnode)->getNodeType() == $Node::TEXT_NODE) {
 		$var($StringBuilder, sb, $new($StringBuilder));
 		{
@@ -930,6 +953,7 @@ bool XMLUtils::ignoreLineBreaks() {
 
 bool XMLUtils::protectAgainstWrappingAttack($Node* startNode$renamed, $String* value) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, startNode, startNode$renamed);
 	$var($String, id, $nc(value)->trim());
 	bool var$0 = !id->isEmpty();
@@ -980,6 +1004,7 @@ bool XMLUtils::protectAgainstWrappingAttack($Node* startNode$renamed, $String* v
 
 bool XMLUtils::protectAgainstWrappingAttack($Node* startNode$renamed, $Element* knownElement, $String* value) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, startNode, startNode$renamed);
 	$var($String, id, $nc(value)->trim());
 	bool var$0 = !id->isEmpty();
@@ -1030,6 +1055,7 @@ $Document* XMLUtils::read($InputStream* inputStream, bool disallowDocTypeDeclara
 
 $bytes* XMLUtils::getBytes($BigInteger* big, int32_t bitlen) {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	bitlen = ((bitlen + 7) >> 3) << 3;
 	if (bitlen < $nc(big)->bitLength()) {
 		$throwNew($IllegalArgumentException, $($I18n::translate("utils.Base64.IllegalBitlength"_s)));
@@ -1058,6 +1084,7 @@ bool XMLUtils::lambda$excludeNodeFromSet$2($Node* signatureElement, $Node* input
 
 $XMLParser* XMLUtils::lambda$static$1() {
 	$init(XMLUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($String, xmlParserClass, $System::getProperty("com.sun.org.apache.xml.internal.security.XMLParser"_s));
 	if (xmlParserClass != nullptr) {
 		try {
@@ -1085,6 +1112,7 @@ $Boolean* XMLUtils::lambda$static$0() {
 }
 
 void clinit$XMLUtils($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	XMLUtils::ignoreLineBreaks$ = $nc(($cast($Boolean, $($AccessController::doPrivileged(static_cast<$PrivilegedAction*>($$new(XMLUtils$$Lambda$lambda$static$0)))))))->booleanValue();
 	$assignStatic(XMLUtils::LOG, $LoggerFactory::getLogger(XMLUtils::class$));

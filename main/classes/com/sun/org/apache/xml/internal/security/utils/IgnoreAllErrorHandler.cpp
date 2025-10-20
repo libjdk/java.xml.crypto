@@ -138,6 +138,7 @@ void IgnoreAllErrorHandler::init$() {
 
 bool IgnoreAllErrorHandler::getProperty($String* name) {
 	$init(IgnoreAllErrorHandler);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	return $nc(($cast($Boolean, $($AccessController::doPrivileged(static_cast<$PrivilegedAction*>($$new(IgnoreAllErrorHandler$$Lambda$lambda$getProperty$0, name)))))))->booleanValue();
 }

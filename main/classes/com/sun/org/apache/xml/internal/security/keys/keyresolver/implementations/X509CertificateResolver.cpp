@@ -112,6 +112,7 @@ $PublicKey* X509CertificateResolver::engineResolvePublicKey($Element* element, $
 }
 
 $X509Certificate* X509CertificateResolver::engineResolveX509Certificate($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$init($Constants);
 		$var($ElementArray, els, $XMLUtils::selectDsNodes($($nc(element)->getFirstChild()), $Constants::_TAG_X509CERTIFICATE));

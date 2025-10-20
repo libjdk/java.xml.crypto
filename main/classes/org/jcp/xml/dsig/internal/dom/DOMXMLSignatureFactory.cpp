@@ -373,6 +373,7 @@ $XMLSignature* DOMXMLSignatureFactory::unmarshalXMLSignature($XMLValidateContext
 }
 
 $XMLSignature* DOMXMLSignatureFactory::unmarshalXMLSignature($XMLStructure* xmlStructure) {
+	$useLocalCurrentObjectStackCache();
 	if (xmlStructure == nullptr) {
 		$throwNew($NullPointerException, "xmlStructure cannot be null"_s);
 	}
@@ -384,6 +385,7 @@ $XMLSignature* DOMXMLSignatureFactory::unmarshalXMLSignature($XMLStructure* xmlS
 }
 
 $XMLSignature* DOMXMLSignatureFactory::unmarshal($Node* node, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$nc(node)->normalize();
 	$var($Element, element, nullptr);
 	if (node->getNodeType() == $Node::DOCUMENT_NODE) {
@@ -597,6 +599,7 @@ $SignatureMethod* DOMXMLSignatureFactory::newSignatureMethod($String* algorithm,
 }
 
 $Transform* DOMXMLSignatureFactory::newTransform($String* algorithm, $TransformParameterSpec* params) {
+	$useLocalCurrentObjectStackCache();
 	$var($TransformService, spi, nullptr);
 	if (getProvider() == nullptr) {
 		$assign(spi, $TransformService::getInstance(algorithm, "DOM"_s));
@@ -613,6 +616,7 @@ $Transform* DOMXMLSignatureFactory::newTransform($String* algorithm, $TransformP
 }
 
 $Transform* DOMXMLSignatureFactory::newTransform($String* algorithm, $XMLStructure* params) {
+	$useLocalCurrentObjectStackCache();
 	$var($TransformService, spi, nullptr);
 	if (getProvider() == nullptr) {
 		$assign(spi, $TransformService::getInstance(algorithm, "DOM"_s));
@@ -633,6 +637,7 @@ $Transform* DOMXMLSignatureFactory::newTransform($String* algorithm, $XMLStructu
 }
 
 $CanonicalizationMethod* DOMXMLSignatureFactory::newCanonicalizationMethod($String* algorithm, $C14NMethodParameterSpec* params) {
+	$useLocalCurrentObjectStackCache();
 	$var($TransformService, spi, nullptr);
 	if (getProvider() == nullptr) {
 		$assign(spi, $TransformService::getInstance(algorithm, "DOM"_s));
@@ -649,6 +654,7 @@ $CanonicalizationMethod* DOMXMLSignatureFactory::newCanonicalizationMethod($Stri
 }
 
 $CanonicalizationMethod* DOMXMLSignatureFactory::newCanonicalizationMethod($String* algorithm, $XMLStructure* params) {
+	$useLocalCurrentObjectStackCache();
 	$var($TransformService, spi, nullptr);
 	if (getProvider() == nullptr) {
 		$assign(spi, $TransformService::getInstance(algorithm, "DOM"_s));

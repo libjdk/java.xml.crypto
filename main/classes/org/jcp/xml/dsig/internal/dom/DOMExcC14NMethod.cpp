@@ -118,6 +118,7 @@ void DOMExcC14NMethod::init($XMLStructure* parent, $XMLCryptoContext* context) {
 }
 
 void DOMExcC14NMethod::unmarshalParams($Element* paramsElem) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, prefixListAttr, $nc(paramsElem)->getAttributeNS(nullptr, "PrefixList"_s));
 	$set(this, inclusiveNamespaces, prefixListAttr);
 	int32_t begin = 0;
@@ -139,6 +140,7 @@ $List* DOMExcC14NMethod::getParameterSpecPrefixList($ExcC14NParameterSpec* param
 }
 
 void DOMExcC14NMethod::marshalParams($XMLStructure* parent, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$ApacheCanonicalizer::marshalParams(parent, context);
 	$var($AlgorithmParameterSpec, spec, getParameterSpec());
 	if (spec == nullptr) {
@@ -176,6 +178,7 @@ $String* DOMExcC14NMethod::getParamsNSURI() {
 }
 
 $Data* DOMExcC14NMethod::transform($Data* data, $XMLCryptoContext* xc) {
+	$useLocalCurrentObjectStackCache();
 	if ($instanceOf($DOMSubTreeData, data)) {
 		$var($DOMSubTreeData, subTree, $cast($DOMSubTreeData, data));
 		if ($nc(subTree)->excludeComments()) {

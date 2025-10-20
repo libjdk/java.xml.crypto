@@ -195,6 +195,7 @@ void DOMSignedInfo::finalize() {
 $Logger* DOMSignedInfo::LOG = nullptr;
 
 void DOMSignedInfo::init$($CanonicalizationMethod* cm, $SignatureMethod* sm, $List* references) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	if (cm == nullptr || sm == nullptr || references == nullptr) {
 		$throwNew($NullPointerException);
@@ -223,6 +224,7 @@ void DOMSignedInfo::init$($CanonicalizationMethod* cm, $SignatureMethod* sm, $Li
 }
 
 void DOMSignedInfo::init$($Element* siElem, $XMLCryptoContext* context, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$set(this, localSiElem, siElem);
 	$set(this, ownerDoc, $nc(siElem)->getOwnerDocument());
@@ -300,6 +302,7 @@ $InputStream* DOMSignedInfo::getCanonicalizedData() {
 }
 
 void DOMSignedInfo::canonicalize($XMLCryptoContext* context, $ByteArrayOutputStream* bos) {
+	$useLocalCurrentObjectStackCache();
 	if (context == nullptr) {
 		$throwNew($NullPointerException, "context cannot be null"_s);
 	}
@@ -352,6 +355,7 @@ void DOMSignedInfo::canonicalize($XMLCryptoContext* context, $ByteArrayOutputStr
 }
 
 void DOMSignedInfo::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$set(this, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, siElem, $DOMUtils::createElement(this->ownerDoc, "SignedInfo"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -373,6 +377,7 @@ void DOMSignedInfo::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext*
 }
 
 bool DOMSignedInfo::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}

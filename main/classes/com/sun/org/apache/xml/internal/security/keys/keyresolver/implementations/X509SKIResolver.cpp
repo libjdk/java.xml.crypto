@@ -108,6 +108,7 @@ void X509SKIResolver::init$() {
 }
 
 bool X509SKIResolver::engineCanResolve($Element* element, $String* baseURI, $StorageResolver* storage) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	if (!$XMLUtils::elementIsInSignatureSpace(element, $Constants::_TAG_X509DATA)) {
 		return false;
@@ -125,6 +126,7 @@ $PublicKey* X509SKIResolver::engineResolvePublicKey($Element* element, $String* 
 }
 
 $X509Certificate* X509SKIResolver::engineResolveX509Certificate($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($ElementArray, x509childNodes, $XMLUtils::selectDsNodes($($nc(element)->getFirstChild()), $Constants::_TAG_X509SKI));
 	if (!(x509childNodes != nullptr && x509childNodes->length > 0)) {

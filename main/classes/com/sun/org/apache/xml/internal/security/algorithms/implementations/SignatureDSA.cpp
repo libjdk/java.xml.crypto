@@ -143,6 +143,7 @@ void SignatureDSA::init$() {
 }
 
 void SignatureDSA::init$($Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureAlgorithmSpi::init$();
 	$var($String, algorithmID, $JCEMapper::translateURItoJCEID($(engineGetURI())));
 	$nc(SignatureDSA::LOG)->debug("Created SignatureDSA using {}"_s, $$new($ObjectArray, {$of(algorithmID)}));
@@ -184,6 +185,7 @@ void SignatureDSA::engineSetParameter($AlgorithmParameterSpec* params) {
 }
 
 bool SignatureDSA::engineVerify($bytes* signature) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		if ($nc(SignatureDSA::LOG)->isDebugEnabled()) {
 			$nc(SignatureDSA::LOG)->debug($$str({"Called DSA.verify() on "_s, $($XMLUtils::encodeToString(signature))}));
@@ -201,11 +203,13 @@ bool SignatureDSA::engineVerify($bytes* signature) {
 }
 
 void SignatureDSA::engineInitVerify($Key* publicKey) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureAlgorithmSpi::engineInitVerify(publicKey, this->signatureAlgorithm);
 	this->size = $nc($($nc($($nc(($cast($DSAKey, publicKey)))->getParams()))->getQ()))->bitLength();
 }
 
 $bytes* SignatureDSA::engineSign() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($bytes, jcebytes, $nc(this->signatureAlgorithm)->sign());
 		return $JavaUtils::convertDsaASN1toXMLDSIG(jcebytes, this->size / 8);
@@ -220,6 +224,7 @@ $bytes* SignatureDSA::engineSign() {
 }
 
 void SignatureDSA::engineInitSign($Key* privateKey, $SecureRandom* secureRandom) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureAlgorithmSpi::engineInitSign(privateKey, secureRandom, this->signatureAlgorithm);
 	this->size = $nc($($nc($($nc(($cast($DSAKey, privateKey)))->getParams()))->getQ()))->bitLength();
 }

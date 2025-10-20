@@ -130,6 +130,7 @@ $bytes* XMLX509SKI::getSKIBytes() {
 
 $bytes* XMLX509SKI::getSKIBytesFromCert($X509Certificate* cert) {
 	$init(XMLX509SKI);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(cert)->getVersion() < 3) {
 		$var($ObjectArray, exArgs, $new($ObjectArray, {$($of($Integer::valueOf(cert->getVersion())))}));
 		$throwNew($XMLSecurityException, "certificate.noSki.lowVersion"_s, exArgs);
@@ -147,6 +148,7 @@ $bytes* XMLX509SKI::getSKIBytesFromCert($X509Certificate* cert) {
 }
 
 bool XMLX509SKI::equals(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf(XMLX509SKI, obj))) {
 		return false;
 	}
@@ -162,6 +164,7 @@ bool XMLX509SKI::equals(Object$* obj) {
 }
 
 int32_t XMLX509SKI::hashCode() {
+	$useLocalCurrentObjectStackCache();
 	int32_t result = 17;
 	try {
 		$var($bytes, bytes, getSKIBytes());

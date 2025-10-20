@@ -134,6 +134,7 @@ $bytes* XMLX509Digest::getDigestBytes() {
 
 $bytes* XMLX509Digest::getDigestBytesFromCert($X509Certificate* cert, $String* algorithmURI) {
 	$init(XMLX509Digest);
+	$useLocalCurrentObjectStackCache();
 	$var($String, jcaDigestAlgorithm, $JCEMapper::translateURItoJCEID(algorithmURI));
 	if (jcaDigestAlgorithm == nullptr) {
 		$var($ObjectArray, exArgs, $new($ObjectArray, {$of(algorithmURI)}));

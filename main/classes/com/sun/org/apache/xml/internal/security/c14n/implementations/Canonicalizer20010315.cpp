@@ -131,6 +131,7 @@ void Canonicalizer20010315::engineCanonicalizeSubTree($Node* rootNode, $String* 
 }
 
 void Canonicalizer20010315::outputAttributesSubtree($Element* element, $NameSpaceSymbTable* ns, $Map* cache, $OutputStream* writer) {
+	$useLocalCurrentObjectStackCache();
 	if (!$nc(element)->hasAttributes() && !this->firstCall) {
 		return;
 	}
@@ -183,6 +184,7 @@ void Canonicalizer20010315::outputAttributesSubtree($Element* element, $NameSpac
 }
 
 void Canonicalizer20010315::outputAttributes($Element* element, $NameSpaceSymbTable* ns, $Map* cache, $OutputStream* writer) {
+	$useLocalCurrentObjectStackCache();
 	$nc(this->xmlattrStack)->push($nc(ns)->getLevel());
 	bool isRealVisible = isVisibleDO(element, $nc(ns)->getLevel()) == 1;
 	$init($CanonicalizerBase);
@@ -263,6 +265,7 @@ void Canonicalizer20010315::outputAttributes($Element* element, $NameSpaceSymbTa
 }
 
 void Canonicalizer20010315::circumventBugIfNeeded($XMLSignatureInput* input) {
+	$useLocalCurrentObjectStackCache();
 	if (!$nc(input)->isNeedsToBeExpanded()) {
 		return;
 	}
@@ -276,6 +279,7 @@ void Canonicalizer20010315::circumventBugIfNeeded($XMLSignatureInput* input) {
 }
 
 void Canonicalizer20010315::handleParent($Element* e, $NameSpaceSymbTable* ns) {
+	$useLocalCurrentObjectStackCache();
 	bool var$0 = !$nc(e)->hasAttributes();
 	if (var$0 && e->getNamespaceURI() == nullptr) {
 		return;

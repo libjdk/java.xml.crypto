@@ -146,6 +146,7 @@ void Canonicalizer20010315Excl::engineCanonicalizeXPathNodeSet($Set* xpathNodeSe
 }
 
 void Canonicalizer20010315Excl::outputAttributesSubtree($Element* element, $NameSpaceSymbTable* ns, $Map* cache, $OutputStream* writer) {
+	$useLocalCurrentObjectStackCache();
 	$init($CanonicalizerBase);
 	$var($SortedSet, result, $new($TreeSet, static_cast<$Comparator*>($CanonicalizerBase::COMPARE)));
 	$var($SortedSet, visiblyUtilized, $new($TreeSet));
@@ -228,6 +229,7 @@ void Canonicalizer20010315Excl::outputAttributesSubtree($Element* element, $Name
 }
 
 void Canonicalizer20010315Excl::outputAttributes($Element* element, $NameSpaceSymbTable* ns, $Map* cache, $OutputStream* writer) {
+	$useLocalCurrentObjectStackCache();
 	$init($CanonicalizerBase);
 	$var($SortedSet, result, $new($TreeSet, static_cast<$Comparator*>($CanonicalizerBase::COMPARE)));
 	$var($Set, visiblyUtilized, nullptr);
@@ -335,6 +337,7 @@ void Canonicalizer20010315Excl::outputAttributes($Element* element, $NameSpaceSy
 }
 
 void Canonicalizer20010315Excl::circumventBugIfNeeded($XMLSignatureInput* input) {
+	$useLocalCurrentObjectStackCache();
 	bool var$0 = !$nc(input)->isNeedsToBeExpanded();
 	if (var$0 || $nc(this->inclusiveNSSet)->isEmpty()) {
 		return;

@@ -170,6 +170,7 @@ $KeyName* DOMKeyInfoFactory::newKeyName($String* name) {
 }
 
 $KeyValue* DOMKeyInfoFactory::newKeyValue($PublicKey* key) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, algorithm, $nc(key)->getAlgorithm());
 	if ("DSA"_s->equals(algorithm)) {
 		return $new($DOMKeyValue$DSA, $cast($DSAPublicKey, key));
@@ -227,6 +228,7 @@ $URIDereferencer* DOMKeyInfoFactory::getURIDereferencer() {
 }
 
 $KeyInfo* DOMKeyInfoFactory::unmarshalKeyInfo($XMLStructure* xmlStructure) {
+	$useLocalCurrentObjectStackCache();
 	if (xmlStructure == nullptr) {
 		$throwNew($NullPointerException, "xmlStructure cannot be null"_s);
 	}

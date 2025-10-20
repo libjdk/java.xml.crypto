@@ -123,6 +123,7 @@ void XMLDSigRI$ProviderService::init$($Provider* p, $String* type, $String* algo
 }
 
 $Object* XMLDSigRI$ProviderService::newInstance(Object$* ctrParamObj) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, type, getType());
 	if (ctrParamObj != nullptr) {
 		$throwNew($InvalidParameterException, $$str({"constructorParameter not used with "_s, type, " engines"_s}));

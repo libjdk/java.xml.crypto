@@ -213,6 +213,7 @@ $Set* XMLSignatureInput::getInputNodeSet() {
 }
 
 $Set* XMLSignatureInput::getNodeSet(bool circumvent) {
+	$useLocalCurrentObjectStackCache();
 	if (this->inputNodeSet != nullptr) {
 		return this->inputNodeSet;
 	}
@@ -248,6 +249,7 @@ $InputStream* XMLSignatureInput::getOctetStreamReal() {
 }
 
 $bytes* XMLSignatureInput::getBytes() {
+	$useLocalCurrentObjectStackCache();
 	$var($bytes, inputBytes, getBytesFromInputStream());
 	if (inputBytes != nullptr) {
 		return inputBytes;
@@ -334,6 +336,7 @@ void XMLSignatureInput::setSourceURI($String* sourceURI) {
 }
 
 $String* XMLSignatureInput::toString() {
+	$useLocalCurrentObjectStackCache();
 	if (isNodeSet()) {
 		$var($String, var$0, $$str({"XMLSignatureInput/NodeSet/"_s, $$str($nc(this->inputNodeSet)->size()), " nodes/"_s}));
 		return $concat(var$0, $(getSourceURI()));
@@ -390,6 +393,7 @@ void XMLSignatureInput::updateOutputStream($OutputStream* diOs) {
 }
 
 void XMLSignatureInput::updateOutputStream($OutputStream* diOs, bool c14n11) {
+	$useLocalCurrentObjectStackCache();
 	if (diOs == this->outputStream) {
 		return;
 	}
@@ -466,6 +470,7 @@ void XMLSignatureInput::setNodeSet(bool b) {
 }
 
 void XMLSignatureInput::convertToNodes() {
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($Throwable, var$0, nullptr);
 		try {

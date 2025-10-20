@@ -105,6 +105,7 @@ $Object* allocate$DOMKeyValue$DSA($Class* clazz) {
 }
 
 void DOMKeyValue$DSA::init$($DSAPublicKey* key) {
+	$useLocalCurrentObjectStackCache();
 	$DOMKeyValue::init$(static_cast<$PublicKey*>(key));
 	$var($DSAPublicKey, dkey, key);
 	$var($DSAParams, params, $nc(dkey)->getParams());
@@ -119,6 +120,7 @@ void DOMKeyValue$DSA::init$($Element* elem) {
 }
 
 void DOMKeyValue$DSA::marshalPublicKey($Node* parent, $Document* doc, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$init($XMLSignature);
 	$var($Element, dsaElem, $DOMUtils::createElement(doc, "DSAKeyValue"_s, $XMLSignature::XMLNS, dsPrefix));
 	$var($Element, pElem, $DOMUtils::createElement(doc, "P"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -137,6 +139,7 @@ void DOMKeyValue$DSA::marshalPublicKey($Node* parent, $Document* doc, $String* d
 }
 
 $PublicKey* DOMKeyValue$DSA::unmarshalKeyValue($Element* kvtElem) {
+	$useLocalCurrentObjectStackCache();
 	if (this->dsakf == nullptr) {
 		try {
 			$set(this, dsakf, $KeyFactory::getInstance("DSA"_s));

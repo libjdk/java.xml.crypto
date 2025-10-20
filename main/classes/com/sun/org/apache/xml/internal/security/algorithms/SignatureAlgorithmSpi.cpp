@@ -91,6 +91,7 @@ void SignatureAlgorithmSpi::engineAddContextToElement($Element* element) {
 }
 
 void SignatureAlgorithmSpi::engineInitVerify($Key* publicKey, $Signature* signatureAlgorithm) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf($PublicKey, publicKey))) {
 		$var($String, supplied, nullptr);
 		if (publicKey != nullptr) {
@@ -113,6 +114,7 @@ void SignatureAlgorithmSpi::engineInitVerify($Key* publicKey, $Signature* signat
 }
 
 void SignatureAlgorithmSpi::engineInitSign($Key* privateKey, $SecureRandom* secureRandom, $Signature* signatureAlgorithm) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf($PrivateKey, privateKey))) {
 		$var($String, supplied, nullptr);
 		if (privateKey != nullptr) {

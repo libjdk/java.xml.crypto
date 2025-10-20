@@ -321,6 +321,7 @@ void DOMReference::init$($String* uri, $String* type, $DigestMethod* dm, $List* 
 }
 
 void DOMReference::init$($String* uri, $String* type, $DigestMethod* dm, $List* appliedTransforms, $Data* result, $List* transforms, $String* id, $bytes* digestValue, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	this->digested = false;
 	this->validated = false;
@@ -377,6 +378,7 @@ void DOMReference::init$($String* uri, $String* type, $DigestMethod* dm, $List* 
 }
 
 void DOMReference::init$($Element* refElem, $XMLCryptoContext* context, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	this->digested = false;
 	this->validated = false;
@@ -467,6 +469,7 @@ $bytes* DOMReference::getCalculatedDigestValue() {
 }
 
 void DOMReference::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$nc(DOMReference::LOG)->debug("Marshalling Reference"_s);
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
@@ -499,6 +502,7 @@ void DOMReference::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* 
 }
 
 void DOMReference::digest($XMLSignContext* signContext) {
+	$useLocalCurrentObjectStackCache();
 	$var($Data, data, nullptr);
 	if (this->appliedTransformData == nullptr) {
 		$assign(data, dereference(signContext));
@@ -519,6 +523,7 @@ void DOMReference::digest($XMLSignContext* signContext) {
 }
 
 bool DOMReference::validate($XMLValidateContext* validateContext) {
+	$useLocalCurrentObjectStackCache();
 	if (validateContext == nullptr) {
 		$throwNew($NullPointerException, "validateContext cannot be null"_s);
 	}
@@ -545,6 +550,7 @@ $InputStream* DOMReference::getDigestInputStream() {
 }
 
 $Data* DOMReference::dereference($XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Data, data, nullptr);
 	$var($URIDereferencer, deref, $nc(context)->getURIDereferencer());
 	if (deref == nullptr) {
@@ -563,6 +569,7 @@ $Data* DOMReference::dereference($XMLCryptoContext* context) {
 }
 
 $bytes* DOMReference::transform($Data* dereferencedData, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (this->md == nullptr) {
 		try {
 			$set(this, md, $MessageDigest::getInstance($($nc(($cast($DOMDigestMethod, this->digestMethod)))->getMessageDigestAlgorithm())));
@@ -773,6 +780,7 @@ $Node* DOMReference::getHere() {
 }
 
 bool DOMReference::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}
@@ -813,6 +821,7 @@ bool DOMReference::isDigested() {
 
 $Data* DOMReference::copyDerefData($Data* dereferencedData) {
 	$init(DOMReference);
+	$useLocalCurrentObjectStackCache();
 	if ($instanceOf($ApacheData, dereferencedData)) {
 		$var($ApacheData, ad, $cast($ApacheData, dereferencedData));
 		$var($XMLSignatureInput, xsi, $nc(ad)->getXMLSignatureInput());
@@ -852,6 +861,7 @@ $Boolean* DOMReference::lambda$static$0() {
 }
 
 void clinit$DOMReference($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	DOMReference::useC14N11 = $nc(($cast($Boolean, $($AccessController::doPrivileged(static_cast<$PrivilegedAction*>($$new(DOMReference$$Lambda$lambda$static$0)))))))->booleanValue();
 	$assignStatic(DOMReference::LOG, $LoggerFactory::getLogger(DOMReference::class$));

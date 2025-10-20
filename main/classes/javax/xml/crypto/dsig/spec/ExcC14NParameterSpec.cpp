@@ -68,6 +68,7 @@ void ExcC14NParameterSpec::init$() {
 }
 
 void ExcC14NParameterSpec::init$($List* prefixList) {
+	$useLocalCurrentObjectStackCache();
 	if (prefixList == nullptr) {
 		$throwNew($NullPointerException, "prefixList cannot be null"_s);
 	}

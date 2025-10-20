@@ -93,6 +93,7 @@ void JDKXPathAPI::init$() {
 }
 
 $NodeList* JDKXPathAPI::selectNodeList($Node* contextNode, $Node* xpathnode, $String* str, $Node* namespaceNode) {
+	$useLocalCurrentObjectStackCache();
 	if (!$nc(str)->equals(this->xpathStr) || this->xpathExpression == nullptr) {
 		if (this->xpf == nullptr) {
 			$set(this, xpf, $XPathFactory::newInstance());
@@ -126,6 +127,7 @@ $NodeList* JDKXPathAPI::selectNodeList($Node* contextNode, $Node* xpathnode, $St
 }
 
 bool JDKXPathAPI::evaluate($Node* contextNode, $Node* xpathnode, $String* str, $Node* namespaceNode) {
+	$useLocalCurrentObjectStackCache();
 	if (!$nc(str)->equals(this->xpathStr) || this->xpathExpression == nullptr) {
 		if (this->xpf == nullptr) {
 			$set(this, xpf, $XPathFactory::newInstance());

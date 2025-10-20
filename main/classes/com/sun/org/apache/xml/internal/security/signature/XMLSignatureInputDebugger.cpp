@@ -149,6 +149,7 @@ void XMLSignatureInputDebugger::init$($XMLSignatureInput* xmlSignatureInput, $Se
 }
 
 $String* XMLSignatureInputDebugger::getHTMLRepresentation() {
+	$useLocalCurrentObjectStackCache();
 	if (this->xpathNodeSet == nullptr || $nc(this->xpathNodeSet)->isEmpty()) {
 		return $str({XMLSignatureInputDebugger::HTMLPrefix, "<blink>no node set, sorry</blink>"_s, XMLSignatureInputDebugger::HTMLSuffix});
 	}
@@ -187,6 +188,7 @@ $String* XMLSignatureInputDebugger::getHTMLRepresentation() {
 }
 
 void XMLSignatureInputDebugger::canonicalizeXPathNodeSet($Node* currentNode) {
+	$useLocalCurrentObjectStackCache();
 	int32_t currentNodeType = $nc(currentNode)->getNodeType();
 	{
 		int32_t position = 0;
@@ -356,6 +358,7 @@ void XMLSignatureInputDebugger::canonicalizeXPathNodeSet($Node* currentNode) {
 }
 
 int32_t XMLSignatureInputDebugger::getPositionRelativeToDocumentElement($Node* currentNode) {
+	$useLocalCurrentObjectStackCache();
 	if (currentNode == nullptr) {
 		return XMLSignatureInputDebugger::NODE_NOT_BEFORE_OR_AFTER_DOCUMENT_ELEMENT;
 	}
@@ -430,6 +433,7 @@ void XMLSignatureInputDebugger::outputAttrToWriter($String* name, $String* value
 }
 
 void XMLSignatureInputDebugger::outputPItoWriter($ProcessingInstruction* currentPI) {
+	$useLocalCurrentObjectStackCache();
 	if (currentPI == nullptr) {
 		return;
 	}

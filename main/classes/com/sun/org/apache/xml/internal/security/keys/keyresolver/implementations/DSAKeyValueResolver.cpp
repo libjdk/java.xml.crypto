@@ -100,6 +100,7 @@ bool DSAKeyValueResolver::engineCanResolve($Element* element, $String* baseURI, 
 }
 
 $PublicKey* DSAKeyValueResolver::engineResolvePublicKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		return nullptr;
 	}

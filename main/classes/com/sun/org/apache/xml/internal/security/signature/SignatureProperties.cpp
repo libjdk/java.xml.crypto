@@ -81,6 +81,7 @@ void SignatureProperties::init$($Document* doc) {
 }
 
 void SignatureProperties::init$($Element* element, $String* baseURI) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(element, baseURI);
 	$var($Attr, attr, $nc(element)->getAttributeNodeNS(nullptr, "Id"_s));
 	if (attr != nullptr) {
@@ -105,12 +106,14 @@ void SignatureProperties::init$($Element* element, $String* baseURI) {
 }
 
 int32_t SignatureProperties::getLength() {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($ElementArray, propertyElems, $XMLUtils::selectDsNodes($(getFirstChild()), $Constants::_TAG_SIGNATUREPROPERTY));
 	return $nc(propertyElems)->length;
 }
 
 $SignatureProperty* SignatureProperties::item(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$init($Constants);
 		$var($Element, propertyElem, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_SIGNATUREPROPERTY, i));

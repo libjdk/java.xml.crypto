@@ -127,6 +127,7 @@ void RSAKeyValue::init$($Document* doc, $BigInteger* modulus, $BigInteger* expon
 }
 
 void RSAKeyValue::init$($Document* doc, $Key* key) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	addReturnToSelf();
 	if ($instanceOf($RSAPublicKey, key)) {
@@ -144,6 +145,7 @@ void RSAKeyValue::init$($Document* doc, $Key* key) {
 }
 
 $PublicKey* RSAKeyValue::getPublicKey() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($KeyFactory, rsaFactory, $KeyFactory::getInstance("RSA"_s));
 		$init($Constants);

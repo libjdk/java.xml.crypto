@@ -75,6 +75,7 @@ $Object* allocate$ResolverAnonymous($Class* clazz) {
 }
 
 void ResolverAnonymous::init$($String* filename) {
+	$useLocalCurrentObjectStackCache();
 	ResolverAnonymous::init$($($Paths::get(filename, $$new($StringArray, 0))));
 }
 
@@ -84,6 +85,7 @@ void ResolverAnonymous::init$($Path* resourcePath) {
 }
 
 $XMLSignatureInput* ResolverAnonymous::engineResolveURI($ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($XMLSignatureInput, input, $new($XMLSignatureInput, $($Files::newInputStream(this->resourcePath, $$new($OpenOptionArray, 0)))));
 		input->setSecureValidation($nc(context)->secureValidation);

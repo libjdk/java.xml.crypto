@@ -157,6 +157,7 @@ void DOMKeyValue::init$($Element* kvtElem) {
 
 $KeyValue* DOMKeyValue::unmarshal($Element* kvElem) {
 	$init(DOMKeyValue);
+	$useLocalCurrentObjectStackCache();
 	$var($Element, kvtElem, $DOMUtils::getFirstChildElement(kvElem));
 	if (kvtElem == nullptr) {
 		$throwNew($MarshalException, "KeyValue must contain at least one type"_s);
@@ -190,6 +191,7 @@ $PublicKey* DOMKeyValue::getPublicKey() {
 }
 
 void DOMKeyValue::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, kvElem, $DOMUtils::createElement(ownerDoc, "KeyValue"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -209,6 +211,7 @@ $PublicKey* DOMKeyValue::generatePublicKey($KeyFactory* kf, $KeySpec* keyspec) {
 }
 
 bool DOMKeyValue::equals(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, obj)) {
 		return true;
 	}
@@ -233,6 +236,7 @@ bool DOMKeyValue::equals(Object$* obj) {
 
 $BigInteger* DOMKeyValue::decode($Element* elem) {
 	$init(DOMKeyValue);
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($String, base64str, $nc($($nc(elem)->getFirstChild()))->getNodeValue());
 		return $new($BigInteger, 1, $($XMLUtils::decode(base64str)));

@@ -146,6 +146,7 @@ int32_t SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm::getSaltLength() {
 
 SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm* SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm::fromXmlDigestAlgorithm($String* xmlDigestAlgorithm) {
 	$init(SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm);
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithmArray, arr$, SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm::values());
 		int32_t len$ = $nc(arr$)->length;
@@ -164,6 +165,7 @@ SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm* SignatureBaseRSA$SignatureR
 
 SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm* SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm::fromDigestAlgorithm($String* digestAlgorithm) {
 	$init(SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm);
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithmArray, arr$, SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm::values());
 		int32_t len$ = $nc(arr$)->length;

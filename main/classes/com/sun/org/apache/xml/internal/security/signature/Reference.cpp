@@ -284,6 +284,7 @@ $Logger* Reference::LOG = nullptr;
 $Set* Reference::TRANSFORM_ALGORITHMS = nullptr;
 
 void Reference::init$($Document* doc, $String* baseURI, $String* referenceURI, $Manifest* manifest, $Transforms* transforms, $String* messageDigestAlgorithm) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	addReturnToSelf();
 	$set(this, baseURI, baseURI);
@@ -309,6 +310,7 @@ void Reference::init$($Element* element, $String* baseURI, $Manifest* manifest) 
 }
 
 void Reference::init$($Element* element, $String* baseURI, $Manifest* manifest, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(element, baseURI);
 	this->secureValidation = secureValidation;
 	$set(this, baseURI, baseURI);
@@ -349,6 +351,7 @@ void Reference::init$($Element* element, $String* baseURI, $Manifest* manifest, 
 }
 
 $MessageDigestAlgorithm* Reference::getMessageDigestAlgorithm() {
+	$useLocalCurrentObjectStackCache();
 	if (this->digestMethodElem == nullptr) {
 		return nullptr;
 	}
@@ -410,6 +413,7 @@ bool Reference::typeIsReferenceToManifest() {
 }
 
 void Reference::setDigestValueElement($bytes* digestValue) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, n, $nc(this->digestValueElement)->getFirstChild());
 	while (n != nullptr) {
 		$nc(this->digestValueElement)->removeChild(n);
@@ -425,6 +429,7 @@ void Reference::generateDigestValue() {
 }
 
 $XMLSignatureInput* Reference::getContentsBeforeTransformation() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$init($Constants);
 		$var($Attr, uriAttr, $nc($(getElement()))->getAttributeNodeNS(nullptr, $Constants::_ATT_URI));
@@ -438,6 +443,7 @@ $XMLSignatureInput* Reference::getContentsBeforeTransformation() {
 }
 
 $XMLSignatureInput* Reference::getContentsAfterTransformation($XMLSignatureInput* input, $OutputStream* os) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Transforms, transforms, this->getTransforms());
 		$var($XMLSignatureInput, output, nullptr);
@@ -462,6 +468,7 @@ $XMLSignatureInput* Reference::getContentsAfterTransformation() {
 }
 
 $XMLSignatureInput* Reference::getNodesetBeforeFirstCanonicalization() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($XMLSignatureInput, input, this->getContentsBeforeTransformation());
 		cacheDereferencedElement(input);
@@ -490,6 +497,7 @@ $XMLSignatureInput* Reference::getNodesetBeforeFirstCanonicalization() {
 }
 
 $String* Reference::getHTMLRepresentation() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($XMLSignatureInput, nodes, this->getNodesetBeforeFirstCanonicalization());
 		$var($Transforms, transforms, this->getTransforms());
@@ -529,6 +537,7 @@ $ReferenceData* Reference::getReferenceData() {
 }
 
 $XMLSignatureInput* Reference::dereferenceURIandPerformTransforms($OutputStream* os) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($XMLSignatureInput, input, this->getContentsBeforeTransformation());
 		cacheDereferencedElement(input);
@@ -543,6 +552,7 @@ $XMLSignatureInput* Reference::dereferenceURIandPerformTransforms($OutputStream*
 }
 
 void Reference::cacheDereferencedElement($XMLSignatureInput* input) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(input)->isNodeSet()) {
 		try {
 			$var($Set, s, input->getNodeSet());
@@ -574,6 +584,7 @@ $Transforms* Reference::getTransforms() {
 }
 
 $bytes* Reference::getReferencedBytes() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($XMLSignatureInput, output, this->dereferenceURIandPerformTransforms(nullptr));
 		return $nc(output)->getBytes();
@@ -588,6 +599,7 @@ $bytes* Reference::getReferencedBytes() {
 }
 
 $bytes* Reference::calculateDigest(bool validating) {
+	$useLocalCurrentObjectStackCache();
 	$var($XMLSignatureInput, input, this->getContentsBeforeTransformation());
 	if ($nc(input)->isPreCalculatedDigest()) {
 		return getPreCalculatedDigest(input);
@@ -719,6 +731,7 @@ $bytes* Reference::getPreCalculatedDigest($XMLSignatureInput* input) {
 }
 
 $bytes* Reference::getDigestValue() {
+	$useLocalCurrentObjectStackCache();
 	if (this->digestValueElement == nullptr) {
 			$init($Constants);
 		$var($ObjectArray, exArgs, $new($ObjectArray, {
@@ -732,6 +745,7 @@ $bytes* Reference::getDigestValue() {
 }
 
 bool Reference::verify() {
+	$useLocalCurrentObjectStackCache();
 	$var($bytes, elemDig, this->getDigestValue());
 	$var($bytes, calcDig, this->calculateDigest(true));
 	bool equal = $MessageDigestAlgorithm::isEqual(elemDig, calcDig);
@@ -756,6 +770,7 @@ $Boolean* Reference::lambda$static$0() {
 }
 
 void clinit$Reference($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$assignStatic(Reference::OBJECT_URI, $str({$Constants::SignatureSpecNS, $Constants::_TAG_OBJECT}));
 	$assignStatic(Reference::MANIFEST_URI, $str({$Constants::SignatureSpecNS, $Constants::_TAG_MANIFEST}));

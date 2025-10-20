@@ -152,6 +152,7 @@ $SecretKey* PrivateKeyResolver::engineResolveSecretKey($Element* element, $Strin
 }
 
 $PrivateKey* PrivateKeyResolver::engineResolvePrivateKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	if ($XMLUtils::elementIsInSignatureSpace(element, $Constants::_TAG_X509DATA)) {
 		$var($PrivateKey, privKey, resolveX509Data(element, baseURI));
@@ -177,6 +178,7 @@ $PrivateKey* PrivateKeyResolver::engineResolvePrivateKey($Element* element, $Str
 }
 
 $PrivateKey* PrivateKeyResolver::resolveX509Data($Element* element, $String* baseURI) {
+	$useLocalCurrentObjectStackCache();
 	$nc(PrivateKeyResolver::LOG)->debug("Can I resolve X509Data?"_s);
 	try {
 		$var($X509Data, x509Data, $new($X509Data, element, baseURI));
@@ -223,6 +225,7 @@ $PrivateKey* PrivateKeyResolver::resolveX509Data($Element* element, $String* bas
 }
 
 $PrivateKey* PrivateKeyResolver::resolveX509SKI($XMLX509SKI* x509SKI) {
+	$useLocalCurrentObjectStackCache();
 	$nc(PrivateKeyResolver::LOG)->debug("Can I resolve X509SKI?"_s);
 	$var($Enumeration, aliases, $nc(this->keyStore)->aliases());
 	while ($nc(aliases)->hasMoreElements()) {
@@ -250,6 +253,7 @@ $PrivateKey* PrivateKeyResolver::resolveX509SKI($XMLX509SKI* x509SKI) {
 }
 
 $PrivateKey* PrivateKeyResolver::resolveX509IssuerSerial($XMLX509IssuerSerial* x509Serial) {
+	$useLocalCurrentObjectStackCache();
 	$nc(PrivateKeyResolver::LOG)->debug("Can I resolve X509IssuerSerial?"_s);
 	$var($Enumeration, aliases, $nc(this->keyStore)->aliases());
 	while ($nc(aliases)->hasMoreElements()) {
@@ -277,6 +281,7 @@ $PrivateKey* PrivateKeyResolver::resolveX509IssuerSerial($XMLX509IssuerSerial* x
 }
 
 $PrivateKey* PrivateKeyResolver::resolveX509SubjectName($XMLX509SubjectName* x509SubjectName) {
+	$useLocalCurrentObjectStackCache();
 	$nc(PrivateKeyResolver::LOG)->debug("Can I resolve X509SubjectName?"_s);
 	$var($Enumeration, aliases, $nc(this->keyStore)->aliases());
 	while ($nc(aliases)->hasMoreElements()) {
@@ -304,6 +309,7 @@ $PrivateKey* PrivateKeyResolver::resolveX509SubjectName($XMLX509SubjectName* x50
 }
 
 $PrivateKey* PrivateKeyResolver::resolveX509Certificate($XMLX509Certificate* x509Cert) {
+	$useLocalCurrentObjectStackCache();
 	$nc(PrivateKeyResolver::LOG)->debug("Can I resolve X509Certificate?"_s);
 	$var($bytes, x509CertBytes, $nc(x509Cert)->getCertificateBytes());
 	$var($Enumeration, aliases, $nc(this->keyStore)->aliases());

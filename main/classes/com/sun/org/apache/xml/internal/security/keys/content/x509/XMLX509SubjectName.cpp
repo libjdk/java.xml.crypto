@@ -90,6 +90,7 @@ void XMLX509SubjectName::init$($Document* doc, $String* X509SubjectNameString) {
 }
 
 void XMLX509SubjectName::init$($Document* doc, $X509Certificate* x509certificate) {
+	$useLocalCurrentObjectStackCache();
 	XMLX509SubjectName::init$(doc, $($nc($($nc(x509certificate)->getSubjectX500Principal()))->getName()));
 }
 
@@ -98,6 +99,7 @@ $String* XMLX509SubjectName::getSubjectName() {
 }
 
 bool XMLX509SubjectName::equals(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf(XMLX509SubjectName, obj))) {
 		return false;
 	}

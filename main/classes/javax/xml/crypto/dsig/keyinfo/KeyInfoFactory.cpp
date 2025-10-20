@@ -111,6 +111,7 @@ void KeyInfoFactory::init$() {
 }
 
 KeyInfoFactory* KeyInfoFactory::getInstance($String* mechanismType) {
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr) {
 		$throwNew($NullPointerException, "mechanismType cannot be null"_s);
 	}
@@ -145,6 +146,7 @@ KeyInfoFactory* KeyInfoFactory::getInstance($String* mechanismType) {
 }
 
 KeyInfoFactory* KeyInfoFactory::getInstance($String* mechanismType, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr) {
 		$throwNew($NullPointerException, "mechanismType cannot be null"_s);
 	} else if (provider == nullptr) {
@@ -170,6 +172,7 @@ KeyInfoFactory* KeyInfoFactory::getInstance($String* mechanismType, $Provider* p
 }
 
 KeyInfoFactory* KeyInfoFactory::getInstance($String* mechanismType, $String* provider) {
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr) {
 		$throwNew($NullPointerException, "mechanismType cannot be null"_s);
 	} else if (provider == nullptr) {

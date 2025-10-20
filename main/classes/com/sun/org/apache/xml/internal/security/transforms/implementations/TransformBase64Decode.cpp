@@ -81,6 +81,7 @@ $String* TransformBase64Decode::engineGetURI() {
 }
 
 $XMLSignatureInput* TransformBase64Decode::enginePerformTransform($XMLSignatureInput* input, $OutputStream* os, $Element* transformElement, $String* baseURI, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(input)->isElement()) {
 		$var($Node, el, input->getSubNode());
 		if ($nc($(input->getSubNode()))->getNodeType() == $Node::TEXT_NODE) {
@@ -129,6 +130,7 @@ $XMLSignatureInput* TransformBase64Decode::enginePerformTransform($XMLSignatureI
 }
 
 void TransformBase64Decode::traverseElement($Element* node, $StringBuilder* sb) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, sibling, $nc(node)->getFirstChild());
 	while (sibling != nullptr) {
 		if ($Node::ELEMENT_NODE == sibling->getNodeType()) {

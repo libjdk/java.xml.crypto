@@ -343,6 +343,7 @@ void XMLSignature::init$($Document* doc, $String* baseURI, $String* signatureMet
 }
 
 void XMLSignature::init$($Document* doc, $String* baseURI, $String* signatureMethodURI, int32_t hmacOutputLength, $String* canonicalizationMethodURI, $Provider* provider, $AlgorithmParameterSpec* spec) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	this->followManifestsDuringValidation = false;
 	this->state = XMLSignature::MODE_SIGN;
@@ -368,6 +369,7 @@ void XMLSignature::init$($Document* doc, $String* baseURI, $Element* signatureMe
 }
 
 void XMLSignature::init$($Document* doc, $String* baseURI, $Element* signatureMethodElem, $Element* canonicalizationMethodElem, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	this->followManifestsDuringValidation = false;
 	this->state = XMLSignature::MODE_SIGN;
@@ -401,6 +403,7 @@ void XMLSignature::init$($Element* element, $String* baseURI, bool secureValidat
 }
 
 void XMLSignature::init$($Element* element, $String* baseURI, bool secureValidation, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(element, baseURI);
 	this->followManifestsDuringValidation = false;
 	this->state = XMLSignature::MODE_SIGN;
@@ -502,6 +505,7 @@ $bytes* XMLSignature::getSignatureValue() {
 }
 
 void XMLSignature::setSignatureValueElement($bytes* bytes) {
+	$useLocalCurrentObjectStackCache();
 	while ($nc(this->signatureValueElement)->hasChildNodes()) {
 		$nc(this->signatureValueElement)->removeChild($($nc(this->signatureValueElement)->getFirstChild()));
 	}
@@ -515,6 +519,7 @@ void XMLSignature::setSignatureValueElement($bytes* bytes) {
 }
 
 $KeyInfo* XMLSignature::getKeyInfo() {
+	$useLocalCurrentObjectStackCache();
 	if (this->state == XMLSignature::MODE_SIGN && this->keyInfo == nullptr) {
 		$set(this, keyInfo, $new($KeyInfo, $(getDocument())));
 		$var($Element, keyInfoElement, $nc(this->keyInfo)->getElement());
@@ -537,6 +542,7 @@ void XMLSignature::appendObject($ObjectContainer* object) {
 }
 
 $ObjectContainer* XMLSignature::getObjectItem(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, objElem, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_OBJECT, i));
 	try {
@@ -554,6 +560,7 @@ int32_t XMLSignature::getObjectLength() {
 }
 
 void XMLSignature::sign($Key* signingKey) {
+	$useLocalCurrentObjectStackCache();
 	if ($instanceOf($PublicKey, signingKey)) {
 		$throwNew($IllegalArgumentException, $($I18n::translate("algorithms.operationOnlyVerification"_s)));
 	}
@@ -629,6 +636,7 @@ void XMLSignature::addResourceResolver($ResourceResolverSpi* resolver) {
 }
 
 bool XMLSignature::checkSignatureValue($X509Certificate* cert) {
+	$useLocalCurrentObjectStackCache();
 	if (cert != nullptr) {
 		return this->checkSignatureValue($(static_cast<$Key*>(cert->getPublicKey())));
 	}
@@ -637,6 +645,7 @@ bool XMLSignature::checkSignatureValue($X509Certificate* cert) {
 }
 
 bool XMLSignature::checkSignatureValue($Key* pk) {
+	$useLocalCurrentObjectStackCache();
 	if (pk == nullptr) {
 		$var($ObjectArray, exArgs, $new($ObjectArray, {$of("Didn\'t get a key"_s)}));
 		$throwNew($XMLSignatureException, "empty"_s, exArgs);
@@ -742,6 +751,7 @@ void XMLSignature::addDocument($String* referenceURI) {
 }
 
 void XMLSignature::addKeyInfo($X509Certificate* cert) {
+	$useLocalCurrentObjectStackCache();
 	$var($X509Data, x509data, $new($X509Data, $(getDocument())));
 	x509data->addCertificate(cert);
 	$nc($(this->getKeyInfo()))->add(x509data);

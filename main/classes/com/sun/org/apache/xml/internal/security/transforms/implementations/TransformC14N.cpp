@@ -79,6 +79,7 @@ $String* TransformC14N::engineGetURI() {
 }
 
 $XMLSignatureInput* TransformC14N::enginePerformTransform($XMLSignatureInput* input, $OutputStream* os, $Element* transformElement, $String* baseURI, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$var($Canonicalizer20010315, c14n, getCanonicalizer());
 	if (os == nullptr) {
 		try {

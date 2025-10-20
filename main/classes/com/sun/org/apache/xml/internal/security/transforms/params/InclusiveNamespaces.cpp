@@ -115,6 +115,7 @@ void InclusiveNamespaces::init$($Document* doc, $String* prefixList) {
 }
 
 void InclusiveNamespaces::init$($Document* doc, $Set* prefixes) {
+	$useLocalCurrentObjectStackCache();
 	$ElementProxy::init$(doc);
 	$var($SortedSet, prefixList, nullptr);
 	if ($instanceOf($SortedSet, prefixes)) {
@@ -150,6 +151,7 @@ $String* InclusiveNamespaces::getInclusiveNamespaces() {
 
 $SortedSet* InclusiveNamespaces::prefixStr2Set($String* inclusiveNamespaces) {
 	$init(InclusiveNamespaces);
+	$useLocalCurrentObjectStackCache();
 	$var($SortedSet, prefixes, $new($TreeSet));
 	if (inclusiveNamespaces == nullptr || $nc(inclusiveNamespaces)->length() == 0) {
 		return prefixes;

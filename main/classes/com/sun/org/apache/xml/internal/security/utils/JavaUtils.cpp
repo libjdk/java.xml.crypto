@@ -107,6 +107,7 @@ void JavaUtils::init$() {
 
 $bytes* JavaUtils::getBytesFromFile($String* fileName) {
 	$init(JavaUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($bytes, refBytes, nullptr);
 	{
 		$var($InputStream, inputStream, $Files::newInputStream($($Paths::get(fileName, $$new($StringArray, 0))), $$new($OpenOptionArray, 0)));
@@ -173,6 +174,7 @@ $bytes* JavaUtils::getBytesFromFile($String* fileName) {
 
 void JavaUtils::writeBytesToFilename($String* filename, $bytes* bytes) {
 	$init(JavaUtils);
+	$useLocalCurrentObjectStackCache();
 	if (filename != nullptr && bytes != nullptr) {
 		try {
 			$var($OutputStream, outputStream, $Files::newOutputStream($($Paths::get(filename, $$new($StringArray, 0))), $$new($OpenOptionArray, 0)));
@@ -215,6 +217,7 @@ void JavaUtils::writeBytesToFilename($String* filename, $bytes* bytes) {
 
 $bytes* JavaUtils::getBytesFromStream($InputStream* inputStream) {
 	$init(JavaUtils);
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($UnsyncByteArrayOutputStream, baos, $new($UnsyncByteArrayOutputStream));
 		{
@@ -322,6 +325,7 @@ void JavaUtils::checkRegisterPermission() {
 
 $Object* JavaUtils::newInstanceWithEmptyConstructor($Class* clazz) {
 	$init(JavaUtils);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	try {
 		return $of($nc($($nc(clazz)->getDeclaredConstructor($$new($ClassArray, 0))))->newInstance($$new($ObjectArray, 0)));

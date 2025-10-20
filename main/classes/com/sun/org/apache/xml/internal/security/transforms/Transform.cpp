@@ -165,6 +165,7 @@ void Transform::init$($Document* doc, $String* algorithmURI) {
 }
 
 void Transform::init$($Document* doc, $String* algorithmURI, $Element* contextChild) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	$init($Constants);
 	setLocalAttribute($Constants::_ATT_ALGORITHM, algorithmURI);
@@ -183,6 +184,7 @@ void Transform::init$($Document* doc, $String* algorithmURI, $Element* contextCh
 }
 
 void Transform::init$($Document* doc, $String* algorithmURI, $NodeList* contextNodes) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(doc);
 	$init($Constants);
 	setLocalAttribute($Constants::_ATT_ALGORITHM, algorithmURI);
@@ -197,6 +199,7 @@ void Transform::init$($Document* doc, $String* algorithmURI, $NodeList* contextN
 }
 
 void Transform::init$($Element* element, $String* baseURI) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(element, baseURI);
 	$init($Constants);
 	$var($String, algorithmURI, $nc(element)->getAttributeNS(nullptr, $Constants::_ATT_ALGORITHM));
@@ -212,6 +215,7 @@ void Transform::init$($Element* element, $String* baseURI) {
 
 void Transform::register$($String* algorithmURI, $String* implementingClass) {
 	$init(Transform);
+	$useLocalCurrentObjectStackCache();
 	$JavaUtils::checkRegisterPermission();
 	$var($TransformSpi, transformSpi, $cast($TransformSpi, $nc(Transform::transformSpiHash)->get(algorithmURI)));
 	if (transformSpi != nullptr) {
@@ -241,6 +245,7 @@ void Transform::register$($String* algorithmURI, $String* implementingClass) {
 
 void Transform::register$($String* algorithmURI, $Class* implementingClass) {
 	$init(Transform);
+	$useLocalCurrentObjectStackCache();
 	$JavaUtils::checkRegisterPermission();
 	$var($TransformSpi, transformSpi, $cast($TransformSpi, $nc(Transform::transformSpiHash)->get(algorithmURI)));
 	if (transformSpi != nullptr) {
@@ -269,6 +274,7 @@ void Transform::register$($String* algorithmURI, $Class* implementingClass) {
 
 void Transform::registerDefaultAlgorithms() {
 	$init(Transform);
+	$useLocalCurrentObjectStackCache();
 	$init($Transforms);
 	$nc(Transform::transformSpiHash)->put($Transforms::TRANSFORM_BASE64_DECODE, $$new($TransformBase64Decode));
 	$nc(Transform::transformSpiHash)->put($Transforms::TRANSFORM_C14N_OMIT_COMMENTS, $$new($TransformC14N));
@@ -293,6 +299,7 @@ $XMLSignatureInput* Transform::performTransform($XMLSignatureInput* input, bool 
 }
 
 $XMLSignatureInput* Transform::performTransform($XMLSignatureInput* input, $OutputStream* os, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$var($XMLSignatureInput, result, nullptr);
 	try {
 		$assign(result, $nc(this->transformSpi)->enginePerformTransform(input, os, $(getElement()), this->baseURI, secureValidation));
@@ -320,6 +327,7 @@ $String* Transform::getBaseLocalName() {
 }
 
 $TransformSpi* Transform::initializeTransform($String* algorithmURI) {
+	$useLocalCurrentObjectStackCache();
 	$var($TransformSpi, newTransformSpi, $cast($TransformSpi, $nc(Transform::transformSpiHash)->get(algorithmURI)));
 	if (newTransformSpi == nullptr) {
 		$var($ObjectArray, exArgs, $new($ObjectArray, {$of(algorithmURI)}));

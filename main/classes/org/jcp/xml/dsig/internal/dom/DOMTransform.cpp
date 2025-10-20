@@ -127,6 +127,7 @@ void DOMTransform::init$($TransformService* spi) {
 }
 
 void DOMTransform::init$($Element* transElem, $XMLCryptoContext* context, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	$var($String, algorithm, $DOMUtils::getAttributeValue(transElem, "Algorithm"_s));
 	if (provider == nullptr) {
@@ -166,6 +167,7 @@ $String* DOMTransform::getAlgorithm() {
 }
 
 void DOMTransform::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$var($Element, transformElem, nullptr);
 	if ($nc($($nc(parent)->getLocalName()))->equals("Transforms"_s)) {
@@ -189,6 +191,7 @@ $Data* DOMTransform::transform($Data* data, $XMLCryptoContext* xc, $OutputStream
 }
 
 bool DOMTransform::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}
@@ -205,6 +208,7 @@ bool DOMTransform::equals(Object$* o) {
 }
 
 int32_t DOMTransform::hashCode() {
+	$useLocalCurrentObjectStackCache();
 	int32_t result = 17;
 	result = 31 * result + $nc($(getAlgorithm()))->hashCode();
 	$var($AlgorithmParameterSpec, spec, getParameterSpec());
@@ -215,6 +219,7 @@ int32_t DOMTransform::hashCode() {
 }
 
 $Data* DOMTransform::transform($Data* data, $XMLCryptoContext* xc, $DOMSignContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, var$0, $nc(context)->getParent());
 	marshal(var$0, $($DOMUtils::getSignaturePrefix(static_cast<$XMLCryptoContext*>(static_cast<$DOMCryptoContext*>(context)))), context);
 	return transform(data, xc);

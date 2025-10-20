@@ -76,6 +76,7 @@ $Object* allocate$JCEMapper$Algorithm($Class* clazz) {
 }
 
 void JCEMapper$Algorithm::init$($Element* el) {
+	$useLocalCurrentObjectStackCache();
 	$set(this, requiredKey, $nc(el)->getAttributeNS(nullptr, "RequiredKey"_s));
 	$set(this, jceName, el->getAttributeNS(nullptr, "JCEName"_s));
 	$set(this, algorithmClass, el->getAttributeNS(nullptr, "AlgorithmClass"_s));

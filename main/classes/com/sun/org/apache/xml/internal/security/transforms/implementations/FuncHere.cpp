@@ -91,6 +91,7 @@ void FuncHere::init$() {
 }
 
 $XObject* FuncHere::execute($XPathContext* xctxt) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, xpathOwnerNode, $cast($Node, $nc(xctxt)->getOwnerObject()));
 	if (xpathOwnerNode == nullptr) {
 		return nullptr;

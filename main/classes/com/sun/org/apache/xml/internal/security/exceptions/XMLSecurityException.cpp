@@ -91,6 +91,7 @@ void XMLSecurityException::init$($String* msgID) {
 }
 
 void XMLSecurityException::init$($String* msgID, $ObjectArray* exArgs) {
+	$useLocalCurrentObjectStackCache();
 	$Exception::init$($($MessageFormat::format($($I18n::getExceptionMessage(msgID)), exArgs)));
 	$set(this, msgID, msgID);
 }
@@ -109,6 +110,7 @@ void XMLSecurityException::init$($String* msgID, $Exception* originalException) 
 }
 
 void XMLSecurityException::init$($Exception* originalException, $String* msgID, $ObjectArray* exArgs) {
+	$useLocalCurrentObjectStackCache();
 	$Exception::init$($($MessageFormat::format($($I18n::getExceptionMessage(msgID)), exArgs)), originalException);
 	$set(this, msgID, msgID);
 }
@@ -125,6 +127,7 @@ $String* XMLSecurityException::getMsgID() {
 }
 
 $String* XMLSecurityException::toString() {
+	$useLocalCurrentObjectStackCache();
 	$var($String, s, $of(this)->getClass()->getName());
 	$var($String, message, $Exception::getLocalizedMessage());
 	if (message != nullptr) {

@@ -116,6 +116,7 @@ void DOMSignatureProperties::finalize() {
 }
 
 void DOMSignatureProperties::init$($List* properties, $String* id) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	if (properties == nullptr) {
 		$throwNew($NullPointerException, "properties cannot be null"_s);
@@ -137,6 +138,7 @@ void DOMSignatureProperties::init$($List* properties, $String* id) {
 }
 
 void DOMSignatureProperties::init$($Element* propsElem) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$var($Attr, attr, $nc(propsElem)->getAttributeNodeNS(nullptr, "Id"_s));
 	if (attr != nullptr) {
@@ -176,6 +178,7 @@ $String* DOMSignatureProperties::getId() {
 }
 
 void DOMSignatureProperties::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, propsElem, $DOMUtils::createElement(ownerDoc, "SignatureProperties"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -193,6 +196,7 @@ void DOMSignatureProperties::marshal($Node* parent, $String* dsPrefix, $DOMCrypt
 }
 
 bool DOMSignatureProperties::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}

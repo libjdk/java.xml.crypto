@@ -86,6 +86,7 @@ void DOMXSLTTransform::unmarshalParams($Element* sheet) {
 }
 
 void DOMXSLTTransform::marshalParams($XMLStructure* parent, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$ApacheTransform::marshalParams(parent, context);
 	$var($XSLTTransformParameterSpec, xp, $cast($XSLTTransformParameterSpec, getParameterSpec()));
 	$var($Node, xsltElem, $nc(($cast($DOMStructure, $($nc(xp)->getStylesheet()))))->getNode());

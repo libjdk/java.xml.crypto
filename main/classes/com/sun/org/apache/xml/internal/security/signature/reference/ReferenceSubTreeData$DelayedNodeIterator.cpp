@@ -132,6 +132,7 @@ $List* ReferenceSubTreeData$DelayedNodeIterator::dereferenceSameDocumentURI($Nod
 }
 
 void ReferenceSubTreeData$DelayedNodeIterator::nodeSetMinusCommentNodes($Node* node, $List* nodeSet, $Node* prevSibling) {
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($NamedNodeMap, attrs, nullptr)
 		$var($Node, pSibling, nullptr)

@@ -153,6 +153,7 @@ $Element* DOMUtils::getFirstChildElement($Node* node, $String* localName, $Strin
 }
 
 $Element* DOMUtils::verifyElement($Element* elem, $String* localName, $String* namespaceURI) {
+	$useLocalCurrentObjectStackCache();
 	if (elem == nullptr) {
 		$throwNew($MarshalException, $$str({"Missing "_s, localName, " element"_s}));
 	}
@@ -212,6 +213,7 @@ $String* DOMUtils::getSignaturePrefix($XMLCryptoContext* context) {
 }
 
 void DOMUtils::removeAllChildren($Node* node) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, firstChild, $nc(node)->getFirstChild());
 	while (firstChild != nullptr) {
 		$var($Node, nodeToRemove, firstChild);
@@ -225,6 +227,7 @@ bool DOMUtils::nodesEqual($Node* thisNode, $Node* otherNode) {
 }
 
 void DOMUtils::appendChild($Node* parent, $Node* child) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, getOwnerDocument(parent));
 	if ($nc(child)->getOwnerDocument() != ownerDoc) {
 		$nc(parent)->appendChild($($nc(ownerDoc)->importNode(child, true)));
@@ -253,6 +256,7 @@ bool DOMUtils::paramsEqual($AlgorithmParameterSpec* spec1, $AlgorithmParameterSp
 }
 
 bool DOMUtils::paramsEqual($XPathFilter2ParameterSpec* spec1, $XPathFilter2ParameterSpec* spec2) {
+	$useLocalCurrentObjectStackCache();
 	$var($List, types, $nc(spec1)->getXPathList());
 	$var($List, otypes, $nc(spec2)->getXPathList());
 	int32_t size = $nc(types)->size();
@@ -275,15 +279,18 @@ bool DOMUtils::paramsEqual($XPathFilter2ParameterSpec* spec1, $XPathFilter2Param
 }
 
 bool DOMUtils::paramsEqual($ExcC14NParameterSpec* spec1, $ExcC14NParameterSpec* spec2) {
+	$useLocalCurrentObjectStackCache();
 	return $nc($($nc(spec1)->getPrefixList()))->equals($($nc(spec2)->getPrefixList()));
 }
 
 bool DOMUtils::paramsEqual($XPathFilterParameterSpec* spec1, $XPathFilterParameterSpec* spec2) {
+	$useLocalCurrentObjectStackCache();
 	bool var$0 = $nc($($nc(spec1)->getXPath()))->equals($($nc(spec2)->getXPath()));
 	return var$0 && $nc($(spec1->getNamespaceMap()))->equals($($nc(spec2)->getNamespaceMap()));
 }
 
 bool DOMUtils::paramsEqual($XSLTTransformParameterSpec* spec1, $XSLTTransformParameterSpec* spec2) {
+	$useLocalCurrentObjectStackCache();
 	$var($XMLStructure, ostylesheet, $nc(spec2)->getStylesheet());
 	if (!($instanceOf($DOMStructure, ostylesheet))) {
 		return false;

@@ -112,6 +112,7 @@ void X509DigestResolver::init$() {
 }
 
 bool X509DigestResolver::engineCanResolve($Element* element, $String* baseURI, $StorageResolver* storage) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	if ($XMLUtils::elementIsInSignatureSpace(element, $Constants::_TAG_X509DATA)) {
 		try {
@@ -149,6 +150,7 @@ $SecretKey* X509DigestResolver::engineResolveSecretKey($Element* element, $Strin
 }
 
 $X509Certificate* X509DigestResolver::resolveCertificate($Element* element, $String* baseURI, $StorageResolver* storage) {
+	$useLocalCurrentObjectStackCache();
 	$var($XMLX509DigestArray, x509Digests, nullptr);
 	$init($Constants);
 	$var($ElementArray, x509childNodes, $XMLUtils::selectDs11Nodes($($nc(element)->getFirstChild()), $Constants::_TAG_X509DIGEST));
@@ -181,6 +183,7 @@ $X509Certificate* X509DigestResolver::resolveCertificate($Element* element, $Str
 }
 
 void X509DigestResolver::checkStorage($StorageResolver* storage) {
+	$useLocalCurrentObjectStackCache();
 	if (storage == nullptr) {
 		$init($Constants);
 		$var($ObjectArray, exArgs, $new($ObjectArray, {$of($Constants::_TAG_X509DIGEST)}));

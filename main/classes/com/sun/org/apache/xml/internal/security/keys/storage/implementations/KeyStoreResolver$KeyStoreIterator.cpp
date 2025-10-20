@@ -95,6 +95,7 @@ $Object* allocate$KeyStoreResolver$KeyStoreIterator($Class* clazz) {
 }
 
 void KeyStoreResolver$KeyStoreIterator::init$($KeyStore* keyStore) {
+	$useLocalCurrentObjectStackCache();
 	$var($List, tmpCerts, $new($ArrayList));
 	try {
 		$var($Enumeration, aliases, $nc(keyStore)->aliases());

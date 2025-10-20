@@ -118,6 +118,7 @@ void DOMXPathFilter2Transform::init($TransformParameterSpec* params) {
 }
 
 void DOMXPathFilter2Transform::init($XMLStructure* parent, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$ApacheTransform::init(parent, context);
 	try {
 		unmarshalParams($($DOMUtils::getFirstChildElement(this->transformElem)));
@@ -128,6 +129,7 @@ void DOMXPathFilter2Transform::init($XMLStructure* parent, $XMLCryptoContext* co
 }
 
 void DOMXPathFilter2Transform::unmarshalParams($Element* curXPathElem) {
+	$useLocalCurrentObjectStackCache();
 	$var($List, list, $new($ArrayList));
 	$var($Element, currentElement, curXPathElem);
 	while (currentElement != nullptr) {
@@ -171,6 +173,7 @@ void DOMXPathFilter2Transform::unmarshalParams($Element* curXPathElem) {
 }
 
 void DOMXPathFilter2Transform::marshalParams($XMLStructure* parent, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$ApacheTransform::marshalParams(parent, context);
 	$var($XPathFilter2ParameterSpec, xp, $cast($XPathFilter2ParameterSpec, getParameterSpec()));
 	$init($Transform);

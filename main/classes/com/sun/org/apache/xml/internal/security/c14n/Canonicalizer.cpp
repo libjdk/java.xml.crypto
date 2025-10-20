@@ -138,6 +138,7 @@ $String* Canonicalizer::ALGO_ID_C14N_PHYSICAL = nullptr;
 $Map* Canonicalizer::canonicalizerHash = nullptr;
 
 void Canonicalizer::init$($String* algorithmURI) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$Class* implementingClass = $cast($Class, $nc(Canonicalizer::canonicalizerHash)->get(algorithmURI));
 		$set(this, canonicalizerSpi, $cast($CanonicalizerSpi, $JavaUtils::newInstanceWithEmptyConstructor(implementingClass)));

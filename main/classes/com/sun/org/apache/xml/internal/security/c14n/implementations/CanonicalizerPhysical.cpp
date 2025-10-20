@@ -110,6 +110,7 @@ void CanonicalizerPhysical::engineCanonicalizeSubTree($Node* rootNode, $String* 
 }
 
 void CanonicalizerPhysical::outputAttributesSubtree($Element* element, $NameSpaceSymbTable* ns, $Map* cache, $OutputStream* writer) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(element)->hasAttributes()) {
 		$init($CanonicalizerBase);
 		$var($SortedSet, result, $new($TreeSet, static_cast<$Comparator*>($CanonicalizerBase::COMPARE)));

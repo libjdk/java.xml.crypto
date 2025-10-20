@@ -108,6 +108,7 @@ void NameSpaceSymbTable::init$() {
 }
 
 void NameSpaceSymbTable::getUnrenderedNodes($Collection* result) {
+	$useLocalCurrentObjectStackCache();
 	$var($Iterator, it, $nc($($nc(this->symb)->entrySet()))->iterator());
 	while ($nc(it)->hasNext()) {
 		$var($NameSpaceSymbEntry, n, $cast($NameSpaceSymbEntry, it->next()));
@@ -191,6 +192,7 @@ $Attr* NameSpaceSymbTable::getMappingWithoutRendered($String* prefix) {
 }
 
 bool NameSpaceSymbTable::addMapping($String* prefix, $String* uri, $Attr* n) {
+	$useLocalCurrentObjectStackCache();
 	$var($NameSpaceSymbEntry, ob, $nc(this->symb)->get(prefix));
 	if (ob != nullptr && $nc(uri)->equals(ob->uri)) {
 		return false;
@@ -208,6 +210,7 @@ bool NameSpaceSymbTable::addMapping($String* prefix, $String* uri, $Attr* n) {
 }
 
 $Node* NameSpaceSymbTable::addMappingAndRender($String* prefix, $String* uri, $Attr* n) {
+	$useLocalCurrentObjectStackCache();
 	$var($NameSpaceSymbEntry, ob, $nc(this->symb)->get(prefix));
 	if (ob != nullptr && $nc(uri)->equals(ob->uri)) {
 		if (!ob->rendered) {

@@ -143,6 +143,7 @@ $List* DOMKeyInfo::getContent($KeyInfo* ki) {
 }
 
 void DOMKeyInfo::init$($List* content, $String* id) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	if (content == nullptr) {
 		$throwNew($NullPointerException, "content cannot be null"_s);
@@ -164,6 +165,7 @@ void DOMKeyInfo::init$($List* content, $String* id) {
 }
 
 void DOMKeyInfo::init$($Element* kiElem, $XMLCryptoContext* context, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	$var($Attr, attr, $nc(kiElem)->getAttributeNodeNS(nullptr, "Id"_s));
 	if (attr != nullptr) {
@@ -224,6 +226,7 @@ $List* DOMKeyInfo::getContent() {
 }
 
 void DOMKeyInfo::marshal($XMLStructure* parent, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (parent == nullptr) {
 		$throwNew($NullPointerException, "parent is null"_s);
 	}
@@ -251,6 +254,7 @@ void DOMKeyInfo::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* co
 }
 
 void DOMKeyInfo::marshal($Node* parent, $Node* nextSibling, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, kiElem, $DOMUtils::createElement(ownerDoc, "KeyInfo"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -258,6 +262,7 @@ void DOMKeyInfo::marshal($Node* parent, $Node* nextSibling, $String* dsPrefix, $
 }
 
 void DOMKeyInfo::marshal($Node* parent, $Element* kiElem, $Node* nextSibling, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($Iterator, i$, $nc(this->keyInfoTypes)->iterator());
 		for (; $nc(i$)->hasNext();) {
@@ -276,6 +281,7 @@ void DOMKeyInfo::marshal($Node* parent, $Element* kiElem, $Node* nextSibling, $S
 }
 
 bool DOMKeyInfo::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}

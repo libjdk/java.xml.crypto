@@ -169,6 +169,7 @@ $String* RetrievalMethod::getType() {
 }
 
 $Transforms* RetrievalMethod::getTransforms() {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$init($Constants);
 		$var($Element, transformsElem, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_TRANSFORMS, 0));

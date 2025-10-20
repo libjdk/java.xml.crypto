@@ -84,6 +84,7 @@ void DOMCryptoBinary::init$($BigInteger* bigNum) {
 }
 
 void DOMCryptoBinary::init$($Node* cbNode) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$set(this, value, $nc(cbNode)->getNodeValue());
 	try {
@@ -99,6 +100,7 @@ $BigInteger* DOMCryptoBinary::getBigNum() {
 }
 
 void DOMCryptoBinary::marshal($Node* parent, $String* prefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$nc(parent)->appendChild($($nc($($DOMUtils::getOwnerDocument(parent)))->createTextNode(this->value)));
 }
 

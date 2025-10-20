@@ -122,6 +122,7 @@ void DOMManifest::finalize() {
 }
 
 void DOMManifest::init$($List* references, $String* id) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	if (references == nullptr) {
 		$throwNew($NullPointerException, "references cannot be null"_s);
@@ -143,6 +144,7 @@ void DOMManifest::init$($List* references, $String* id) {
 }
 
 void DOMManifest::init$($Element* manElem, $XMLCryptoContext* context, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$set(this, id, $DOMUtils::getIdAttributeValue(manElem, "Id"_s));
 	bool secVal = $Utils::secureValidation(context);
@@ -182,6 +184,7 @@ $List* DOMManifest::getReferences() {
 }
 
 void DOMManifest::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, manElem, $DOMUtils::createElement(ownerDoc, "Manifest"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -199,6 +202,7 @@ void DOMManifest::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* c
 }
 
 bool DOMManifest::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}

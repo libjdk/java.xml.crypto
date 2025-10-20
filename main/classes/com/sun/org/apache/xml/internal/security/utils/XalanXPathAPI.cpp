@@ -135,6 +135,7 @@ bool XalanXPathAPI::isInstalled() {
 }
 
 $XObject* XalanXPathAPI::eval($Node* contextNode, $Node* xpathnode, $String* str, $Node* namespaceNode) {
+	$useLocalCurrentObjectStackCache();
 	if (this->context == nullptr) {
 		$set(this, context, $new($XPathContext, $of(xpathnode)));
 		$nc(this->context)->setSecureProcessing(true);
@@ -153,6 +154,7 @@ $XObject* XalanXPathAPI::eval($Node* contextNode, $Node* xpathnode, $String* str
 }
 
 $XPath* XalanXPathAPI::createXPath($String* str, $PrefixResolver* prefixResolver) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($XPath, xpath, nullptr);
 		$load($String);
@@ -195,6 +197,7 @@ void XalanXPathAPI::fixupFunctionTable() {
 	$load(XalanXPathAPI);
 	$synchronized(class$) {
 		$init(XalanXPathAPI);
+		$useLocalCurrentObjectStackCache();
 		$beforeCallerSensitive();
 		XalanXPathAPI::installed = false;
 		if ($$new($FunctionTable)->functionAvailable("here"_s)) {

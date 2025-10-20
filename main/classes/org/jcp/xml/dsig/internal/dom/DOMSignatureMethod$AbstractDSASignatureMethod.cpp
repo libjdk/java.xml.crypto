@@ -82,6 +82,7 @@ void DOMSignatureMethod$AbstractDSASignatureMethod::init$($Element* dmElem) {
 }
 
 $bytes* DOMSignatureMethod$AbstractDSASignatureMethod::postSignFormat($Key* key, $bytes* sig) {
+	$useLocalCurrentObjectStackCache();
 	if (this->asn1) {
 		int32_t size = $nc($($nc($($nc(($cast($DSAKey, key)))->getParams()))->getQ()))->bitLength();
 		return $JavaUtils::convertDsaASN1toXMLDSIG(sig, size / 8);
@@ -91,6 +92,7 @@ $bytes* DOMSignatureMethod$AbstractDSASignatureMethod::postSignFormat($Key* key,
 }
 
 $bytes* DOMSignatureMethod$AbstractDSASignatureMethod::preVerifyFormat($Key* key, $bytes* sig) {
+	$useLocalCurrentObjectStackCache();
 	if (this->asn1) {
 		int32_t size = $nc($($nc($($nc(($cast($DSAKey, key)))->getParams()))->getQ()))->bitLength();
 		return $JavaUtils::convertDsaXMLDSIGtoASN1(sig, size / 8);

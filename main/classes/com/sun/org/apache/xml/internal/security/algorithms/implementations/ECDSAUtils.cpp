@@ -187,6 +187,7 @@ $bytes* ECDSAUtils::convertXMLDSIGtoASN1($bytes* xmldsigBytes) {
 
 $String* ECDSAUtils::getOIDFromPublicKey($ECPublicKey* ecPublicKey) {
 	$init(ECDSAUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($ECParameterSpec, ecParameterSpec, $nc(ecPublicKey)->getParams());
 	$var($BigInteger, order, $nc(ecParameterSpec)->getOrder());
 	$var($BigInteger, affineX, $nc($(ecParameterSpec->getGenerator()))->getAffineX());
@@ -216,6 +217,7 @@ $String* ECDSAUtils::getOIDFromPublicKey($ECPublicKey* ecPublicKey) {
 
 $ECDSAUtils$ECCurveDefinition* ECDSAUtils::getECCurveDefinition($String* oid) {
 	$init(ECDSAUtils);
+	$useLocalCurrentObjectStackCache();
 	$var($Iterator, ecCurveDefinitionIterator, $nc(ECDSAUtils::ecCurveDefinitions)->iterator());
 	while ($nc(ecCurveDefinitionIterator)->hasNext()) {
 		$var($ECDSAUtils$ECCurveDefinition, ecCurveDefinition, $cast($ECDSAUtils$ECCurveDefinition, ecCurveDefinitionIterator->next()));
@@ -228,6 +230,7 @@ $ECDSAUtils$ECCurveDefinition* ECDSAUtils::getECCurveDefinition($String* oid) {
 
 $bytes* ECDSAUtils::encodePoint($ECPoint* ecPoint, $EllipticCurve* ellipticCurve) {
 	$init(ECDSAUtils);
+	$useLocalCurrentObjectStackCache();
 	int32_t size = ($nc($($nc(ellipticCurve)->getField()))->getFieldSize() + 7) / 8;
 	$var($bytes, affineXBytes, stripLeadingZeros($($nc($($nc(ecPoint)->getAffineX()))->toByteArray())));
 	$var($bytes, affineYBytes, stripLeadingZeros($($nc($($nc(ecPoint)->getAffineY()))->toByteArray())));
@@ -240,6 +243,7 @@ $bytes* ECDSAUtils::encodePoint($ECPoint* ecPoint, $EllipticCurve* ellipticCurve
 
 $ECPoint* ECDSAUtils::decodePoint($bytes* encodedBytes, $EllipticCurve* elliptiCcurve) {
 	$init(ECDSAUtils);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(encodedBytes)->get(0) != 4) {
 		$throwNew($IllegalArgumentException, "Only uncompressed format is supported"_s);
 	}
@@ -270,6 +274,7 @@ $bytes* ECDSAUtils::stripLeadingZeros($bytes* bytes) {
 }
 
 void clinit$ECDSAUtils($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$assignStatic(ECDSAUtils::ecCurveDefinitions, $new($ArrayList));
 	{
 		$nc(ECDSAUtils::ecCurveDefinitions)->add($$new($ECDSAUtils$ECCurveDefinition, "secp112r1"_s, "1.3.132.0.6"_s, "db7c2abf62e35e668076bead208b"_s, "db7c2abf62e35e668076bead2088"_s, "659ef8ba043916eede8911702b22"_s, "09487239995a5ee76b55f9c2f098"_s, "a89ce5af8724c0a23e0e0ff77500"_s, "db7c2abf62e35e7628dfac6561c5"_s, 1));

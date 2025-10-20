@@ -116,6 +116,7 @@ bool KeyInfoReferenceResolver::engineCanResolve($Element* element, $String* base
 }
 
 $PublicKey* KeyInfoReferenceResolver::engineResolvePublicKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($KeyInfo, referent, resolveReferentKeyInfo(element, baseURI, storage, secureValidation));
 		if (referent != nullptr) {
@@ -129,6 +130,7 @@ $PublicKey* KeyInfoReferenceResolver::engineResolvePublicKey($Element* element, 
 }
 
 $X509Certificate* KeyInfoReferenceResolver::engineResolveX509Certificate($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($KeyInfo, referent, resolveReferentKeyInfo(element, baseURI, storage, secureValidation));
 		if (referent != nullptr) {
@@ -142,6 +144,7 @@ $X509Certificate* KeyInfoReferenceResolver::engineResolveX509Certificate($Elemen
 }
 
 $SecretKey* KeyInfoReferenceResolver::engineResolveSecretKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($KeyInfo, referent, resolveReferentKeyInfo(element, baseURI, storage, secureValidation));
 		if (referent != nullptr) {
@@ -155,6 +158,7 @@ $SecretKey* KeyInfoReferenceResolver::engineResolveSecretKey($Element* element, 
 }
 
 $PrivateKey* KeyInfoReferenceResolver::engineResolvePrivateKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($KeyInfo, referent, resolveReferentKeyInfo(element, baseURI, storage, secureValidation));
 		if (referent != nullptr) {
@@ -168,6 +172,7 @@ $PrivateKey* KeyInfoReferenceResolver::engineResolvePrivateKey($Element* element
 }
 
 $KeyInfo* KeyInfoReferenceResolver::resolveReferentKeyInfo($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$var($KeyInfoReference, reference, $new($KeyInfoReference, element, baseURI));
 	$var($Attr, uriAttr, reference->getURIAttr());
 	$var($XMLSignatureInput, resource, resolveInput(uriAttr, baseURI, secureValidation));
@@ -190,6 +195,7 @@ $KeyInfo* KeyInfoReferenceResolver::resolveReferentKeyInfo($Element* element, $S
 }
 
 void KeyInfoReferenceResolver::validateReference($Element* referentElement, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	if (!$XMLUtils::elementIsInSignatureSpace(referentElement, $Constants::_TAG_KEYINFO)) {
 		$var($String, var$0, $nc(referentElement)->getNamespaceURI());
@@ -212,6 +218,7 @@ $XMLSignatureInput* KeyInfoReferenceResolver::resolveInput($Attr* uri, $String* 
 }
 
 $Element* KeyInfoReferenceResolver::obtainReferenceElement($XMLSignatureInput* resource, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$var($Element, e, nullptr);
 	if ($nc(resource)->isElement()) {
 		$assign(e, $cast($Element, resource->getSubNode()));

@@ -103,6 +103,7 @@ $String* TransformXPath::engineGetURI() {
 }
 
 $XMLSignatureInput* TransformXPath::enginePerformTransform($XMLSignatureInput* input, $OutputStream* os, $Element* transformElement, $String* baseURI, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$init($Constants);
 		$var($Element, xpathElement, $XMLUtils::selectDsNode($($nc(transformElement)->getFirstChild()), $Constants::_TAG_XPATH, 0));

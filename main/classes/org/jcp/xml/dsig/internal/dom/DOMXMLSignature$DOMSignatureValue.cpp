@@ -162,6 +162,7 @@ void DOMXMLSignature$DOMSignatureValue::init$($DOMXMLSignature* this$0, $String*
 }
 
 void DOMXMLSignature$DOMSignatureValue::init$($DOMXMLSignature* this$0, $Element* sigValueElem) {
+	$useLocalCurrentObjectStackCache();
 	$set(this, this$0, this$0);
 	$DOMStructure::init$();
 	this->validated = false;
@@ -190,6 +191,7 @@ $String* DOMXMLSignature$DOMSignatureValue::getEncodedValue() {
 }
 
 bool DOMXMLSignature$DOMSignatureValue::validate($XMLValidateContext* validateContext) {
+	$useLocalCurrentObjectStackCache();
 	if (validateContext == nullptr) {
 		$throwNew($NullPointerException, "context cannot be null"_s);
 	}
@@ -227,6 +229,7 @@ bool DOMXMLSignature$DOMSignatureValue::validate($XMLValidateContext* validateCo
 }
 
 bool DOMXMLSignature$DOMSignatureValue::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}

@@ -230,6 +230,7 @@ void Manifest::init$($Element* element, $String* baseURI) {
 }
 
 void Manifest::init$($Element* element, $String* baseURI, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(element, baseURI);
 	$var($Attr, attr, $nc(element)->getAttributeNodeNS(nullptr, "Id"_s));
 	if (attr != nullptr) {
@@ -265,6 +266,7 @@ void Manifest::init$($Element* element, $String* baseURI, bool secureValidation)
 }
 
 void Manifest::addDocument($String* baseURI, $String* referenceURI, $Transforms* transforms, $String* digestURI, $String* referenceId, $String* referenceType) {
+	$useLocalCurrentObjectStackCache();
 	$var($Reference, ref, $new($Reference, $(getDocument()), baseURI, referenceURI, this, transforms, digestURI));
 	if (referenceId != nullptr) {
 		ref->setId(referenceId);
@@ -278,6 +280,7 @@ void Manifest::addDocument($String* baseURI, $String* referenceURI, $Transforms*
 }
 
 void Manifest::generateDigestValues() {
+	$useLocalCurrentObjectStackCache();
 	for (int32_t i = 0; i < this->getLength(); ++i) {
 		$var($Reference, currentRef, $cast($Reference, $nc(this->references)->get(i)));
 		$nc(currentRef)->generateDigestValue();
@@ -313,6 +316,7 @@ bool Manifest::verifyReferences() {
 }
 
 bool Manifest::verifyReferences(bool followManifests) {
+	$useLocalCurrentObjectStackCache();
 	if (this->referencesEl == nullptr) {
 		$init($Constants);
 		$set(this, referencesEl, $XMLUtils::selectDsNodes($(getFirstChild()), $Constants::_TAG_REFERENCE));
@@ -395,6 +399,7 @@ bool Manifest::verifyReferences(bool followManifests) {
 }
 
 bool Manifest::getVerificationResult(int32_t index) {
+	$useLocalCurrentObjectStackCache();
 	if (index < 0 || index > this->getLength() - 1) {
 		$var($ObjectArray, exArgs, $new($ObjectArray, {
 			$($of($Integer::toString(index))),
@@ -451,6 +456,7 @@ $String* Manifest::getResolverProperty($String* key) {
 }
 
 $bytes* Manifest::getSignedContentItem(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		return $nc($(this->getReferencedContentAfterTransformsItem(i)))->getBytes();
 	} catch ($IOException&) {
@@ -492,6 +498,7 @@ bool Manifest::isSecureValidation() {
 
 $Integer* Manifest::lambda$static$0() {
 	$init(Manifest);
+	$useLocalCurrentObjectStackCache();
 	return $Integer::valueOf($Integer::parseInt($($System::getProperty("com.sun.org.apache.xml.internal.security.maxReferences"_s, $($Integer::toString(Manifest::MAXIMUM_REFERENCE_COUNT))))));
 }
 

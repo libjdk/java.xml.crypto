@@ -213,6 +213,7 @@ void Init::init() {
 	$load(Init);
 	$synchronized(class$) {
 		$init(Init);
+		$useLocalCurrentObjectStackCache();
 		$beforeCallerSensitive();
 		if (Init::alreadyInitialized) {
 			return;
@@ -235,6 +236,7 @@ void Init::init() {
 
 void Init::dynamicInit() {
 	$init(Init);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$I18n::init("en"_s, "US"_s);
 	$nc(Init::LOG)->debug("Registering default algorithms"_s);
@@ -250,6 +252,7 @@ void Init::dynamicInit() {
 
 void Init::fileInit($InputStream* is) {
 	$init(Init);
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Document, doc, $XMLUtils::read(is, true));
 		$var($Node, config, $nc(doc)->getFirstChild());
@@ -468,6 +471,7 @@ void Init::fileInit($InputStream* is) {
 
 $URL* Init::getResource($String* resourceName, $Class* callingClass) {
 	$init(Init);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($URL, url, $nc($($($Thread::currentThread())->getContextClassLoader()))->getResource(resourceName));
 	if (url == nullptr && $nc(resourceName)->charAt(0) == u'/') {
@@ -500,6 +504,7 @@ $URL* Init::getResource($String* resourceName, $Class* callingClass) {
 
 $List* Init::getResources($String* resourceName, $Class* callingClass) {
 	$init(Init);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($List, ret, $new($ArrayList));
 	$var($Enumeration, urls, $new($Init$2));
@@ -568,6 +573,7 @@ $List* Init::getResources($String* resourceName, $Class* callingClass) {
 
 $InputStream* Init::getResourceAsStream($String* resourceName, $Class* callingClass) {
 	$init(Init);
+	$useLocalCurrentObjectStackCache();
 	$var($URL, url, getResource(resourceName, callingClass));
 	try {
 		return (url != nullptr) ? $nc(url)->openStream() : ($InputStream*)nullptr;

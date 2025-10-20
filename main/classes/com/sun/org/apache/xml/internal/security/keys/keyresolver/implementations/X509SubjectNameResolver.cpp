@@ -106,6 +106,7 @@ void X509SubjectNameResolver::init$() {
 }
 
 bool X509SubjectNameResolver::engineCanResolve($Element* element, $String* baseURI, $StorageResolver* storage) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	if (!$XMLUtils::elementIsInSignatureSpace(element, $Constants::_TAG_X509DATA)) {
 		return false;
@@ -123,6 +124,7 @@ $PublicKey* X509SubjectNameResolver::engineResolvePublicKey($Element* element, $
 }
 
 $X509Certificate* X509SubjectNameResolver::engineResolveX509Certificate($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($ElementArray, x509childNodes, $XMLUtils::selectDsNodes($($nc(element)->getFirstChild()), $Constants::_TAG_X509SUBJECTNAME));
 	if (!(x509childNodes != nullptr && x509childNodes->length > 0)) {

@@ -100,6 +100,7 @@ bool ECKeyValueResolver::engineCanResolve($Element* element, $String* baseURI, $
 }
 
 $PublicKey* ECKeyValueResolver::engineResolvePublicKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		return nullptr;
 	}

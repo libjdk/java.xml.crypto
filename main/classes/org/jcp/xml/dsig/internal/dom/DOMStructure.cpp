@@ -65,6 +65,7 @@ bool DOMStructure::isFeatureSupported($String* feature) {
 }
 
 bool DOMStructure::equalsContent($List* content, $List* otherContent) {
+	$useLocalCurrentObjectStackCache();
 	int32_t size = $nc(content)->size();
 	if (size != $nc(otherContent)->size()) {
 		return false;

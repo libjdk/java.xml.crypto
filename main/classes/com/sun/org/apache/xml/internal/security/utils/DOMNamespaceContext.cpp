@@ -69,6 +69,7 @@ void DOMNamespaceContext::setContext($Node* context) {
 }
 
 $String* DOMNamespaceContext::getNamespaceURI($String* prefix$renamed) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, prefix, prefix$renamed);
 	if (prefix == nullptr) {
 		$throwNew($IllegalArgumentException, "prefix is null"_s);
@@ -93,6 +94,7 @@ $String* DOMNamespaceContext::getNamespaceURI($String* prefix$renamed) {
 }
 
 $String* DOMNamespaceContext::getPrefix($String* namespaceURI$renamed) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, namespaceURI, namespaceURI$renamed);
 	if (namespaceURI == nullptr) {
 		$throwNew($IllegalArgumentException, "namespace URI is null"_s);

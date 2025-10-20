@@ -91,6 +91,7 @@ void TransformService::init$() {
 
 TransformService* TransformService::getInstance($String* algorithm, $String* mechanismType) {
 	$init(TransformService);
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr || algorithm == nullptr) {
 		$throwNew($NullPointerException);
 	}
@@ -128,6 +129,7 @@ TransformService* TransformService::getInstance($String* algorithm, $String* mec
 
 TransformService* TransformService::getInstance($String* algorithm, $String* mechanismType, $Provider* provider) {
 	$init(TransformService);
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr || algorithm == nullptr || provider == nullptr) {
 		$throwNew($NullPointerException);
 	}
@@ -154,6 +156,7 @@ TransformService* TransformService::getInstance($String* algorithm, $String* mec
 
 TransformService* TransformService::getInstance($String* algorithm, $String* mechanismType, $String* provider) {
 	$init(TransformService);
+	$useLocalCurrentObjectStackCache();
 	if (mechanismType == nullptr || algorithm == nullptr || provider == nullptr) {
 		$throwNew($NullPointerException);
 	} else if ($nc(provider)->length() == 0) {

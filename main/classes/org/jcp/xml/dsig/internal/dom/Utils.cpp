@@ -72,6 +72,7 @@ void Utils::init$() {
 }
 
 $bytes* Utils::readBytesFromStream($InputStream* is) {
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($ByteArrayOutputStream, baos, $new($ByteArrayOutputStream));
 		{
@@ -121,6 +122,7 @@ $bytes* Utils::readBytesFromStream($InputStream* is) {
 }
 
 $Set* Utils::toNodeSet($Iterator* i) {
+	$useLocalCurrentObjectStackCache();
 	$var($Set, nodeSet, $new($HashSet));
 	while ($nc(i)->hasNext()) {
 		$var($Node, n, $cast($Node, i->next()));

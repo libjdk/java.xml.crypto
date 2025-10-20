@@ -152,6 +152,7 @@ bool RetrievalMethodResolver::engineCanResolve($Element* element, $String* baseU
 }
 
 $PublicKey* RetrievalMethodResolver::engineResolvePublicKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($RetrievalMethod, rm, $new($RetrievalMethod, element, baseURI));
 		$var($String, type, rm->getType());
@@ -196,6 +197,7 @@ $PublicKey* RetrievalMethodResolver::engineResolvePublicKey($Element* element, $
 }
 
 $X509Certificate* RetrievalMethodResolver::engineResolveX509Certificate($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($RetrievalMethod, rm, $new($RetrievalMethod, element, baseURI));
 		$var($String, type, rm->getType());
@@ -237,6 +239,7 @@ $X509Certificate* RetrievalMethodResolver::engineResolveX509Certificate($Element
 
 $X509Certificate* RetrievalMethodResolver::resolveCertificate($Element* e, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
 	$init(RetrievalMethodResolver);
+	$useLocalCurrentObjectStackCache();
 	if (e != nullptr) {
 		if ($nc(RetrievalMethodResolver::LOG)->isDebugEnabled()) {
 			$var($String, var$1, $$str({"Now we have a {"_s, $(e->getNamespaceURI()), "}"_s}));
@@ -250,6 +253,7 @@ $X509Certificate* RetrievalMethodResolver::resolveCertificate($Element* e, $Stri
 
 $PublicKey* RetrievalMethodResolver::resolveKey($Element* e, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
 	$init(RetrievalMethodResolver);
+	$useLocalCurrentObjectStackCache();
 	if (e != nullptr) {
 		if ($nc(RetrievalMethodResolver::LOG)->isDebugEnabled()) {
 			$var($String, var$1, $$str({"Now we have a {"_s, $(e->getNamespaceURI()), "}"_s}));
@@ -263,6 +267,7 @@ $PublicKey* RetrievalMethodResolver::resolveKey($Element* e, $String* baseURI, $
 
 $Element* RetrievalMethodResolver::obtainReferenceElement($XMLSignatureInput* resource, bool secureValidation) {
 	$init(RetrievalMethodResolver);
+	$useLocalCurrentObjectStackCache();
 	$var($Element, e, nullptr);
 	if ($nc(resource)->isElement()) {
 		$assign(e, $cast($Element, resource->getSubNode()));
@@ -278,6 +283,7 @@ $Element* RetrievalMethodResolver::obtainReferenceElement($XMLSignatureInput* re
 
 $X509Certificate* RetrievalMethodResolver::getRawCertificate($XMLSignatureInput* resource) {
 	$init(RetrievalMethodResolver);
+	$useLocalCurrentObjectStackCache();
 	$var($bytes, inputBytes, $nc(resource)->getBytes());
 	$init($XMLX509Certificate);
 	$var($CertificateFactory, certFact, $CertificateFactory::getInstance($XMLX509Certificate::JCA_CERT_ID));
@@ -320,6 +326,7 @@ $X509Certificate* RetrievalMethodResolver::getRawCertificate($XMLSignatureInput*
 
 $XMLSignatureInput* RetrievalMethodResolver::resolveInput($RetrievalMethod* rm, $String* baseURI, bool secureValidation) {
 	$init(RetrievalMethodResolver);
+	$useLocalCurrentObjectStackCache();
 	$var($Attr, uri, $nc(rm)->getURIAttr());
 	$var($Transforms, transforms, rm->getTransforms());
 	$var($ResourceResolverContext, resContext, $new($ResourceResolverContext, uri, baseURI, secureValidation));
@@ -341,6 +348,7 @@ $PrivateKey* RetrievalMethodResolver::engineResolvePrivateKey($Element* element,
 
 $Element* RetrievalMethodResolver::getDocumentElement($Set* set) {
 	$init(RetrievalMethodResolver);
+	$useLocalCurrentObjectStackCache();
 	$var($Iterator, it, $nc(set)->iterator());
 	$var($Element, e, nullptr);
 	while ($nc(it)->hasNext()) {

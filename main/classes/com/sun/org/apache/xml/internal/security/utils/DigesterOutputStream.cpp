@@ -78,6 +78,7 @@ void DigesterOutputStream::write(int32_t arg0) {
 }
 
 void DigesterOutputStream::write($bytes* arg0, int32_t arg1, int32_t arg2) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(DigesterOutputStream::LOG)->isDebugEnabled()) {
 		$nc(DigesterOutputStream::LOG)->debug("Pre-digested input:"_s);
 		$var($StringBuilder, sb, $new($StringBuilder, arg2));

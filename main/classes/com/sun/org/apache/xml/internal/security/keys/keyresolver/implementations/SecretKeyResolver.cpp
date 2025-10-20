@@ -111,6 +111,7 @@ $X509Certificate* SecretKeyResolver::engineResolveX509Certificate($Element* elem
 }
 
 $SecretKey* SecretKeyResolver::engineResolveSecretKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$nc(SecretKeyResolver::LOG)->debug("Can I resolve {}?"_s, $$new($ObjectArray, {$($of($nc(element)->getTagName()))}));
 	$init($Constants);
 	if ($XMLUtils::elementIsInSignatureSpace(element, $Constants::_TAG_KEYNAME)) {

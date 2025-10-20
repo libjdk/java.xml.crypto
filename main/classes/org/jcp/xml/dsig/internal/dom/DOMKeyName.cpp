@@ -110,6 +110,7 @@ $String* DOMKeyName::getName() {
 }
 
 void DOMKeyName::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, knElem, $DOMUtils::createElement(ownerDoc, "KeyName"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -118,6 +119,7 @@ void DOMKeyName::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* co
 }
 
 bool DOMKeyName::equals(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, obj)) {
 		return true;
 	}

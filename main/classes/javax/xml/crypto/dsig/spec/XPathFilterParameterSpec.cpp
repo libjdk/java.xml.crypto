@@ -66,6 +66,7 @@ void XPathFilterParameterSpec::init$($String* xPath) {
 }
 
 void XPathFilterParameterSpec::init$($String* xPath, $Map* namespaceMap) {
+	$useLocalCurrentObjectStackCache();
 	if (xPath == nullptr || namespaceMap == nullptr) {
 		$throwNew($NullPointerException);
 	}

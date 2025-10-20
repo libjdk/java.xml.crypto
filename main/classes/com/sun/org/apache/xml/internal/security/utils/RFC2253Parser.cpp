@@ -95,6 +95,7 @@ $String* RFC2253Parser::normalize($String* dn) {
 }
 
 $String* RFC2253Parser::normalize($String* dn, bool toXml) {
+	$useLocalCurrentObjectStackCache();
 	if (dn == nullptr || $nc(dn)->isEmpty()) {
 		return ""_s;
 	}
@@ -122,6 +123,7 @@ $String* RFC2253Parser::normalize($String* dn, bool toXml) {
 }
 
 $String* RFC2253Parser::parseRDN($String* str, bool toXml) {
+	$useLocalCurrentObjectStackCache();
 	$var($StringBuilder, sb, $new($StringBuilder));
 	int32_t i = 0;
 	int32_t l = 0;
@@ -139,6 +141,7 @@ $String* RFC2253Parser::parseRDN($String* str, bool toXml) {
 }
 
 $String* RFC2253Parser::parseATAV($String* str, bool toXml) {
+	$useLocalCurrentObjectStackCache();
 	int32_t i = $nc(str)->indexOf((int32_t)u'=');
 	if (i == -1 || i > 0 && str->charAt(i - 1) == u'\\') {
 		return str;
@@ -155,6 +158,7 @@ $String* RFC2253Parser::parseATAV($String* str, bool toXml) {
 }
 
 $String* RFC2253Parser::normalizeAT($String* str) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, at, $($nc(str)->toUpperCase())->trim());
 	if (at->startsWith("OID"_s)) {
 		$assign(at, at->substring(3));
@@ -163,6 +167,7 @@ $String* RFC2253Parser::normalizeAT($String* str) {
 }
 
 $String* RFC2253Parser::normalizeV($String* str, bool toXml) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, value, trim(str));
 	if ($nc(value)->startsWith("\""_s)) {
 		$var($StringBuilder, sb, $new($StringBuilder));
@@ -190,6 +195,7 @@ $String* RFC2253Parser::normalizeV($String* str, bool toXml) {
 }
 
 $String* RFC2253Parser::rfctoXML($String* string) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($String, s, changeLess32toXML(string));
 		return changeWStoXML(s);
@@ -201,6 +207,7 @@ $String* RFC2253Parser::rfctoXML($String* string) {
 }
 
 $String* RFC2253Parser::xmltoRFC($String* string) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($String, s, changeLess32toRFC(string));
 		return changeWStoRFC(s);
@@ -212,6 +219,7 @@ $String* RFC2253Parser::xmltoRFC($String* string) {
 }
 
 $String* RFC2253Parser::changeLess32toRFC($String* string) {
+	$useLocalCurrentObjectStackCache();
 	$var($StringBuilder, sb, $new($StringBuilder));
 	$var($StringReader, sr, $new($StringReader, string));
 	int32_t i = 0;
@@ -242,6 +250,7 @@ $String* RFC2253Parser::changeLess32toRFC($String* string) {
 }
 
 $String* RFC2253Parser::changeLess32toXML($String* string) {
+	$useLocalCurrentObjectStackCache();
 	$var($StringBuilder, sb, $new($StringBuilder));
 	$var($StringReader, sr, $new($StringReader, string));
 	int32_t i = 0;
@@ -257,6 +266,7 @@ $String* RFC2253Parser::changeLess32toXML($String* string) {
 }
 
 $String* RFC2253Parser::changeWStoXML($String* string) {
+	$useLocalCurrentObjectStackCache();
 	$var($StringBuilder, sb, $new($StringBuilder));
 	$var($StringReader, sr, $new($StringReader, string));
 	int32_t i = 0;
@@ -281,6 +291,7 @@ $String* RFC2253Parser::changeWStoXML($String* string) {
 }
 
 $String* RFC2253Parser::changeWStoRFC($String* string) {
+	$useLocalCurrentObjectStackCache();
 	$var($StringBuilder, sb, $new($StringBuilder));
 	int32_t i = 0;
 	int32_t k = 0;
@@ -301,6 +312,7 @@ $String* RFC2253Parser::removeWhiteSpace($String* str, $String* symbol) {
 }
 
 $String* RFC2253Parser::removeWSandReplace($String* str, $String* symbol, $String* replace) {
+	$useLocalCurrentObjectStackCache();
 	$var($StringBuilder, sb, $new($StringBuilder));
 	int32_t i = 0;
 	int32_t l = 0;

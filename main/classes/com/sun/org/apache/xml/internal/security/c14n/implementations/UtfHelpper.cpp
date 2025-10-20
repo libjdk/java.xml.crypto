@@ -220,6 +220,7 @@ void UtfHelpper::writeStringToUtf8($String* str, $OutputStream* out) {
 
 $bytes* UtfHelpper::getStringInUtf8($String* str) {
 	$init(UtfHelpper);
+	$useLocalCurrentObjectStackCache();
 	int32_t length = $nc(str)->length();
 	bool expanded = false;
 	$var($bytes, result, $new($bytes, length));
@@ -287,6 +288,7 @@ $Boolean* UtfHelpper::lambda$static$0() {
 }
 
 void clinit$UtfHelpper($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	UtfHelpper::OLD_UTF8 = $nc(($cast($Boolean, $($AccessController::doPrivileged(static_cast<$PrivilegedAction*>($$new(UtfHelpper$$Lambda$lambda$static$0)))))))->booleanValue();
 }

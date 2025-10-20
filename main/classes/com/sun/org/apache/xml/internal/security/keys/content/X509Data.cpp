@@ -173,6 +173,7 @@ void X509Data::init$($Document* doc) {
 }
 
 void X509Data::init$($Element* element, $String* baseURI) {
+	$useLocalCurrentObjectStackCache();
 	$SignatureElementProxy::init$(element, baseURI);
 	$var($Node, sibling, getFirstChild());
 	while (sibling != nullptr && sibling->getNodeType() != $Node::ELEMENT_NODE) {
@@ -189,14 +190,17 @@ void X509Data::init$($Element* element, $String* baseURI) {
 }
 
 void X509Data::addIssuerSerial($String* X509IssuerName, $BigInteger* X509SerialNumber) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509IssuerSerial, $(getDocument()), X509IssuerName, X509SerialNumber));
 }
 
 void X509Data::addIssuerSerial($String* X509IssuerName, $String* X509SerialNumber) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509IssuerSerial, $(getDocument()), X509IssuerName, X509SerialNumber));
 }
 
 void X509Data::addIssuerSerial($String* X509IssuerName, int32_t X509SerialNumber) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509IssuerSerial, $(getDocument()), X509IssuerName, X509SerialNumber));
 }
 
@@ -206,10 +210,12 @@ void X509Data::add($XMLX509IssuerSerial* xmlX509IssuerSerial) {
 }
 
 void X509Data::addSKI($bytes* skiBytes) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509SKI, $(getDocument()), skiBytes));
 }
 
 void X509Data::addSKI($X509Certificate* x509certificate) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509SKI, $(getDocument()), x509certificate));
 }
 
@@ -219,10 +225,12 @@ void X509Data::add($XMLX509SKI* xmlX509SKI) {
 }
 
 void X509Data::addSubjectName($String* subjectName) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509SubjectName, $(getDocument()), subjectName));
 }
 
 void X509Data::addSubjectName($X509Certificate* x509certificate) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509SubjectName, $(getDocument()), x509certificate));
 }
 
@@ -232,10 +240,12 @@ void X509Data::add($XMLX509SubjectName* xmlX509SubjectName) {
 }
 
 void X509Data::addCertificate($X509Certificate* x509certificate) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509Certificate, $(getDocument()), x509certificate));
 }
 
 void X509Data::addCertificate($bytes* x509certificateBytes) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509Certificate, $(getDocument()), x509certificateBytes));
 }
 
@@ -245,6 +255,7 @@ void X509Data::add($XMLX509Certificate* xmlX509Certificate) {
 }
 
 void X509Data::addCRL($bytes* crlBytes) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509CRL, $(getDocument()), crlBytes));
 }
 
@@ -254,10 +265,12 @@ void X509Data::add($XMLX509CRL* xmlX509CRL) {
 }
 
 void X509Data::addDigest($X509Certificate* x509certificate, $String* algorithmURI) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509Digest, $(getDocument()), x509certificate, algorithmURI));
 }
 
 void X509Data::addDigest($bytes* x509CertificateDigestBytes, $String* algorithmURI) {
+	$useLocalCurrentObjectStackCache();
 	this->add($$new($XMLX509Digest, $(getDocument()), x509CertificateDigestBytes, algorithmURI));
 }
 
@@ -302,6 +315,7 @@ int32_t X509Data::lengthDigest() {
 }
 
 int32_t X509Data::lengthUnknownElement() {
+	$useLocalCurrentObjectStackCache();
 	int32_t result = 0;
 	$var($Node, n, getFirstChild());
 	while (n != nullptr) {
@@ -316,6 +330,7 @@ int32_t X509Data::lengthUnknownElement() {
 }
 
 $XMLX509IssuerSerial* X509Data::itemIssuerSerial(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_X509ISSUERSERIAL, i));
 	if (e != nullptr) {
@@ -325,6 +340,7 @@ $XMLX509IssuerSerial* X509Data::itemIssuerSerial(int32_t i) {
 }
 
 $XMLX509SKI* X509Data::itemSKI(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_X509SKI, i));
 	if (e != nullptr) {
@@ -334,6 +350,7 @@ $XMLX509SKI* X509Data::itemSKI(int32_t i) {
 }
 
 $XMLX509SubjectName* X509Data::itemSubjectName(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_X509SUBJECTNAME, i));
 	if (e != nullptr) {
@@ -343,6 +360,7 @@ $XMLX509SubjectName* X509Data::itemSubjectName(int32_t i) {
 }
 
 $XMLX509Certificate* X509Data::itemCertificate(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_X509CERTIFICATE, i));
 	if (e != nullptr) {
@@ -352,6 +370,7 @@ $XMLX509Certificate* X509Data::itemCertificate(int32_t i) {
 }
 
 $XMLX509CRL* X509Data::itemCRL(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDsNode($(getFirstChild()), $Constants::_TAG_X509CRL, i));
 	if (e != nullptr) {
@@ -361,6 +380,7 @@ $XMLX509CRL* X509Data::itemCRL(int32_t i) {
 }
 
 $XMLX509Digest* X509Data::itemDigest(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($Element, e, $XMLUtils::selectDs11Node($(getFirstChild()), $Constants::_TAG_X509DIGEST, i));
 	if (e != nullptr) {
@@ -370,6 +390,7 @@ $XMLX509Digest* X509Data::itemDigest(int32_t i) {
 }
 
 $Element* X509Data::itemUnknownElement(int32_t i) {
+	$useLocalCurrentObjectStackCache();
 	$nc(X509Data::LOG)->debug("itemUnknownElement not implemented: {}"_s, $$new($ObjectArray, {$($of($Integer::valueOf(i)))}));
 	return nullptr;
 }

@@ -160,6 +160,7 @@ void DOMX509Data::finalize() {
 }
 
 void DOMX509Data::init$($List* content) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	if (content == nullptr) {
 		$throwNew($NullPointerException, "content cannot be null"_s);
@@ -184,6 +185,7 @@ void DOMX509Data::init$($List* content) {
 }
 
 void DOMX509Data::init$($Element* xdElem) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	$var($List, newContent, $new($ArrayList));
 	$var($Node, firstChild, $nc(xdElem)->getFirstChild());
@@ -231,6 +233,7 @@ $List* DOMX509Data::getContent() {
 }
 
 void DOMX509Data::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, xdElem, $DOMUtils::createElement(ownerDoc, "X509Data"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -261,6 +264,7 @@ void DOMX509Data::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* c
 }
 
 void DOMX509Data::marshalSKI($bytes* skid, $Node* parent, $Document* doc, $String* dsPrefix) {
+	$useLocalCurrentObjectStackCache();
 	$init($XMLSignature);
 	$var($Element, skidElem, $DOMUtils::createElement(doc, "X509SKI"_s, $XMLSignature::XMLNS, dsPrefix));
 	$nc(skidElem)->appendChild($($nc(doc)->createTextNode($($XMLUtils::encodeToString(skid)))));
@@ -268,6 +272,7 @@ void DOMX509Data::marshalSKI($bytes* skid, $Node* parent, $Document* doc, $Strin
 }
 
 void DOMX509Data::marshalSubjectName($String* name, $Node* parent, $Document* doc, $String* dsPrefix) {
+	$useLocalCurrentObjectStackCache();
 	$init($XMLSignature);
 	$var($Element, snElem, $DOMUtils::createElement(doc, "X509SubjectName"_s, $XMLSignature::XMLNS, dsPrefix));
 	$nc(snElem)->appendChild($($nc(doc)->createTextNode(name)));
@@ -275,6 +280,7 @@ void DOMX509Data::marshalSubjectName($String* name, $Node* parent, $Document* do
 }
 
 void DOMX509Data::marshalCert($X509Certificate* cert, $Node* parent, $Document* doc, $String* dsPrefix) {
+	$useLocalCurrentObjectStackCache();
 	$init($XMLSignature);
 	$var($Element, certElem, $DOMUtils::createElement(doc, "X509Certificate"_s, $XMLSignature::XMLNS, dsPrefix));
 	try {
@@ -287,6 +293,7 @@ void DOMX509Data::marshalCert($X509Certificate* cert, $Node* parent, $Document* 
 }
 
 void DOMX509Data::marshalCRL($X509CRL* crl, $Node* parent, $Document* doc, $String* dsPrefix) {
+	$useLocalCurrentObjectStackCache();
 	$init($XMLSignature);
 	$var($Element, crlElem, $DOMUtils::createElement(doc, "X509CRL"_s, $XMLSignature::XMLNS, dsPrefix));
 	try {
@@ -299,6 +306,7 @@ void DOMX509Data::marshalCRL($X509CRL* crl, $Node* parent, $Document* doc, $Stri
 }
 
 $X509Certificate* DOMX509Data::unmarshalX509Certificate($Element* elem) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ByteArrayInputStream, bs, unmarshalBase64Binary(elem));
 		{
@@ -347,6 +355,7 @@ $X509Certificate* DOMX509Data::unmarshalX509Certificate($Element* elem) {
 }
 
 $X509CRL* DOMX509Data::unmarshalX509CRL($Element* elem) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($ByteArrayInputStream, bs, unmarshalBase64Binary(elem));
 		{
@@ -395,6 +404,7 @@ $X509CRL* DOMX509Data::unmarshalX509CRL($Element* elem) {
 }
 
 $ByteArrayInputStream* DOMX509Data::unmarshalBase64Binary($Element* elem) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		if (this->cf == nullptr) {
 			$set(this, cf, $CertificateFactory::getInstance("X.509"_s));
@@ -409,6 +419,7 @@ $ByteArrayInputStream* DOMX509Data::unmarshalBase64Binary($Element* elem) {
 }
 
 bool DOMX509Data::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}

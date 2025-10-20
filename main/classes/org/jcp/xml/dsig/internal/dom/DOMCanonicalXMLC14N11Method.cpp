@@ -83,6 +83,7 @@ void DOMCanonicalXMLC14N11Method::init($TransformParameterSpec* params) {
 }
 
 $Data* DOMCanonicalXMLC14N11Method::transform($Data* data, $XMLCryptoContext* xc) {
+	$useLocalCurrentObjectStackCache();
 	if ($instanceOf($DOMSubTreeData, data)) {
 		$var($DOMSubTreeData, subTree, $cast($DOMSubTreeData, data));
 		if ($nc(subTree)->excludeComments()) {

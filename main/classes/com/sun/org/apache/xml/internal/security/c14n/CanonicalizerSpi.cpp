@@ -67,6 +67,7 @@ void CanonicalizerSpi::init$() {
 }
 
 void CanonicalizerSpi::engineCanonicalize($bytes* inputBytes, $OutputStream* writer, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, document, nullptr);
 	{
 		$var($InputStream, bais, $new($ByteArrayInputStream, inputBytes));

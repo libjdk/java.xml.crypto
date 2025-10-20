@@ -61,6 +61,7 @@ $Object* allocate$XPathFilter2ParameterSpec($Class* clazz) {
 }
 
 void XPathFilter2ParameterSpec::init$($List* xPathList) {
+	$useLocalCurrentObjectStackCache();
 	if (xPathList == nullptr) {
 		$throwNew($NullPointerException, "xPathList cannot be null"_s);
 	}

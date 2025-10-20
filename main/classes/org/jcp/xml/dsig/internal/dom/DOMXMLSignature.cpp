@@ -229,6 +229,7 @@ void DOMXMLSignature::finalize() {
 $Logger* DOMXMLSignature::LOG = nullptr;
 
 void DOMXMLSignature::init$($SignedInfo* si, $KeyInfo* ki, $List* objs, $String* id, $String* signatureValueId) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$set(this, ownerDoc, nullptr);
 	$set(this, localSigElem, nullptr);
@@ -258,6 +259,7 @@ void DOMXMLSignature::init$($SignedInfo* si, $KeyInfo* ki, $List* objs, $String*
 }
 
 void DOMXMLSignature::init$($Element* sigElem, $XMLCryptoContext* context, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$set(this, ownerDoc, nullptr);
 	$set(this, localSigElem, nullptr);
@@ -324,6 +326,7 @@ void DOMXMLSignature::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContex
 }
 
 void DOMXMLSignature::marshal($Node* parent, $Node* nextSibling, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$set(this, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$set(this, sigElem, $DOMUtils::createElement(this->ownerDoc, "Signature"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -349,6 +352,7 @@ void DOMXMLSignature::marshal($Node* parent, $Node* nextSibling, $String* dsPref
 }
 
 bool DOMXMLSignature::validate($XMLValidateContext* vc) {
+	$useLocalCurrentObjectStackCache();
 	if (vc == nullptr) {
 		$throwNew($NullPointerException, "validateContext is null"_s);
 	}
@@ -422,6 +426,7 @@ bool DOMXMLSignature::validate($XMLValidateContext* vc) {
 }
 
 void DOMXMLSignature::sign($XMLSignContext* signContext) {
+	$useLocalCurrentObjectStackCache();
 	if (signContext == nullptr) {
 		$throwNew($NullPointerException, "signContext cannot be null"_s);
 	}
@@ -522,6 +527,7 @@ void DOMXMLSignature::sign($XMLSignContext* signContext) {
 }
 
 bool DOMXMLSignature::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}
@@ -551,6 +557,7 @@ int32_t DOMXMLSignature::hashCode() {
 }
 
 void DOMXMLSignature::digestReference($DOMReference* ref, $XMLSignContext* signContext) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(ref)->isDigested()) {
 		return;
 	}

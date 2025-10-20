@@ -139,6 +139,7 @@ MessageDigestAlgorithm* MessageDigestAlgorithm::getInstance($Document* doc, $Str
 
 $MessageDigest* MessageDigestAlgorithm::getDigestInstance($String* algorithmURI) {
 	$init(MessageDigestAlgorithm);
+	$useLocalCurrentObjectStackCache();
 	$var($String, algorithmID, $JCEMapper::translateURItoJCEID(algorithmURI));
 	if (algorithmID == nullptr) {
 		$var($ObjectArray, exArgs, $new($ObjectArray, {$of(algorithmURI)}));

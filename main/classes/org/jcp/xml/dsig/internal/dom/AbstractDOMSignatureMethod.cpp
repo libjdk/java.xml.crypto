@@ -123,6 +123,7 @@ void AbstractDOMSignatureMethod::init$() {
 }
 
 void AbstractDOMSignatureMethod::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, smElem, $DOMUtils::createElement(ownerDoc, "SignatureMethod"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -134,21 +135,25 @@ void AbstractDOMSignatureMethod::marshal($Node* parent, $String* dsPrefix, $DOMC
 }
 
 void AbstractDOMSignatureMethod::marshalParams($Element* parent, $String* paramsPrefix) {
+	$useLocalCurrentObjectStackCache();
 	$throwNew($MarshalException, $$str({"no parameters should be specified for the "_s, $(getAlgorithm()), " SignatureMethod algorithm"_s}));
 }
 
 $SignatureMethodParameterSpec* AbstractDOMSignatureMethod::unmarshalParams($Element* paramsElem) {
+	$useLocalCurrentObjectStackCache();
 	$throwNew($MarshalException, $$str({"no parameters should be specified for the "_s, $(getAlgorithm()), " SignatureMethod algorithm"_s}));
 	$shouldNotReachHere();
 }
 
 void AbstractDOMSignatureMethod::checkParams($SignatureMethodParameterSpec* params) {
+	$useLocalCurrentObjectStackCache();
 	if (params != nullptr) {
 		$throwNew($InvalidAlgorithmParameterException, $$str({"no parameters should be specified for the "_s, $(getAlgorithm()), " SignatureMethod algorithm"_s}));
 	}
 }
 
 bool AbstractDOMSignatureMethod::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}
@@ -161,6 +166,7 @@ bool AbstractDOMSignatureMethod::equals(Object$* o) {
 }
 
 int32_t AbstractDOMSignatureMethod::hashCode() {
+	$useLocalCurrentObjectStackCache();
 	int32_t result = 17;
 	result = 31 * result + $nc($(getAlgorithm()))->hashCode();
 	$var($AlgorithmParameterSpec, spec, getParameterSpec());

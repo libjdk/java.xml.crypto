@@ -90,6 +90,7 @@ $String* TransformC14NExclusive::engineGetURI() {
 }
 
 $XMLSignatureInput* TransformC14NExclusive::enginePerformTransform($XMLSignatureInput* input, $OutputStream* os, $Element* transformElement, $String* baseURI, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($String, inclusiveNamespaces, nullptr);
 		$init($InclusiveNamespaces);
@@ -159,6 +160,7 @@ $Canonicalizer20010315Excl* TransformC14NExclusive::getCanonicalizer() {
 }
 
 int32_t TransformC14NExclusive::length($Element* element, $String* namespace$, $String* localname) {
+	$useLocalCurrentObjectStackCache();
 	int32_t number = 0;
 	$var($Node, sibling, $nc(element)->getFirstChild());
 	while (sibling != nullptr) {

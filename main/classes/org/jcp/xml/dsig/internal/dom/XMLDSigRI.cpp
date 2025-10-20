@@ -157,6 +157,7 @@ void XMLDSigRI::access$000(XMLDSigRI* x0, $Provider$Service* x1) {
 }
 
 void XMLDSigRI::init$() {
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$Provider::init$("XMLDSig"_s, XMLDSigRI::VER, XMLDSigRI::INFO);
 	$var($Provider, p, this);

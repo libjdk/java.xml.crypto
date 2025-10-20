@@ -104,6 +104,7 @@ void XMLDSigRI$2::init$($XMLDSigRI* this$0, $Provider* val$p) {
 }
 
 $Object* XMLDSigRI$2::run() {
+	$useLocalCurrentObjectStackCache();
 	$var($Map, MECH_TYPE, $new($HashMap));
 	MECH_TYPE->put("MechanismType"_s, "DOM"_s);
 	$XMLDSigRI::access$000(this->this$0, $$new($XMLDSigRI$ProviderService, this->val$p, "XMLSignatureFactory"_s, "DOM"_s, "org.jcp.xml.dsig.internal.dom.DOMXMLSignatureFactory"_s));

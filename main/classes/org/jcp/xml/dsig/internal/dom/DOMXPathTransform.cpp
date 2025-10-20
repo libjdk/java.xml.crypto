@@ -105,6 +105,7 @@ void DOMXPathTransform::init($XMLStructure* parent, $XMLCryptoContext* context) 
 }
 
 void DOMXPathTransform::unmarshalParams($Element* paramsElem) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, xPath, $nc($($nc(paramsElem)->getFirstChild()))->getNodeValue());
 	$var($NamedNodeMap, attributes, paramsElem->getAttributes());
 	if (attributes != nullptr) {
@@ -125,6 +126,7 @@ void DOMXPathTransform::unmarshalParams($Element* paramsElem) {
 }
 
 void DOMXPathTransform::marshalParams($XMLStructure* parent, $XMLCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$ApacheTransform::marshalParams(parent, context);
 	$var($XPathFilterParameterSpec, xp, $cast($XPathFilterParameterSpec, getParameterSpec()));
 	$init($XMLSignature);

@@ -115,6 +115,7 @@ $PrivateKey* KeyResolverSpi::engineLookupAndResolvePrivateKey($Element* element,
 }
 
 $Element* KeyResolverSpi::getDocFromBytes($bytes* bytes, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($InputStream, is, $new($ByteArrayInputStream, bytes));
 		{

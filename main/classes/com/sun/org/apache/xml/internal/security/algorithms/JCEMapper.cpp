@@ -139,6 +139,7 @@ void JCEMapper::register$($String* id, $JCEMapper$Algorithm* algorithm) {
 
 void JCEMapper::registerDefaultAlgorithms() {
 	$init(JCEMapper);
+	$useLocalCurrentObjectStackCache();
 	$init($MessageDigestAlgorithm);
 	$nc(JCEMapper::algorithmsMap)->put($MessageDigestAlgorithm::ALGO_ID_DIGEST_NOT_RECOMMENDED_MD5, $$new($JCEMapper$Algorithm, ""_s, "MD5"_s, "MessageDigest"_s));
 	$nc(JCEMapper::algorithmsMap)->put($MessageDigestAlgorithm::ALGO_ID_DIGEST_RIPEMD160, $$new($JCEMapper$Algorithm, ""_s, "RIPEMD160"_s, "MessageDigest"_s));

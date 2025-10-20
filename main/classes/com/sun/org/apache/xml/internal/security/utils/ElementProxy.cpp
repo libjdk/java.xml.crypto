@@ -138,6 +138,7 @@ void ElementProxy::init$() {
 }
 
 void ElementProxy::init$($Document* doc) {
+	$useLocalCurrentObjectStackCache();
 	if (doc == nullptr) {
 		$throwNew($RuntimeException, "Document is null"_s);
 	}
@@ -147,6 +148,7 @@ void ElementProxy::init$($Document* doc) {
 }
 
 void ElementProxy::init$($Element* element, $String* baseURI) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		$throwNew($XMLSecurityException, "ElementProxy.nullElement"_s);
 	}
@@ -160,6 +162,7 @@ void ElementProxy::init$($Element* element, $String* baseURI) {
 }
 
 $Element* ElementProxy::createElementForFamilyLocal($String* namespace$, $String* localName) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, doc, getDocument());
 	$var($Element, result, nullptr);
 	if (namespace$ == nullptr) {
@@ -182,6 +185,7 @@ $Element* ElementProxy::createElementForFamilyLocal($String* namespace$, $String
 
 $Element* ElementProxy::createElementForFamily($Document* doc, $String* namespace$, $String* localName) {
 	$init(ElementProxy);
+	$useLocalCurrentObjectStackCache();
 	$var($Element, result, nullptr);
 	$var($String, prefix, ElementProxy::getDefaultPrefix(namespace$));
 	if (namespace$ == nullptr) {
@@ -199,6 +203,7 @@ $Element* ElementProxy::createElementForFamily($Document* doc, $String* namespac
 }
 
 void ElementProxy::setElement($Element* element, $String* baseURI) {
+	$useLocalCurrentObjectStackCache();
 	if (element == nullptr) {
 		$throwNew($XMLSecurityException, "ElementProxy.nullElement"_s);
 	}
@@ -215,6 +220,7 @@ $Element* ElementProxy::getElement() {
 }
 
 $NodeList* ElementProxy::getElementPlusReturns() {
+	$useLocalCurrentObjectStackCache();
 	$var($HelperNodeList, nl, $new($HelperNodeList));
 	nl->appendChild($(createText("\n"_s)));
 	nl->appendChild($(getElement()));
@@ -238,6 +244,7 @@ $String* ElementProxy::getBaseURI() {
 }
 
 void ElementProxy::guaranteeThatElementInCorrectSpace() {
+	$useLocalCurrentObjectStackCache();
 	$var($String, expectedLocalName, this->getBaseLocalName());
 	$var($String, expectedNamespaceUri, this->getBaseNamespace());
 	$var($String, actualLocalName, $nc($(getElement()))->getLocalName());
@@ -253,6 +260,7 @@ void ElementProxy::guaranteeThatElementInCorrectSpace() {
 }
 
 void ElementProxy::addBigIntegerElement($BigInteger* bi, $String* localname) {
+	$useLocalCurrentObjectStackCache();
 	if (bi != nullptr) {
 		$var($Element, e, $XMLUtils::createElementInSignatureSpace($(getDocument()), localname));
 		$var($bytes, bytes, $XMLUtils::getBytes(bi, bi->bitLength()));
@@ -276,6 +284,7 @@ void ElementProxy::addBase64Element($bytes* bytes, $String* localname) {
 }
 
 void ElementProxy::addTextElement($String* text, $String* localname) {
+	$useLocalCurrentObjectStackCache();
 	$var($Element, e, $XMLUtils::createElementInSignatureSpace($(getDocument()), localname));
 	$var($Text, t, createText(text));
 	appendOther(e, t);
@@ -284,6 +293,7 @@ void ElementProxy::addTextElement($String* text, $String* localname) {
 }
 
 void ElementProxy::addBase64Text($bytes* bytes) {
+	$useLocalCurrentObjectStackCache();
 	if (bytes != nullptr) {
 		$var($Text, t, $XMLUtils::ignoreLineBreaks() ? createText($($XMLUtils::encodeToString(bytes))) : createText($$str({"\n"_s, $($XMLUtils::encodeToString(bytes)), "\n"_s})));
 		appendSelf(static_cast<$Node*>(t));
@@ -291,6 +301,7 @@ void ElementProxy::addBase64Text($bytes* bytes) {
 }
 
 void ElementProxy::appendSelf(ElementProxy* toAppend) {
+	$useLocalCurrentObjectStackCache();
 	$nc($(getElement()))->appendChild($($nc(toAppend)->getElement()));
 }
 
@@ -310,6 +321,7 @@ void ElementProxy::addText($String* text) {
 }
 
 $BigInteger* ElementProxy::getBigIntegerFromChildElement($String* localname, $String* namespace$) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, n, $XMLUtils::selectNode($(getFirstChild()), namespace$, localname, 0));
 	if (n != nullptr) {
 		return $new($BigInteger, 1, $($XMLUtils::decode($($XMLUtils::getFullTextChildrenFromNode(n)))));
@@ -318,6 +330,7 @@ $BigInteger* ElementProxy::getBigIntegerFromChildElement($String* localname, $St
 }
 
 $String* ElementProxy::getTextFromChildElement($String* localname, $String* namespace$) {
+	$useLocalCurrentObjectStackCache();
 	return $nc($($XMLUtils::selectNode($(getFirstChild()), namespace$, localname, 0)))->getTextContent();
 }
 
@@ -330,6 +343,7 @@ $String* ElementProxy::getTextFromTextChild() {
 }
 
 int32_t ElementProxy::length($String* namespace$, $String* localname) {
+	$useLocalCurrentObjectStackCache();
 	int32_t number = 0;
 	$var($Node, sibling, getFirstChild());
 	while (sibling != nullptr) {
@@ -343,6 +357,7 @@ int32_t ElementProxy::length($String* namespace$, $String* localname) {
 }
 
 void ElementProxy::setXPathNamespaceContext($String* prefix, $String* uri) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, ns, nullptr);
 	if (prefix == nullptr || $nc(prefix)->length() == 0) {
 		$throwNew($XMLSecurityException, "defaultNamespaceCannotBeSetHere"_s);
@@ -376,6 +391,7 @@ void ElementProxy::setDefaultPrefix($String* namespace$, $String* prefix) {
 
 void ElementProxy::setNamespacePrefix($String* namespace$, $String* prefix) {
 	$init(ElementProxy);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(ElementProxy::prefixMappings)->containsValue(prefix)) {
 		$var($String, storedPrefix, $cast($String, $nc(ElementProxy::prefixMappings)->get(namespace$)));
 		if (!$nc(storedPrefix)->equals(prefix)) {
@@ -438,6 +454,7 @@ void ElementProxy::setLocalAttribute($String* attrName, $String* value) {
 }
 
 void ElementProxy::setLocalIdAttribute($String* attrName, $String* value) {
+	$useLocalCurrentObjectStackCache();
 	if (value != nullptr) {
 		$var($Attr, attr, $nc($(getDocument()))->createAttributeNS(nullptr, attrName));
 		$nc(attr)->setValue(value);

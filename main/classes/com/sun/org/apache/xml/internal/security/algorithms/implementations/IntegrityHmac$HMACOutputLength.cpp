@@ -76,6 +76,7 @@ $Object* allocate$IntegrityHmac$HMACOutputLength($Class* clazz) {
 }
 
 void IntegrityHmac$HMACOutputLength::init$(int32_t length) {
+	$useLocalCurrentObjectStackCache();
 	this->length = length;
 	if (length < IntegrityHmac$HMACOutputLength::MIN_LENGTH) {
 		$init($IntegrityHmac);

@@ -93,6 +93,7 @@ void ResolverLocalFilesystem::init$() {
 }
 
 $XMLSignatureInput* ResolverLocalFilesystem::engineResolveURI($ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($URI, uriNew, getNewURI($nc(context)->uriToResolve, context->baseUri));
 		$var($String, fileName, ResolverLocalFilesystem::translateUriToFilename($($nc(uriNew)->toString())));
@@ -110,6 +111,7 @@ $XMLSignatureInput* ResolverLocalFilesystem::engineResolveURI($ResourceResolverC
 
 $String* ResolverLocalFilesystem::translateUriToFilename($String* uri) {
 	$init(ResolverLocalFilesystem);
+	$useLocalCurrentObjectStackCache();
 	$var($String, subStr, $nc(uri)->substring(ResolverLocalFilesystem::FILE_URI_LENGTH));
 	if (subStr->indexOf("%20"_s) > -1) {
 		int32_t offset = 0;
@@ -134,6 +136,7 @@ $String* ResolverLocalFilesystem::translateUriToFilename($String* uri) {
 }
 
 bool ResolverLocalFilesystem::engineCanResolveURI($ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(context)->uriToResolve == nullptr) {
 		return false;
 	}
@@ -159,6 +162,7 @@ bool ResolverLocalFilesystem::engineCanResolveURI($ResourceResolverContext* cont
 
 $URI* ResolverLocalFilesystem::getNewURI($String* uri, $String* baseURI) {
 	$init(ResolverLocalFilesystem);
+	$useLocalCurrentObjectStackCache();
 	$var($URI, newUri, nullptr);
 	if (baseURI == nullptr || ""_s->equals(baseURI)) {
 		$assign(newUri, $new($URI, uri));

@@ -97,6 +97,7 @@ bool DEREncodedKeyValueResolver::engineCanResolve($Element* element, $String* ba
 }
 
 $PublicKey* DEREncodedKeyValueResolver::engineResolvePublicKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($DEREncodedKeyValue, derKeyValue, $new($DEREncodedKeyValue, element, baseURI));
 		return derKeyValue->getPublicKey();

@@ -73,6 +73,7 @@ void ClassLoaderUtils::init$() {
 
 $Class* ClassLoaderUtils::loadClass($String* className, $Class* callingClass) {
 	$init(ClassLoaderUtils);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	try {
 		$var($ClassLoader, cl, $($Thread::currentThread())->getContextClassLoader());
@@ -88,6 +89,7 @@ $Class* ClassLoaderUtils::loadClass($String* className, $Class* callingClass) {
 
 $Class* ClassLoaderUtils::loadClass2($String* className, $Class* callingClass) {
 	$init(ClassLoaderUtils);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	try {
 		return $Class::forName(className);

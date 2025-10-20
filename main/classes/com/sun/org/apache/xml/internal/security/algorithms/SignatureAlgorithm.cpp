@@ -277,6 +277,7 @@ void SignatureAlgorithm::init$($Element* element, $String* baseURI, bool secureV
 }
 
 void SignatureAlgorithm::init$($Element* element, $String* baseURI, bool secureValidation, $Provider* provider) {
+	$useLocalCurrentObjectStackCache();
 	$Algorithm::init$(element, baseURI);
 	$set(this, algorithmURI, this->getURI());
 	$var($Attr, attr, $nc(element)->getAttributeNodeNS(nullptr, "Id"_s));
@@ -299,6 +300,7 @@ void SignatureAlgorithm::init$($Element* element, $String* baseURI, bool secureV
 
 $SignatureAlgorithmSpi* SignatureAlgorithm::getSignatureAlgorithmSpi($String* algorithmURI, $Provider* provider) {
 	$init(SignatureAlgorithm);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	try {
 		$Class* implementingClass = $cast($Class, $nc(SignatureAlgorithm::algorithmHash)->get(algorithmURI));
@@ -408,6 +410,7 @@ $String* SignatureAlgorithm::getURI() {
 
 void SignatureAlgorithm::register$($String* algorithmURI, $String* implementingClass) {
 	$init(SignatureAlgorithm);
+	$useLocalCurrentObjectStackCache();
 	$JavaUtils::checkRegisterPermission();
 	$nc(SignatureAlgorithm::LOG)->debug("Try to register {} {}"_s, $$new($ObjectArray, {
 		$of(algorithmURI),
@@ -436,6 +439,7 @@ void SignatureAlgorithm::register$($String* algorithmURI, $String* implementingC
 
 void SignatureAlgorithm::register$($String* algorithmURI, $Class* implementingClass) {
 	$init(SignatureAlgorithm);
+	$useLocalCurrentObjectStackCache();
 	$JavaUtils::checkRegisterPermission();
 	$nc(SignatureAlgorithm::LOG)->debug("Try to register {} {}"_s, $$new($ObjectArray, {
 		$of(algorithmURI),

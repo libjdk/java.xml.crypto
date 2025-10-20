@@ -200,6 +200,7 @@ void DOMRSAPSSSignatureMethod::init$($AlgorithmParameterSpec* params$renamed) {
 }
 
 void DOMRSAPSSSignatureMethod::init$($Element* smElem) {
+	$useLocalCurrentObjectStackCache();
 	$AbstractDOMSignatureMethod::init$();
 	$var($Element, paramsElem, $DOMUtils::getFirstChildElement(smElem));
 	if (paramsElem != nullptr) {
@@ -216,6 +217,7 @@ void DOMRSAPSSSignatureMethod::init$($Element* smElem) {
 }
 
 void DOMRSAPSSSignatureMethod::checkParams($SignatureMethodParameterSpec* params) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf($RSAPSSParameterSpec, params))) {
 		$throwNew($InvalidAlgorithmParameterException, "params must be of type RSAPSSParameterSpec"_s);
 	}
@@ -228,6 +230,7 @@ $AlgorithmParameterSpec* DOMRSAPSSSignatureMethod::getParameterSpec() {
 }
 
 void DOMRSAPSSSignatureMethod::marshalParams($Element* parent, $String* prefix) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($Constants);
 	$var($Element, rsaPssParamsElement, $nc(ownerDoc)->createElementNS($Constants::XML_DSIG_NS_MORE_07_05, $$str({"pss:"_s, $Constants::_TAG_RSAPSSPARAMS})));
@@ -298,6 +301,7 @@ void DOMRSAPSSSignatureMethod::marshalParams($Element* parent, $String* prefix) 
 
 $SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm* DOMRSAPSSSignatureMethod::validateDigestAlgorithm($String* input) {
 	$init(DOMRSAPSSSignatureMethod);
+	$useLocalCurrentObjectStackCache();
 	try {
 		return $SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm::fromXmlDigestAlgorithm(input);
 	} catch ($XMLSignatureException&) {
@@ -308,6 +312,7 @@ $SignatureBaseRSA$SignatureRSASSAPSS$DigestAlgorithm* DOMRSAPSSSignatureMethod::
 }
 
 $SignatureMethodParameterSpec* DOMRSAPSSSignatureMethod::unmarshalParams($Element* paramsElem) {
+	$useLocalCurrentObjectStackCache();
 	if (paramsElem != nullptr) {
 		$init($Constants);
 		$var($Element, saltLengthNode, $XMLUtils::selectNode($(paramsElem->getFirstChild()), $Constants::XML_DSIG_NS_MORE_07_05, $Constants::_TAG_SALTLENGTH, 0));
@@ -349,6 +354,7 @@ $SignatureMethodParameterSpec* DOMRSAPSSSignatureMethod::unmarshalParams($Elemen
 }
 
 bool DOMRSAPSSSignatureMethod::verify($Key* key, $SignedInfo* si, $bytes* sig, $XMLValidateContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (key == nullptr || si == nullptr || sig == nullptr) {
 		$throwNew($NullPointerException);
 	}
@@ -417,6 +423,7 @@ bool DOMRSAPSSSignatureMethod::verify($Key* key, $SignedInfo* si, $bytes* sig, $
 }
 
 $bytes* DOMRSAPSSSignatureMethod::sign($Key* key, $SignedInfo* si, $XMLSignContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (key == nullptr || si == nullptr) {
 		$throwNew($NullPointerException);
 	}
@@ -503,6 +510,7 @@ void DOMRSAPSSSignatureMethod::marshal($Node* parent, $String* dsPrefix, $DOMCry
 }
 
 void clinit$DOMRSAPSSSignatureMethod($Class* class$) {
+	$useLocalCurrentObjectStackCache();
 	$assignStatic(DOMRSAPSSSignatureMethod::DOM_SIGNATURE_PROVIDER, "org.jcp.xml.dsig.internal.dom.SignatureProvider"_s);
 	$assignStatic(DOMRSAPSSSignatureMethod::RSA_PSS, "http://www.w3.org/2007/05/xmldsig-more#rsa-pss"_s);
 	$assignStatic(DOMRSAPSSSignatureMethod::LOG, $LoggerFactory::getLogger(DOMRSAPSSSignatureMethod::class$));

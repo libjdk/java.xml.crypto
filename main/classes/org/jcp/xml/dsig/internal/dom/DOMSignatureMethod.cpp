@@ -311,6 +311,7 @@ void DOMSignatureMethod::init$($AlgorithmParameterSpec* params) {
 }
 
 void DOMSignatureMethod::init$($Element* smElem) {
+	$useLocalCurrentObjectStackCache();
 	$AbstractDOMSignatureMethod::init$();
 	$var($Element, paramsElem, $DOMUtils::getFirstChildElement(smElem));
 	if (paramsElem != nullptr) {
@@ -326,6 +327,7 @@ void DOMSignatureMethod::init$($Element* smElem) {
 
 $SignatureMethod* DOMSignatureMethod::unmarshal($Element* smElem) {
 	$init(DOMSignatureMethod);
+	$useLocalCurrentObjectStackCache();
 	$var($String, alg, $DOMUtils::getAttributeValue(smElem, "Algorithm"_s));
 	$init($SignatureMethod);
 	if ($nc(alg)->equals($SignatureMethod::RSA_SHA1)) {
@@ -446,10 +448,12 @@ $AlgorithmParameterSpec* DOMSignatureMethod::getParameterSpec() {
 }
 
 $Signature* DOMSignatureMethod::getSignature($Provider* p) {
+	$useLocalCurrentObjectStackCache();
 	return (p == nullptr) ? $Signature::getInstance($(getJCAAlgorithm())) : $Signature::getInstance($(getJCAAlgorithm()), p);
 }
 
 bool DOMSignatureMethod::verify($Key* key, $SignedInfo* si, $bytes* sig, $XMLValidateContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (key == nullptr || si == nullptr || sig == nullptr) {
 		$throwNew($NullPointerException);
 	}
@@ -508,6 +512,7 @@ bool DOMSignatureMethod::verify($Key* key, $SignedInfo* si, $bytes* sig, $XMLVal
 
 void DOMSignatureMethod::checkKeySize($XMLCryptoContext* context, $Key* key) {
 	$init(DOMSignatureMethod);
+	$useLocalCurrentObjectStackCache();
 	if ($Utils::secureValidation(context)) {
 		int32_t size = $KeyUtil::getKeySize(key);
 		if (size == -1) {
@@ -523,6 +528,7 @@ void DOMSignatureMethod::checkKeySize($XMLCryptoContext* context, $Key* key) {
 }
 
 $bytes* DOMSignatureMethod::sign($Key* key, $SignedInfo* si, $XMLSignContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if (key == nullptr || si == nullptr) {
 		$throwNew($NullPointerException);
 	}

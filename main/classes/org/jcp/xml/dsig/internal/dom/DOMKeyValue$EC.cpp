@@ -141,6 +141,7 @@ $DOMKeyValue$EC$Curve* DOMKeyValue$EC::SECP521R1 = nullptr;
 
 $DOMKeyValue$EC$Curve* DOMKeyValue$EC::initializeCurve($String* name, $String* oid, $String* sfield, $String* a, $String* b, $String* x, $String* y, $String* n, int32_t h) {
 	$init(DOMKeyValue$EC);
+	$useLocalCurrentObjectStackCache();
 	$var($BigInteger, p, $DOMKeyValue::bigInt(sfield));
 	$var($ECField, field, $new($ECFieldFp, p));
 	$var($ECField, var$0, field);
@@ -152,6 +153,7 @@ $DOMKeyValue$EC$Curve* DOMKeyValue$EC::initializeCurve($String* name, $String* o
 }
 
 void DOMKeyValue$EC::init$($ECPublicKey* ecKey) {
+	$useLocalCurrentObjectStackCache();
 	$DOMKeyValue::init$(static_cast<$PublicKey*>(ecKey));
 	$var($ECPoint, ecPoint, $nc(ecKey)->getW());
 	$set(this, ecParams, ecKey->getParams());
@@ -164,6 +166,7 @@ void DOMKeyValue$EC::init$($Element* dmElem) {
 
 $ECPoint* DOMKeyValue$EC::decodePoint($bytes* data, $EllipticCurve* curve) {
 	$init(DOMKeyValue$EC);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(data)->length == 0 || $nc(data)->get(0) != 4) {
 		$throwNew($IOException, "Only uncompressed point format supported"_s);
 	}
@@ -179,6 +182,7 @@ $ECPoint* DOMKeyValue$EC::decodePoint($bytes* data, $EllipticCurve* curve) {
 
 $bytes* DOMKeyValue$EC::encodePoint($ECPoint* point, $EllipticCurve* curve) {
 	$init(DOMKeyValue$EC);
+	$useLocalCurrentObjectStackCache();
 	int32_t n = ($nc($($nc(curve)->getField()))->getFieldSize() + 7) >> 3;
 	$var($bytes, xb, trimZeroes($($nc($($nc(point)->getAffineX()))->toByteArray())));
 	$var($bytes, yb, trimZeroes($($nc($($nc(point)->getAffineY()))->toByteArray())));
@@ -225,6 +229,7 @@ $String* DOMKeyValue$EC::getCurveOid($ECParameterSpec* params) {
 
 bool DOMKeyValue$EC::matchCurve($ECParameterSpec* params, $DOMKeyValue$EC$Curve* curve) {
 	$init(DOMKeyValue$EC);
+	$useLocalCurrentObjectStackCache();
 	int32_t fieldSize = $nc($($nc($($nc(params)->getCurve()))->getField()))->getFieldSize();
 	bool var$3 = $nc($($nc($($nc(curve)->getCurve()))->getField()))->getFieldSize() == fieldSize;
 	bool var$2 = var$3 && $nc($(curve->getCurve()))->equals($(params->getCurve()));
@@ -238,6 +243,7 @@ bool DOMKeyValue$EC::matchCurve($ECParameterSpec* params, $DOMKeyValue$EC$Curve*
 }
 
 void DOMKeyValue$EC::marshalPublicKey($Node* parent, $Document* doc, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, prefix, $DOMUtils::getNSPrefix(context, "http://www.w3.org/2009/xmldsig11#"_s));
 	$var($Element, ecKeyValueElem, $DOMUtils::createElement(doc, "ECKeyValue"_s, "http://www.w3.org/2009/xmldsig11#"_s, prefix));
 	$var($Element, namedCurveElem, $DOMUtils::createElement(doc, "NamedCurve"_s, "http://www.w3.org/2009/xmldsig11#"_s, prefix));
@@ -257,6 +263,7 @@ void DOMKeyValue$EC::marshalPublicKey($Node* parent, $Document* doc, $String* ds
 }
 
 $PublicKey* DOMKeyValue$EC::unmarshalKeyValue($Element* kvtElem) {
+	$useLocalCurrentObjectStackCache();
 	if (this->eckf == nullptr) {
 		try {
 			$set(this, eckf, $KeyFactory::getInstance("EC"_s));
@@ -306,6 +313,7 @@ $PublicKey* DOMKeyValue$EC::unmarshalKeyValue($Element* kvtElem) {
 
 $ECParameterSpec* DOMKeyValue$EC::getECParameterSpec($String* oid) {
 	$init(DOMKeyValue$EC);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(oid)->equals($($nc(DOMKeyValue$EC::SECP256R1)->getObjectId()))) {
 		return DOMKeyValue$EC::SECP256R1;
 	} else {

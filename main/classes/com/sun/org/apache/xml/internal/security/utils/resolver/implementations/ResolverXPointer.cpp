@@ -90,6 +90,7 @@ void ResolverXPointer::init$() {
 }
 
 $XMLSignatureInput* ResolverXPointer::engineResolveURI($ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, resultNode, nullptr);
 	$var($Document, doc, $nc($($nc($nc(context)->attr)->getOwnerElement()))->getOwnerDocument());
 	if (isXPointerSlash(context->uriToResolve)) {
@@ -132,6 +133,7 @@ bool ResolverXPointer::isXPointerSlash($String* uri) {
 
 bool ResolverXPointer::isXPointerId($String* uri) {
 	$init(ResolverXPointer);
+	$useLocalCurrentObjectStackCache();
 	bool var$0 = uri != nullptr && uri->startsWith(ResolverXPointer::XP);
 	if (var$0 && uri->endsWith("))"_s)) {
 		$var($String, idPlusDelim, uri->substring(ResolverXPointer::XP_LENGTH, uri->length() - 2));

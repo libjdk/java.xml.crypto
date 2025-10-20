@@ -85,6 +85,7 @@ void DOMSignatureMethod$AbstractECDSASignatureMethod::init$($Element* dmElem) {
 }
 
 $bytes* DOMSignatureMethod$AbstractECDSASignatureMethod::postSignFormat($Key* key, $bytes* sig) {
+	$useLocalCurrentObjectStackCache();
 	if (this->asn1) {
 		int32_t rawLen = -1;
 		if ($instanceOf($ECPrivateKey, key)) {

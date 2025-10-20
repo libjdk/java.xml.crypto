@@ -89,6 +89,7 @@ $String* TransformEnvelopedSignature::engineGetURI() {
 }
 
 $XMLSignatureInput* TransformEnvelopedSignature::enginePerformTransform($XMLSignatureInput* input, $OutputStream* os, $Element* transformElement, $String* baseURI, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, signatureElement, searchSignatureElement(transformElement));
 	$nc(input)->setExcludeNode(signatureElement);
 	input->addNodeFilter($$new($TransformEnvelopedSignature$EnvelopedNodeFilter, signatureElement));
@@ -97,6 +98,7 @@ $XMLSignatureInput* TransformEnvelopedSignature::enginePerformTransform($XMLSign
 
 $Node* TransformEnvelopedSignature::searchSignatureElement($Node* signatureElement$renamed) {
 	$init(TransformEnvelopedSignature);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, signatureElement, signatureElement$renamed);
 	bool found = false;
 	while (true) {

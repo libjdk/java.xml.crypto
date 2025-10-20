@@ -158,6 +158,7 @@ void XPath2FilterContainer::init$($Document* doc, $String* xpath2filter, $String
 }
 
 void XPath2FilterContainer::init$($Element* element, $String* baseURI) {
+	$useLocalCurrentObjectStackCache();
 	$ElementProxy::init$(element, baseURI);
 	$var($String, filterStr, getLocalAttribute(XPath2FilterContainer::_ATT_FILTER));
 	bool var$1 = !$nc(filterStr)->equals(XPath2FilterContainer::_ATT_FILTER_VALUE_INTERSECT);
@@ -189,6 +190,7 @@ XPath2FilterContainer* XPath2FilterContainer::newInstanceUnion($Document* doc, $
 
 $NodeList* XPath2FilterContainer::newInstances($Document* doc, $StringArray2* params) {
 	$init(XPath2FilterContainer);
+	$useLocalCurrentObjectStackCache();
 	$var($HelperNodeList, nl, $new($HelperNodeList));
 	$XMLUtils::addReturnToElement(doc, nl);
 	for (int32_t i = 0; i < $nc(params)->length; ++i) {
@@ -228,6 +230,7 @@ $String* XPath2FilterContainer::getXPathFilterStr() {
 }
 
 $Node* XPath2FilterContainer::getXPathFilterTextNode() {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, childNode, $nc($(getElement()))->getFirstChild());
 	while (childNode != nullptr) {
 		if (childNode->getNodeType() == $Node::TEXT_NODE) {

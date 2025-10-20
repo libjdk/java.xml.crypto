@@ -91,6 +91,7 @@ void XPathContainer::init$($Document* doc) {
 }
 
 void XPathContainer::setXPath($String* xpath) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, childNode, $nc($(getElement()))->getFirstChild());
 	while (childNode != nullptr) {
 		$var($Node, nodeToBeRemoved, childNode);

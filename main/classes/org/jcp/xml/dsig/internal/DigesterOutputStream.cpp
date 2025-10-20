@@ -92,6 +92,7 @@ void DigesterOutputStream::write(int32_t input) {
 }
 
 void DigesterOutputStream::write($bytes* input, int32_t offset, int32_t len) {
+	$useLocalCurrentObjectStackCache();
 	if (this->buffer) {
 		$nc(this->bos)->write(input, offset, len);
 	}

@@ -133,6 +133,7 @@ void ResolverDirectHTTP::init$($Map* resolverProperties) {
 }
 
 $XMLSignatureInput* ResolverDirectHTTP::engineResolveURI($ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($URI, uriNew, getNewURI($nc(context)->uriToResolve, context->baseUri));
 		$var($URL, url, $nc(uriNew)->toURL());
@@ -248,6 +249,7 @@ $XMLSignatureInput* ResolverDirectHTTP::engineResolveURI($ResourceResolverContex
 }
 
 $URLConnection* ResolverDirectHTTP::openConnection($URL* url, $ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($String, proxyHostProp, getProperty(context, $nc(ResolverDirectHTTP::properties)->get(ResolverDirectHTTP::HttpProxyHost)));
 	$var($String, proxyPortProp, getProperty(context, $nc(ResolverDirectHTTP::properties)->get(ResolverDirectHTTP::HttpProxyPort)));
 	$var($String, proxyUser, getProperty(context, $nc(ResolverDirectHTTP::properties)->get(ResolverDirectHTTP::HttpProxyUser)));
@@ -274,6 +276,7 @@ $URLConnection* ResolverDirectHTTP::openConnection($URL* url, $ResourceResolverC
 }
 
 bool ResolverDirectHTTP::engineCanResolveURI($ResourceResolverContext* context) {
+	$useLocalCurrentObjectStackCache();
 	if ($nc(context)->uriToResolve == nullptr) {
 		$nc(ResolverDirectHTTP::LOG)->debug("quick fail, uri == null"_s);
 		return false;
@@ -295,6 +298,7 @@ bool ResolverDirectHTTP::engineCanResolveURI($ResourceResolverContext* context) 
 
 $URI* ResolverDirectHTTP::getNewURI($String* uri, $String* baseURI) {
 	$init(ResolverDirectHTTP);
+	$useLocalCurrentObjectStackCache();
 	$var($URI, newUri, nullptr);
 	if (baseURI == nullptr || ""_s->equals(baseURI)) {
 		$assign(newUri, $new($URI, uri));

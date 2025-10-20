@@ -142,6 +142,7 @@ void Base64::init$() {
 
 $bytes* Base64::getBytes($BigInteger* big, int32_t bitlen) {
 	$init(Base64);
+	$useLocalCurrentObjectStackCache();
 	bitlen = ((bitlen + 7) >> 3) << 3;
 	if (bitlen < $nc(big)->bitLength()) {
 		$throwNew($IllegalArgumentException, $($I18n::translate("utils.Base64.IllegalBitlength"_s)));
@@ -171,6 +172,7 @@ $String* Base64::encode($BigInteger* big) {
 
 $bytes* Base64::encode($BigInteger* big, int32_t bitlen) {
 	$init(Base64);
+	$useLocalCurrentObjectStackCache();
 	bitlen = ((bitlen + 7) >> 3) << 3;
 	if (bitlen < $nc(big)->bitLength()) {
 		$throwNew($IllegalArgumentException, $($I18n::translate("utils.Base64.IllegalBitlength"_s)));
@@ -199,11 +201,13 @@ $BigInteger* Base64::decodeBigIntegerFromElement($Element* element) {
 
 $BigInteger* Base64::decodeBigIntegerFromText($Text* text) {
 	$init(Base64);
+	$useLocalCurrentObjectStackCache();
 	return $new($BigInteger, 1, $(Base64::decode($($nc(text)->getData()))));
 }
 
 void Base64::fillElementWithBigInteger($Element* element, $BigInteger* biginteger) {
 	$init(Base64);
+	$useLocalCurrentObjectStackCache();
 	$var($String, encodedInt, encode(biginteger));
 	bool var$0 = !$XMLUtils::ignoreLineBreaks();
 	if (var$0 && $nc(encodedInt)->length() > Base64::BASE64DEFAULTLENGTH) {
@@ -216,6 +220,7 @@ void Base64::fillElementWithBigInteger($Element* element, $BigInteger* bigintege
 
 $bytes* Base64::decode($Element* element) {
 	$init(Base64);
+	$useLocalCurrentObjectStackCache();
 	$var($Node, sibling, $nc(element)->getFirstChild());
 	$var($StringBuilder, sb, $new($StringBuilder));
 	while (sibling != nullptr) {
@@ -230,6 +235,7 @@ $bytes* Base64::decode($Element* element) {
 
 $Element* Base64::encodeToElement($Document* doc, $String* localName, $bytes* bytes) {
 	$init(Base64);
+	$useLocalCurrentObjectStackCache();
 	$var($Element, el, $XMLUtils::createElementInSignatureSpace(doc, localName));
 	$var($Text, text, $nc(doc)->createTextNode($(encode(bytes))));
 	$nc(el)->appendChild(text);
@@ -248,6 +254,7 @@ $String* Base64::encode($bytes* binaryData) {
 
 $bytes* Base64::decode($BufferedReader* reader) {
 	$init(Base64);
+	$useLocalCurrentObjectStackCache();
 	$var($bytes, retBytes, nullptr);
 	$var($UnsyncByteArrayOutputStream, baos, $new($UnsyncByteArrayOutputStream));
 	{

@@ -109,6 +109,7 @@ bool SingleKeyResolver::engineCanResolve($Element* element, $String* baseURI, $S
 }
 
 $PublicKey* SingleKeyResolver::engineResolvePublicKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	if (this->publicKey != nullptr) {
 		$var($String, name, $nc($($nc(element)->getFirstChild()))->getNodeValue());
 		if ($nc(this->keyName)->equals(name)) {
@@ -123,6 +124,7 @@ $X509Certificate* SingleKeyResolver::engineResolveX509Certificate($Element* elem
 }
 
 $SecretKey* SingleKeyResolver::engineResolveSecretKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	if (this->secretKey != nullptr) {
 		$var($String, name, $nc($($nc(element)->getFirstChild()))->getNodeValue());
 		if ($nc(this->keyName)->equals(name)) {
@@ -133,6 +135,7 @@ $SecretKey* SingleKeyResolver::engineResolveSecretKey($Element* element, $String
 }
 
 $PrivateKey* SingleKeyResolver::engineResolvePrivateKey($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	if (this->privateKey != nullptr) {
 		$var($String, name, $nc($($nc(element)->getFirstChild()))->getNodeValue());
 		if ($nc(this->keyName)->equals(name)) {

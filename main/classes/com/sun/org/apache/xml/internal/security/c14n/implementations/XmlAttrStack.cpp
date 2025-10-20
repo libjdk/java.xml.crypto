@@ -116,6 +116,7 @@ void XmlAttrStack::init$(bool c14n11) {
 }
 
 void XmlAttrStack::push(int32_t level) {
+	$useLocalCurrentObjectStackCache();
 	this->currentLevel = level;
 	if (this->currentLevel == -1) {
 		return;
@@ -143,6 +144,7 @@ void XmlAttrStack::addXmlnsAttr($Attr* n) {
 }
 
 void XmlAttrStack::getXmlnsAttr($Collection* col) {
+	$useLocalCurrentObjectStackCache();
 	int32_t size = $nc(this->levels)->size() - 1;
 	if (this->cur == nullptr) {
 		$set(this, cur, $new($XmlAttrStack$XmlsStackElement));
@@ -234,6 +236,7 @@ void XmlAttrStack::getXmlnsAttr($Collection* col) {
 
 $String* XmlAttrStack::joinURI($String* baseURI$renamed, $String* relativeURI) {
 	$init(XmlAttrStack);
+	$useLocalCurrentObjectStackCache();
 	$var($String, baseURI, baseURI$renamed);
 	$var($String, bscheme, nullptr);
 	$var($String, bauthority, nullptr);
@@ -306,6 +309,7 @@ $String* XmlAttrStack::joinURI($String* baseURI$renamed, $String* relativeURI) {
 
 $String* XmlAttrStack::removeDotSegments($String* path) {
 	$init(XmlAttrStack);
+	$useLocalCurrentObjectStackCache();
 	$nc(XmlAttrStack::LOG)->debug("STEP OUTPUT BUFFER\t\tINPUT BUFFER"_s);
 	$var($String, input, path);
 	while ($nc(input)->indexOf("//"_s) > -1) {
@@ -412,6 +416,7 @@ $String* XmlAttrStack::removeDotSegments($String* path) {
 
 void XmlAttrStack::printStep($String* step, $String* output, $String* input) {
 	$init(XmlAttrStack);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(XmlAttrStack::LOG)->isDebugEnabled()) {
 		$nc(XmlAttrStack::LOG)->debug($$str({" "_s, step, ":   "_s, output}));
 		if ($nc(output)->length() == 0) {

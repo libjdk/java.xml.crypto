@@ -86,6 +86,7 @@ void XPathType::init$($String* expression, $XPathType$Filter* filter) {
 }
 
 void XPathType::init$($String* expression, $XPathType$Filter* filter, $Map* namespaceMap) {
+	$useLocalCurrentObjectStackCache();
 	if (expression == nullptr) {
 		$throwNew($NullPointerException, "expression cannot be null"_s);
 	}

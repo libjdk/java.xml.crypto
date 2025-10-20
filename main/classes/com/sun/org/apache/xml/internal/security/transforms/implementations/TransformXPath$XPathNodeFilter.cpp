@@ -91,6 +91,7 @@ void TransformXPath$XPathNodeFilter::init$($Element* xpathElement, $Node* xpathn
 }
 
 int32_t TransformXPath$XPathNodeFilter::isNodeInclude($Node* currentNode) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		bool include = $nc(this->xPathAPI)->evaluate(currentNode, this->xpathnode, this->str, this->xpathElement);
 		if (include) {

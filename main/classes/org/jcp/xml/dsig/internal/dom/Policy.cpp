@@ -161,6 +161,7 @@ void Policy::init$() {
 
 void Policy::initialize() {
 	$init(Policy);
+	$useLocalCurrentObjectStackCache();
 	$beforeCallerSensitive();
 	$var($String, prop, $cast($String, $AccessController::doPrivileged(static_cast<$PrivilegedAction*>($$new(Policy$$Lambda$lambda$initialize$0)))));
 	if (prop == nullptr || $nc(prop)->isEmpty()) {
@@ -304,6 +305,7 @@ void Policy::initialize() {
 
 bool Policy::restrictAlg($String* alg) {
 	$init(Policy);
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($URI, uri, $new($URI, alg));
 		return $nc(Policy::disallowedAlgs)->contains(uri);
@@ -326,6 +328,7 @@ bool Policy::restrictNumReferences(int32_t numRefs) {
 
 bool Policy::restrictReferenceUriScheme($String* uri) {
 	$init(Policy);
+	$useLocalCurrentObjectStackCache();
 	if (uri != nullptr) {
 		$var($String, scheme, $nc($($URI::create(uri)))->getScheme());
 		if (scheme != nullptr) {
@@ -338,6 +341,7 @@ bool Policy::restrictReferenceUriScheme($String* uri) {
 
 bool Policy::restrictKey($String* type, int32_t size) {
 	$init(Policy);
+	$useLocalCurrentObjectStackCache();
 	return (size < $nc(($cast($Integer, $($nc(Policy::minKeyMap)->getOrDefault(type, $($Integer::valueOf(0)))))))->intValue());
 }
 
@@ -373,6 +377,7 @@ $Set* Policy::disabledReferenceUriSchemes() {
 
 int32_t Policy::minKeySize($String* type) {
 	$init(Policy);
+	$useLocalCurrentObjectStackCache();
 	return $nc(($cast($Integer, $($nc(Policy::minKeyMap)->getOrDefault(type, $($Integer::valueOf(0)))))))->intValue();
 }
 

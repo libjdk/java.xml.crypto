@@ -122,16 +122,19 @@ void XMLX509IssuerSerial::init$($Document* doc, $String* x509IssuerName, $String
 }
 
 void XMLX509IssuerSerial::init$($Document* doc, $String* x509IssuerName, int32_t x509SerialNumber) {
+	$useLocalCurrentObjectStackCache();
 	XMLX509IssuerSerial::init$(doc, x509IssuerName, $$new($BigInteger, $($Integer::toString(x509SerialNumber))));
 }
 
 void XMLX509IssuerSerial::init$($Document* doc, $X509Certificate* x509certificate) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, var$0, doc);
 	$var($String, var$1, $nc($($nc(x509certificate)->getIssuerX500Principal()))->getName());
 	XMLX509IssuerSerial::init$(var$0, var$1, $(x509certificate->getSerialNumber()));
 }
 
 $BigInteger* XMLX509IssuerSerial::getSerialNumber() {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	$var($String, text, this->getTextFromChildElement($Constants::_TAG_X509SERIALNUMBER, $Constants::SignatureSpecNS));
 	$nc(XMLX509IssuerSerial::LOG)->debug("X509SerialNumber text: {}"_s, $$new($ObjectArray, {$of(text)}));
@@ -148,6 +151,7 @@ $String* XMLX509IssuerSerial::getIssuerName() {
 }
 
 bool XMLX509IssuerSerial::equals(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf(XMLX509IssuerSerial, obj))) {
 		return false;
 	}
@@ -157,6 +161,7 @@ bool XMLX509IssuerSerial::equals(Object$* obj) {
 }
 
 int32_t XMLX509IssuerSerial::hashCode() {
+	$useLocalCurrentObjectStackCache();
 	int32_t result = 17;
 	result = 31 * result + $nc($(getSerialNumber()))->hashCode();
 	result = 31 * result + $nc($(getIssuerName()))->hashCode();

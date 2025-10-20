@@ -130,6 +130,7 @@ void DOMPGPData::finalize() {
 }
 
 void DOMPGPData::init$($bytes* keyPacket, $List* other) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	if (keyPacket == nullptr) {
 		$throwNew($NullPointerException, "keyPacket cannot be null"_s);
@@ -154,6 +155,7 @@ void DOMPGPData::init$($bytes* keyPacket, $List* other) {
 }
 
 void DOMPGPData::init$($bytes* keyId, $bytes* keyPacket, $List* other) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	if (keyId == nullptr) {
 		$throwNew($NullPointerException, "keyId cannot be null"_s);
@@ -183,6 +185,7 @@ void DOMPGPData::init$($bytes* keyId, $bytes* keyPacket, $List* other) {
 }
 
 void DOMPGPData::init$($Element* pdElem) {
+	$useLocalCurrentObjectStackCache();
 	$1DOMStructure::init$();
 	$var($bytes, pgpKeyId, nullptr);
 	$var($bytes, pgpKeyPacket, nullptr);
@@ -228,6 +231,7 @@ $List* DOMPGPData::getExternalElements() {
 }
 
 void DOMPGPData::marshal($Node* parent, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, pdElem, $DOMUtils::createElement(ownerDoc, "PGPData"_s, $XMLSignature::XMLNS, dsPrefix));

@@ -129,6 +129,7 @@ $List* DOMSubTreeData$DelayedNodeIterator::dereferenceSameDocumentURI($Node* nod
 }
 
 void DOMSubTreeData$DelayedNodeIterator::nodeSetMinusCommentNodes($Node* node, $List* nodeSet, $Node* prevSibling) {
+	$useLocalCurrentObjectStackCache();
 	{
 		$var($NamedNodeMap, attrs, nullptr)
 		$var($Node, pSibling, nullptr)

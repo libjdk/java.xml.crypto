@@ -179,6 +179,7 @@ void DOMDigestMethod::init$($AlgorithmParameterSpec* params) {
 }
 
 void DOMDigestMethod::init$($Element* dmElem) {
+	$useLocalCurrentObjectStackCache();
 	$DOMStructure::init$();
 	$var($Element, paramsElem, $DOMUtils::getFirstChildElement(dmElem));
 	if (paramsElem != nullptr) {
@@ -194,6 +195,7 @@ void DOMDigestMethod::init$($Element* dmElem) {
 
 $DigestMethod* DOMDigestMethod::unmarshal($Element* dmElem) {
 	$init(DOMDigestMethod);
+	$useLocalCurrentObjectStackCache();
 	$var($String, alg, $DOMUtils::getAttributeValue(dmElem, "Algorithm"_s));
 	$init($DigestMethod);
 	if ($nc(alg)->equals($DigestMethod::SHA1)) {
@@ -244,6 +246,7 @@ $DigestMethod* DOMDigestMethod::unmarshal($Element* dmElem) {
 }
 
 void DOMDigestMethod::checkParams($DigestMethodParameterSpec* params) {
+	$useLocalCurrentObjectStackCache();
 	if (params != nullptr) {
 		$throwNew($InvalidAlgorithmParameterException, $$str({"no parameters should be specified for the "_s, $(getMessageDigestAlgorithm()), " DigestMethod algorithm"_s}));
 	}
@@ -254,11 +257,13 @@ $AlgorithmParameterSpec* DOMDigestMethod::getParameterSpec() {
 }
 
 $DigestMethodParameterSpec* DOMDigestMethod::unmarshalParams($Element* paramsElem) {
+	$useLocalCurrentObjectStackCache();
 	$throwNew($MarshalException, $$str({"no parameters should be specified for the "_s, $(getMessageDigestAlgorithm()), " DigestMethod algorithm"_s}));
 	$shouldNotReachHere();
 }
 
 void DOMDigestMethod::marshal($Node* parent, $String* prefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$var($Document, ownerDoc, $DOMUtils::getOwnerDocument(parent));
 	$init($XMLSignature);
 	$var($Element, dmElem, $DOMUtils::createElement(ownerDoc, "DigestMethod"_s, $XMLSignature::XMLNS, prefix));
@@ -270,6 +275,7 @@ void DOMDigestMethod::marshal($Node* parent, $String* prefix, $DOMCryptoContext*
 }
 
 bool DOMDigestMethod::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}
@@ -291,6 +297,7 @@ int32_t DOMDigestMethod::hashCode() {
 }
 
 void DOMDigestMethod::marshalParams($Element* parent, $String* prefix) {
+	$useLocalCurrentObjectStackCache();
 	$throwNew($MarshalException, $$str({"no parameters should be specified for the "_s, $(getMessageDigestAlgorithm()), " DigestMethod algorithm"_s}));
 }
 

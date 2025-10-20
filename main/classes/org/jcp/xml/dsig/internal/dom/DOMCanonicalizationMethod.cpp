@@ -158,6 +158,7 @@ $Data* DOMCanonicalizationMethod::canonicalize($Data* data, $XMLCryptoContext* x
 }
 
 bool DOMCanonicalizationMethod::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if ($equals(this, o)) {
 		return true;
 	}
@@ -174,6 +175,7 @@ bool DOMCanonicalizationMethod::equals(Object$* o) {
 }
 
 int32_t DOMCanonicalizationMethod::hashCode() {
+	$useLocalCurrentObjectStackCache();
 	int32_t result = 17;
 	result = 31 * result + $nc($(getAlgorithm()))->hashCode();
 	$var($AlgorithmParameterSpec, spec, getParameterSpec());

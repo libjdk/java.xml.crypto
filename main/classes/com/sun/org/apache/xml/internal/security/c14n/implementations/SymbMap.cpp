@@ -96,6 +96,7 @@ $List* SymbMap::entrySet() {
 }
 
 int32_t SymbMap::index(Object$* obj) {
+	$useLocalCurrentObjectStackCache();
 	$var($ObjectArray, set, this->keys);
 	int32_t length = $nc(set)->length;
 	int32_t index = $mod(((int32_t)($nc($of(obj))->hashCode() & (uint32_t)0x7FFFFFFF)), length);
@@ -112,6 +113,7 @@ int32_t SymbMap::index(Object$* obj) {
 }
 
 void SymbMap::rehash(int32_t newCapacity) {
+	$useLocalCurrentObjectStackCache();
 	int32_t oldCapacity = $nc(this->keys)->length;
 	$var($StringArray, oldKeys, this->keys);
 	$var($NameSpaceSymbEntryArray, oldVals, this->entries);

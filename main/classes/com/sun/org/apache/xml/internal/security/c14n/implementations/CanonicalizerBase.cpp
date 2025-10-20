@@ -222,6 +222,7 @@ void CanonicalizerBase::engineCanonicalizeXPathNodeSet($Set* xpathNodeSet, $Outp
 }
 
 void CanonicalizerBase::engineCanonicalize($XMLSignatureInput* input, $OutputStream* writer, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		if ($nc(input)->isExcludeComments()) {
 			this->includeComments = false;
@@ -250,6 +251,7 @@ void CanonicalizerBase::engineCanonicalize($XMLSignatureInput* input, $OutputStr
 }
 
 void CanonicalizerBase::engineCanonicalizeSubTree($Node* rootNode, $Node* excludeNode, $OutputStream* writer) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($NameSpaceSymbTable, ns, $new($NameSpaceSymbTable));
 		int32_t nodeLevel = CanonicalizerBase::NODE_BEFORE_DOCUMENT_ELEMENT;
@@ -269,6 +271,7 @@ void CanonicalizerBase::engineCanonicalizeSubTree($Node* rootNode, $Node* exclud
 }
 
 void CanonicalizerBase::canonicalizeSubTree($Node* currentNode$renamed, $NameSpaceSymbTable* ns, $Node* endnode, int32_t documentLevel, $Node* excludeNode, $OutputStream* writer) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, currentNode, currentNode$renamed);
 	if (currentNode == nullptr || isVisibleInt(currentNode) == -1) {
 		return;
@@ -385,6 +388,7 @@ void CanonicalizerBase::engineCanonicalizeXPathNodeSetInternal($Node* doc, $Outp
 }
 
 void CanonicalizerBase::canonicalizeXPathNodeSet($Node* currentNode$renamed, $Node* endnode, $OutputStream* writer) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, currentNode, currentNode$renamed);
 	if (isVisibleInt(currentNode) == -1) {
 		return;
@@ -541,6 +545,7 @@ void CanonicalizerBase::canonicalizeXPathNodeSet($Node* currentNode$renamed, $No
 }
 
 int32_t CanonicalizerBase::isVisibleDO($Node* currentNode, int32_t level) {
+	$useLocalCurrentObjectStackCache();
 	if (this->nodeFilter != nullptr) {
 		$var($Iterator, it, $nc(this->nodeFilter)->iterator());
 		while ($nc(it)->hasNext()) {
@@ -557,6 +562,7 @@ int32_t CanonicalizerBase::isVisibleDO($Node* currentNode, int32_t level) {
 }
 
 int32_t CanonicalizerBase::isVisibleInt($Node* currentNode) {
+	$useLocalCurrentObjectStackCache();
 	if (this->nodeFilter != nullptr) {
 		$var($Iterator, it, $nc(this->nodeFilter)->iterator());
 		while ($nc(it)->hasNext()) {
@@ -573,6 +579,7 @@ int32_t CanonicalizerBase::isVisibleInt($Node* currentNode) {
 }
 
 bool CanonicalizerBase::isVisible($Node* currentNode) {
+	$useLocalCurrentObjectStackCache();
 	if (this->nodeFilter != nullptr) {
 		$var($Iterator, it, $nc(this->nodeFilter)->iterator());
 		while ($nc(it)->hasNext()) {
@@ -585,6 +592,7 @@ bool CanonicalizerBase::isVisible($Node* currentNode) {
 }
 
 void CanonicalizerBase::handleParent($Element* e, $NameSpaceSymbTable* ns) {
+	$useLocalCurrentObjectStackCache();
 	bool var$0 = !$nc(e)->hasAttributes();
 	if (var$0 && e->getNamespaceURI() == nullptr) {
 		return;
@@ -622,6 +630,7 @@ void CanonicalizerBase::handleParent($Element* e, $NameSpaceSymbTable* ns) {
 }
 
 void CanonicalizerBase::getParentNameSpaces($Element* el, $NameSpaceSymbTable* ns) {
+	$useLocalCurrentObjectStackCache();
 	$var($Node, n1, $nc(el)->getParentNode());
 	if (n1 == nullptr || $Node::ELEMENT_NODE != $nc(n1)->getNodeType()) {
 		return;
@@ -646,6 +655,7 @@ void CanonicalizerBase::getParentNameSpaces($Element* el, $NameSpaceSymbTable* n
 
 void CanonicalizerBase::outputAttrToWriter($String* name, $String* value, $OutputStream* writer, $Map* cache) {
 	$init(CanonicalizerBase);
+	$useLocalCurrentObjectStackCache();
 	$nc(writer)->write((int32_t)u' ');
 	$UtfHelpper::writeByte(name, writer, cache);
 	writer->write($cast($bytes, $($nc(CanonicalizerBase::EQUALS_STR)->clone())));
@@ -702,6 +712,7 @@ void CanonicalizerBase::outputAttrToWriter($String* name, $String* value, $Outpu
 }
 
 void CanonicalizerBase::outputPItoWriter($ProcessingInstruction* currentPI, $OutputStream* writer, int32_t position) {
+	$useLocalCurrentObjectStackCache();
 	if (position == CanonicalizerBase::NODE_AFTER_DOCUMENT_ELEMENT) {
 		$nc(writer)->write((int32_t)u'\n');
 	}
@@ -740,6 +751,7 @@ void CanonicalizerBase::outputPItoWriter($ProcessingInstruction* currentPI, $Out
 }
 
 void CanonicalizerBase::outputCommentToWriter($Comment* currentComment, $OutputStream* writer, int32_t position) {
+	$useLocalCurrentObjectStackCache();
 	if (position == CanonicalizerBase::NODE_AFTER_DOCUMENT_ELEMENT) {
 		$nc(writer)->write((int32_t)u'\n');
 	}
@@ -806,6 +818,7 @@ void CanonicalizerBase::outputTextToWriter($String* text, $OutputStream* writer)
 }
 
 $Attr* CanonicalizerBase::getNullNode($Document* ownerDocument) {
+	$useLocalCurrentObjectStackCache();
 	if (this->nullNode == nullptr) {
 		try {
 			$init($Constants);

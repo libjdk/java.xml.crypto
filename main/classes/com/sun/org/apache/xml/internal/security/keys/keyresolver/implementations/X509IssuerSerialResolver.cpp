@@ -107,6 +107,7 @@ void X509IssuerSerialResolver::init$() {
 }
 
 bool X509IssuerSerialResolver::engineCanResolve($Element* element, $String* baseURI, $StorageResolver* storage) {
+	$useLocalCurrentObjectStackCache();
 	$init($Constants);
 	if ($XMLUtils::elementIsInSignatureSpace(element, $Constants::_TAG_X509DATA)) {
 		try {
@@ -130,6 +131,7 @@ $PublicKey* X509IssuerSerialResolver::engineResolvePublicKey($Element* element, 
 }
 
 $X509Certificate* X509IssuerSerialResolver::engineResolveX509Certificate($Element* element, $String* baseURI, $StorageResolver* storage, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	$var($X509Data, x509data, nullptr);
 	try {
 		$assign(x509data, $new($X509Data, element, baseURI));

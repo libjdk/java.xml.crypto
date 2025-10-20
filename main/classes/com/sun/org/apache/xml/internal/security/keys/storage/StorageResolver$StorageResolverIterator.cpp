@@ -105,6 +105,7 @@ void StorageResolver$StorageResolverIterator::remove() {
 }
 
 $Iterator* StorageResolver$StorageResolverIterator::findNextResolver() {
+	$useLocalCurrentObjectStackCache();
 	while ($nc(this->resolvers)->hasNext()) {
 		$var($StorageResolverSpi, resolverSpi, $cast($StorageResolverSpi, $nc(this->resolvers)->next()));
 		$var($Iterator, iter, $nc(resolverSpi)->getIterator());

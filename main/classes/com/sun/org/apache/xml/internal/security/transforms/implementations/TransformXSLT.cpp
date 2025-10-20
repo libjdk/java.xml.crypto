@@ -130,6 +130,7 @@ $String* TransformXSLT::engineGetURI() {
 }
 
 $XMLSignatureInput* TransformXSLT::enginePerformTransform($XMLSignatureInput* input, $OutputStream* baos, $Element* transformElement, $String* baseURI, bool secureValidation) {
+	$useLocalCurrentObjectStackCache();
 	try {
 		$var($Element, xsltElement, $XMLUtils::selectNode($($nc(transformElement)->getFirstChild()), TransformXSLT::XSLTSpecNS, "stylesheet"_s, 0));
 		if (xsltElement == nullptr) {

@@ -99,6 +99,7 @@ $Object* allocate$DOMKeyValue$RSA($Class* clazz) {
 }
 
 void DOMKeyValue$RSA::init$($RSAPublicKey* key) {
+	$useLocalCurrentObjectStackCache();
 	$DOMKeyValue::init$(static_cast<$PublicKey*>(key));
 	$var($RSAPublicKey, rkey, key);
 	$set(this, exponent, $new($DOMCryptoBinary, $($nc(rkey)->getPublicExponent())));
@@ -110,6 +111,7 @@ void DOMKeyValue$RSA::init$($Element* elem) {
 }
 
 void DOMKeyValue$RSA::marshalPublicKey($Node* parent, $Document* doc, $String* dsPrefix, $DOMCryptoContext* context) {
+	$useLocalCurrentObjectStackCache();
 	$init($XMLSignature);
 	$var($Element, rsaElem, $DOMUtils::createElement(doc, "RSAKeyValue"_s, $XMLSignature::XMLNS, dsPrefix));
 	$var($Element, modulusElem, $DOMUtils::createElement(doc, "Modulus"_s, $XMLSignature::XMLNS, dsPrefix));
@@ -122,6 +124,7 @@ void DOMKeyValue$RSA::marshalPublicKey($Node* parent, $Document* doc, $String* d
 }
 
 $PublicKey* DOMKeyValue$RSA::unmarshalKeyValue($Element* kvtElem) {
+	$useLocalCurrentObjectStackCache();
 	if (this->rsakf == nullptr) {
 		try {
 			$set(this, rsakf, $KeyFactory::getInstance("RSA"_s));

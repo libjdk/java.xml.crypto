@@ -149,6 +149,7 @@ int32_t XPath2NodeFilter::isNodeIncludeDO($Node* n, int32_t level) {
 
 bool XPath2NodeFilter::rooted($Node* currentNode, $Set* nodeList) {
 	$init(XPath2NodeFilter);
+	$useLocalCurrentObjectStackCache();
 	if ($nc(nodeList)->isEmpty()) {
 		return false;
 	}
@@ -176,6 +177,7 @@ bool XPath2NodeFilter::inList($Node* currentNode, $Set* nodeList) {
 
 $Set* XPath2NodeFilter::convertNodeListToSet($List* l) {
 	$init(XPath2NodeFilter);
+	$useLocalCurrentObjectStackCache();
 	$var($Set, result, $new($HashSet));
 	{
 		$var($Iterator, i$, $nc(l)->iterator());

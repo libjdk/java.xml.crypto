@@ -184,6 +184,7 @@ $Data* ApacheTransform::transform($Data* data, $XMLCryptoContext* xc, $OutputStr
 }
 
 $Data* ApacheTransform::transformIt($Data* data, $XMLCryptoContext* xc, $OutputStream* os) {
+	$useLocalCurrentObjectStackCache();
 	if (this->ownerDoc == nullptr) {
 		$throwNew($TransformException, "transform must be marshalled"_s);
 	}

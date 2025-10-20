@@ -77,6 +77,7 @@ void TransformService$MechanismMapEntry::init$($String* algorithm, $String* mech
 }
 
 bool TransformService$MechanismMapEntry::equals(Object$* o) {
+	$useLocalCurrentObjectStackCache();
 	if (!($instanceOf($Map$Entry, o))) {
 		return false;
 	}
@@ -99,6 +100,7 @@ $String* TransformService$MechanismMapEntry::setValue($String* value) {
 }
 
 int32_t TransformService$MechanismMapEntry::hashCode() {
+	$useLocalCurrentObjectStackCache();
 	int32_t var$0 = ($cast($String, getKey()) == nullptr ? 0 : $nc($($cast($String, getKey())))->hashCode());
 	return var$0 ^ ($cast($String, getValue()) == nullptr ? 0 : $nc($($cast($String, getValue())))->hashCode());
 }

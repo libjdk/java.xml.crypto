@@ -95,6 +95,7 @@ void ECDSAUtils$ECCurveDefinition::init$($String* name, $String* oid, $String* f
 }
 
 $String* ECDSAUtils$ECCurveDefinition::equals($BigInteger* field, $BigInteger* a, $BigInteger* b, $BigInteger* x, $BigInteger* y, $BigInteger* n, int32_t h) {
+	$useLocalCurrentObjectStackCache();
 	bool var$4 = $nc(this->field)->equals($($nc(field)->toString(16)));
 	bool var$3 = var$4 && $nc(this->a)->equals($($nc(a)->toString(16)));
 	bool var$2 = var$3 && $nc(this->b)->equals($($nc(b)->toString(16)));
